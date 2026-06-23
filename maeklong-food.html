@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>อาหารท้องถิ่นแม่กลอง — ภูมิปัญญาท้องถิ่นจังหวัดสมุทรสงคราม</title>
+  <meta name="description" content="ตำรับอาหารพื้นบ้านสมุทรสงคราม กะปิแม่กลอง ปลาทูนึ่งมะนาว แกงส้มใบชะคราม ขนมทองม้วน และอาหารท้องถิ่นที่หาที่ไหนไม่ได้">
+  <meta property="og:title" content="อาหารท้องถิ่นแม่กลอง — ภูมิปัญญาท้องถิ่นจังหวัดสมุทรสงคราม">
+  <meta property="og:description" content="ตำรับพื้นบ้านที่ผสมรสชาติจากทะเล น้ำจืด และป่าชายเลน อาหารที่หาที่ไหนไม่ได้นอกจากสมุทรสงคราม">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1509731987499-fd9bba3a46cc?w=1200&q=80">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@300;400;500;600;700&family=Chakra+Petch:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Nav config: heroMode = true for transparent-to-solid transition -->
+  <script>window.NAV_CONFIG = { active: 'food', heroMode: false };</script>
+  
+</head>
+<body>
+
+<!-- ══ PAGE HERO ══ -->
+<div class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1509731987499-fd9bba3a46cc?w=1280&q=80')"></div>
+  <div class="container">
+    <div class="page-hero-content">
+      <nav class="breadcrumb" aria-label="เส้นทางนำทาง">
+        <a href="index.html" data-i18n="breadcrumb_home">หน้าแรก</a>
+        <span class="sep">›</span>
+        <a href="Charm.html" data-i18n="breadcrumb_Charm">คลังภูมิปัญญา</a>
+        <span class="sep">›</span>
+        <span>อาหารท้องถิ่น</span>
+      </nav>
+      <span class="tag tag-spice mb-16">🍜 ตำรับพื้นบ้าน</span>
+      <h1>อาหารและตำรับท้องถิ่นแม่กลอง</h1>
+      <p>รสชาติจากทะเล น้ำจืด และป่าชายเลน ในตำรับที่สืบทอดมานานกว่าร้อยปี</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ INTRO ══ -->
+<section class="section-sm bg-cream-dark">
+  <div class="container">
+    <div class="intro-grid fade-in">
+      <div>
+        <span class="eyebrow label-ui" style="color:var(--earth)">✦ ปรัชญาอาหาร</span>
+        <div class="divider"></div>
+        <h2>ทะเล น้ำจืด และดินชุ่มชื้น</h2>
+        <p class="mt-8">ตำรับอาหารสมุทรสงครามไม่ได้เป็นแค่รสชาติ แต่คืองานศิลปะที่บันทึกความสัมพันธ์ระหว่างมนุษย์กับระบบนิเวศ วัตถุดิบทุกชิ้นมาจากน้ำที่อยู่รายล้อม ไม่ว่าจะเป็นกุ้งเคยจากอ่าว ปลาจากแม่น้ำ หรือพืชผักจากป่าชายเลน</p>
+        <p class="mt-8">หลายตำรับไม่มีสูตรที่เขียนไว้ แต่ถ่ายทอดผ่านมือและความทรงจำ จากแม่สู่ลูก จากปู่สู่หลาน — นั่นคือภูมิปัญญาที่แท้จริง</p>
+      </div>
+      <div class="intro-stats-grid">
+        <div class="stat-box" style="border-top:3px solid var(--earth)">
+          <div class="stat-num" style="color:var(--earth)">🦐</div>
+          <div class="stat-lbl">กุ้งเคยอ่าวไทย<br><small>วัตถุดิบหลัก</small></div>
+        </div>
+        <div class="stat-box" style="border-top:3px solid var(--river)">
+          <div class="stat-num" style="color:var(--river)">🐟</div>
+          <div class="stat-lbl">ปลาทูแม่กลอง<br><small>ขึ้นชื่อระดับชาติ</small></div>
+        </div>
+        <div class="stat-box" style="border-top:3px solid var(--teal)">
+          <div class="stat-num" style="color:var(--teal)">🌿</div>
+          <div class="stat-lbl">ใบชะคราม<br><small>พืชเฉพาะถิ่น</small></div>
+        </div>
+        <div class="stat-box" style="border-top:3px solid var(--gold)">
+          <div class="stat-num" style="color:var(--gold)">🥥</div>
+          <div class="stat-lbl">มะพร้าวสวน<br><small>หัวใจขนมหวาน</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FILTER ══ -->
+<section class="section-sm">
+  <div class="container">
+    <div class="filter-strip" id="foodFilter">
+      <button class="filter-btn active" onclick="filterFood(this,'all')">ทั้งหมด</button>
+      <button class="filter-btn" onclick="filterFood(this,'sea')">🦐 อาหารทะเล</button>
+      <button class="filter-btn" onclick="filterFood(this,'curry')">🍲 แกงและต้ม</button>
+      <button class="filter-btn" onclick="filterFood(this,'snack')">🍡 ขนมและของหวาน</button>
+      <button class="filter-btn" onclick="filterFood(this,'condiment')">🫙 เครื่องปรุง</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOD GRID ══ -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="dish-grid" id="foodGrid">
+
+      <!-- กะปิแม่กลอง -->
+      <div class="dish-card fade-in" data-cat="condiment">
+        <div class="dish-card-img">
+          <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=800&q=80" alt="กะปิแม่กลอง" loading="lazy">
+          <div class="dish-card-badge"><span class="tag tag-earth">🏆 ขึ้นชื่อระดับชาติ</span></div>
+        </div>
+        <div class="dish-card-body">
+          <span class="tag tag-earth mb-8">🫙 เครื่องปรุง</span>
+          <h3>กะปิแม่กลอง</h3>
+          <p>หมักจากกุ้งเคยอ่าวไทยและเกลือสมุทร ตากแดดและหมักบ่มในไหดินตามภูมิปัญญาโบราณ สีม่วงเข้มกลิ่นหอม ต่างจากกะปิทั่วไปโดยสิ้นเชิง</p>
+          <div class="dish-tags mt-8 mb-16">
+            <span class="tag tag-earth">ดั้งเดิม 100+ปี</span>
+            <span class="tag tag-river">กุ้งเคยอ่าวไทย</span>
+          </div>
+          <div style="background:var(--cream);border-radius:var(--r-sm);padding:12px;font-size:.82rem;color:var(--ink-muted);border-left:3px solid var(--earth)">
+            <strong style="color:var(--ink-soft)">ภูมิปัญญา:</strong> กรรมวิธีการหมักต้องอาศัยการสังเกตอากาศ กลิ่น และสีของกุ้งเคย ไม่มีสูตรตายตัว — ต้องเรียนรู้จากผู้ชำนาญเท่านั้น
+          </div>
+        </div>
+      </div>
+
+      <!-- ปลาทูนึ่งมะนาว -->
+      <div class="dish-card fade-in stagger-1" data-cat="sea">
+        <div class="dish-card-img">
+          <img src="https://images.unsplash.com/photo-1509731987499-fd9bba3a46cc?w=800&q=80" alt="ปลาทูนึ่งมะนาว" loading="lazy">
+          <div class="dish-card-badge"><span class="tag tag-teal">🎣 จากทะเล</span></div>
+        </div>
+        <div class="dish-card-body">
+          <span class="tag tag-river mb-8">🐟 อาหารทะเล</span>
+          <h3>ปลาทูนึ่งมะนาว</h3>
+          <p>ปลาทูสดจากอ่าวแม่กลอง นึ่งกับมะนาว ตะไคร้ ใบมะกรูด และพริก รสเปรี้ยวอมเผ็ด กลิ่นหอมของสมุนไพรปกคลุมความสดของปลา</p>
+          <div class="dish-tags mt-8 mb-16">
+            <span class="tag tag-river">ปลาสด</span>
+            <span class="tag tag-teal">สมุนไพร</span>
+          </div>
+          <div style="background:var(--cream);border-radius:var(--r-sm);padding:12px;font-size:.82rem;color:var(--ink-muted);border-left:3px solid var(--river)">
+            <strong style="color:var(--ink-soft)">เคล็ดลับ:</strong> ปลาทูต้องนึ่งไม่เกิน 8 นาที เนื้อจะยังชุ่มชื้นและไม่แห้ง — ความรู้ที่ถ่ายทอดกันในครอบครัวชาวประมง
+          </div>
+        </div>
+      </div>
+
+      <!-- แกงส้มใบชะคราม -->
+      <div class="dish-card fade-in stagger-2" data-cat="curry">
+        <div class="dish-card-img">
+          <img src="https://images.unsplash.com/photo-1548086816-a99cb4400b4b?w=800&q=80" alt="แกงส้มใบชะคราม" loading="lazy">
+          <div class="dish-card-badge"><span class="tag tag-teal">🌿 พืชเฉพาะถิ่น</span></div>
+        </div>
+        <div class="dish-card-body">
+          <span class="tag tag-teal mb-8">🍲 แกงและต้ม</span>
+          <h3>แกงส้มใบชะคราม</h3>
+          <p>แกงส้มสูตรพื้นบ้านที่ใช้ใบชะคราม พืชป่าชายเลนที่ขึ้นเฉพาะในบริเวณน้ำกร่อย รสเปรี้ยวจากมะขาม เนื้อปลาช่อนหรือกุ้ง หาทานได้เฉพาะในสมุทรสงคราม</p>
+          <div class="dish-tags mt-8 mb-16">
+            <span class="tag tag-teal">ป่าชายเลน</span>
+            <span class="tag tag-earth">หาที่ไหนไม่ได้</span>
+          </div>
+          <div style="background:var(--cream);border-radius:var(--r-sm);padding:12px;font-size:.82rem;color:var(--ink-muted);border-left:3px solid var(--teal)">
+            <strong style="color:var(--ink-soft)">เฉพาะถิ่น:</strong> ใบชะครามขึ้นได้เฉพาะในโซนน้ำกร่อยริมป่าชายเลน ไม่สามารถปลูกที่อื่นได้ ทำให้แกงส้มชะครามเป็นอาหารที่ผูกติดกับสมุทรสงคราม 100%
+          </div>
+        </div>
+      </div>
+
+      <!-- ขนมทองม้วน -->
+      <div class="dish-card fade-in" data-cat="snack">
+        <div class="dish-card-img">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="ขนมทองม้วน" loading="lazy">
+          <div class="dish-card-badge"><span class="tag tag-gold">🏺 ขนมโบราณ</span></div>
+        </div>
+        <div class="dish-card-body">
+          <span class="tag tag-gold mb-8">🍡 ขนมและของหวาน</span>
+          <h3>ขนมทองม้วน</h3>
+          <p>ขนมพื้นบ้านทำจากแป้งข้าวเจ้า กะทิสด น้ำตาลมะพร้าว และงา ย่างบนแม่พิมพ์เหล็กโบราณ กรอบนอกหอมใน เป็นของฝากยอดนิยม</p>
+          <div class="dish-tags mt-8 mb-16">
+            <span class="tag tag-gold">ขนมโบราณ</span>
+            <span class="tag tag-earth">กะทิสด</span>
+          </div>
+          <div style="background:var(--cream);border-radius:var(--r-sm);padding:12px;font-size:.82rem;color:var(--ink-muted);border-left:3px solid var(--gold)">
+            <strong style="color:var(--ink-soft)">ภูมิปัญญา:</strong> แม่พิมพ์เหล็กโบราณต้องสืบทอดกันมา ความร้อนที่เหมาะสมต้องอาศัยประสบการณ์ ไม่มีเทอร์โมมิเตอร์ — ใช้มือสัมผัสและดูสีควัน
+          </div>
+        </div>
+      </div>
+
+      <!-- ลอดช่อง -->
+      <div class="dish-card fade-in stagger-1" data-cat="snack">
+        <div class="dish-card-img">
+          <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=800&q=80" alt="ลอดช่องสมุทรสงคราม" loading="lazy">
+        </div>
+        <div class="dish-card-body">
+          <span class="tag tag-gold mb-8">🍡 ขนมและของหวาน</span>
+          <h3>ลอดช่องสมุทรสงคราม</h3>
+          <p>ลอดช่องเส้นเหนียวนุ่ม ราดด้วยกะทิสดคั้นจากมะพร้าวสวน น้ำตาลมะพร้าวดิบ และน้ำแข็งใส รสหวานมันละมุน ต่างจากลอดช่องทั่วไปตรงกลิ่นหอมของกะทิที่ไม่ผ่านกระบวนการ</p>
+          <div class="dish-tags mt-8 mb-16">
+            <span class="tag tag-gold">น้ำตาลมะพร้าว</span>
+            <span class="tag tag-teal">กะทิสด</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ข้าวแช่ -->
+      <div class="dish-card fade-in stagger-2" data-cat="sea">
+        <div class="dish-card-img">
+          <img src="https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?w=800&q=80" alt="ข้าวแช่" loading="lazy">
+        </div>
+        <div class="dish-card-body">
+          <span class="tag tag-river mb-8">🍚 อาหารหลัก</span>
+          <h3>ข้าวแช่แบบชาวบ้าน</h3>
+          <p>ข้าวแช่น้ำดอกมะลิหอม เสิร์ฟพร้อมกับลูกกะปิทอด หมูฝอย และปลาแห้งฉีก เป็นอาหารที่ชาวเมืองกินในฤดูร้อน บอกเล่าถึงความสัมพันธ์ระหว่างกะปิและข้าว</p>
+          <div class="dish-tags mt-8 mb-16">
+            <span class="tag tag-earth">ฤดูร้อน</span>
+            <span class="tag tag-river">ดอกมะลิ</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- น้ำตาลมะพร้าว -->
+      <div class="dish-card fade-in" data-cat="condiment">
+        <div class="dish-card-img">
+          <img src="https://images.unsplash.com/photo-1592664474496-8f2d85c6a8e0?w=800&q=80" alt="น้ำตาลมะพร้าว" loading="lazy">
+          <div class="dish-card-badge"><span class="tag tag-teal">🌴 สมุทรสงคราม</span></div>
+        </div>
+        <div class="dish-card-body">
+          <span class="tag tag-gold mb-8">🫙 เครื่องปรุง</span>
+          <h3>น้ำตาลมะพร้าวดิบ</h3>
+          <p>น้ำตาลจากงวงมะพร้าวที่ต้มแบบดั้งเดิม ไม่ผ่านการฟอกสี รสหวานซับซ้อน มีกลิ่นมะพร้าวอ่อนๆ สมุทรสงครามเป็นแหล่งน้ำตาลมะพร้าวคุณภาพดีที่สุดแห่งหนึ่งของไทย</p>
+          <div class="dish-tags mt-8 mb-16">
+            <span class="tag tag-gold">มะพร้าวสวน</span>
+            <span class="tag tag-earth">ไม่ฟอกสี</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ปลาแห้ง -->
+      <div class="dish-card fade-in stagger-1" data-cat="sea">
+        <div class="dish-card-img">
+          <img src="https://images.unsplash.com/photo-1548086816-a99cb4400b4b?w=800&q=80" alt="ปลาแห้ง" loading="lazy">
+        </div>
+        <div class="dish-card-body">
+          <span class="tag tag-river mb-8">🐟 อาหารทะเล</span>
+          <h3>ปลาแห้งและกุ้งแห้งแม่กลอง</h3>
+          <p>การถนอมอาหารด้วยการตากแห้งเป็นภูมิปัญญาโบราณของชาวประมง ปลาและกุ้งแห้งจากแม่กลองใช้เกลือสมุทรในปริมาณที่เหมาะสม รสชาติเข้มข้นแต่ไม่เค็มเกินไป</p>
+          <div class="dish-tags mt-8 mb-16">
+            <span class="tag tag-river">ถนอมอาหาร</span>
+            <span class="tag tag-earth">เกลือสมุทร</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHERE TO EAT ══ -->
+<section class="section-sm bg-cream-dark">
+  <div class="container">
+    <div class="section-header centered">
+      <span class="eyebrow label-ui">หาทานได้ที่ไหน</span>
+      <h2>แหล่งอาหารท้องถิ่นแนะนำ</h2>
+      <div class="divider" style="margin:16px auto"></div>
+    </div>
+    <div class="market-grid">
+      <div class="market-card">
+        <div class="market-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Amphawa_Floating_Market.jpg/800px-Amphawa_Floating_Market.jpg" alt="ตลาดน้ำอัมพวา" loading="lazy">
+        </div>
+        <div class="market-body">
+          <h3>ตลาดน้ำอัมพวา</h3>
+          <p>อาหารทะเลสด ขนมพื้นบ้าน และผลิตภัณฑ์ชุมชนหลากหลาย</p>
+          <div class="market-hours">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            ศุกร์–อาทิตย์ 12:00–21:00
+          </div>
+          <div class="market-actions">
+            <button class="btn-map" onclick="openMap(13.4278,99.9964,'ตลาดน้ำอัมพวา')">🗺 แผนที่</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="market-card">
+        <div class="market-img">
+          <img src="https://images.unsplash.com/photo-1592664474496-8f2d85c6a8e0?w=800&q=80" alt="ตลาดรถไฟแม่กลอง" loading="lazy">
+        </div>
+        <div class="market-body">
+          <h3>ตลาดรถไฟแม่กลอง</h3>
+          <p>ตลาดสดพื้นบ้าน มีปลาทูสด กุ้งแห้ง กะปิ และผักพื้นบ้าน ราคาย่อมเยา</p>
+          <div class="market-hours">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            ทุกวัน 06:00–18:00
+          </div>
+          <div class="market-actions">
+            <button class="btn-map" onclick="openMap(13.4100,100.0020,'ตลาดรถไฟแม่กลอง')">🗺 แผนที่</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="market-card">
+        <div class="market-img">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="ชุมชนทำกะปิ" loading="lazy">
+        </div>
+        <div class="market-body">
+          <h3>ชุมชนทำกะปิบ้านนางตะเคียน</h3>
+          <p>เยี่ยมชมกระบวนการทำกะปิดั้งเดิมและซื้อกะปิตรงจากชุมชน ไม่มีผ่านพ่อค้าคนกลาง</p>
+          <div class="market-hours">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            พ.ค.–ส.ค. (ฤดูกาล)
+          </div>
+          <div class="market-actions">
+            <button class="btn-map" onclick="openMap(13.38,99.97,'ชุมชนบ้านนางตะเคียน สมุทรสงคราม')">🗺 แผนที่</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<div class="dark-banner">
+  <div class="container">
+    <span class="tag tag-gold mb-20">✦ มีตำรับที่อยากแบ่งปัน?</span>
+    <h2>ร่วมบันทึกตำรับอาหารของชุมชน</h2>
+    <p>ถ้าคุณมีตำรับอาหารพื้นบ้านที่สืบทอดมาจากครอบครัว ร่วมส่งให้เราบันทึกไว้ในคลัง</p>
+    <div class="flex-center gap-14 flex-wrap">
+      <a href="contact.html" class="btn btn-primary">ส่งตำรับอาหาร</a>
+      <a href="shops.html" class="btn btn-ghost">ดูร้านค้าชุมชน</a>
+    </div>
+  </div>
+</div>
+
+<script src="i18n.js"></script>
+<script src="nav.js"></script>
+<script src="search.js"></script>
+<script>
+function filterFood(btn, cat) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.dish-card').forEach(card => {
+    card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'flex' : 'none';
+  });
+}
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

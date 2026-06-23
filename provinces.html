@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เลือกจังหวัด — ภูมิปัญญาท้องถิ่นไทย</title>
+  <meta name="description" content="เลือกจังหวัดเพื่อสำรวจภูมิปัญญาท้องถิ่น วัฒนธรรม และประวัติศาสตร์ชุมชนทั่วประเทศไทย">
+  <meta property="og:title" content="เลือกจังหวัด — ภูมิปัญญาท้องถิ่นไทย">
+  <meta property="og:description" content="สำรวจภูมิปัญญาท้องถิ่นทั่วประเทศ รองรับ 77 จังหวัด">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@300;400;500;600;700&family=Chakra+Petch:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Nav config: heroMode = true for transparent-to-solid transition -->
+  <script>window.NAV_CONFIG = { active: '', heroMode: false };</script>
+</head>
+<body>
+
+<!-- ══ PROVINCES HERO ══ -->
+<div class="provinces-hero">
+  <div class="container">
+    <nav class="breadcrumb" style="justify-content:center;margin-bottom:16px" aria-label="เส้นทางนำทาง">
+      <a href="index.html" style="color:rgba(255,255,255,.7)" data-i18n="breadcrumb_home">หน้าแรก</a>
+      <span class="sep" style="color:rgba(255,255,255,.4)">›</span>
+      <span style="color:var(--white)">เลือกจังหวัด</span>
+    </nav>
+    <h1>ภูมิปัญญาท้องถิ่นไทย</h1>
+    <p>เลือกจังหวัดเพื่อสำรวจประวัติศาสตร์ ภูมิปัญญา และวัฒนธรรมชุมชนท้องถิ่น</p>
+    <div class="provinces-search">
+      <input type="text" id="provinceSearch" placeholder="ค้นหาจังหวัด..." oninput="filterProvinces(this.value)">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+      </svg>
+    </div>
+    <p style="color:rgba(255,255,255,.6);font-size:.82rem;margin-top:16px;font-family:var(--font-ui)">
+      🟢 เปิดให้บริการ &nbsp;|&nbsp; ⚪ กำลังพัฒนา
+    </p>
+  </div>
+</div>
+
+<!-- ══ REGION SECTIONS ══ -->
+<section class="section">
+  <div class="container" id="provincesContainer">
+
+    <!-- ภาคกลาง -->
+    <div class="region-section" data-region="กลาง">
+      <div class="region-title">🌾 ภาคกลาง</div>
+      <div class="provinces-grid">
+        <a href="index.html" class="province-card available">
+          <div class="province-icon">🌊</div>
+          <div>
+            <div class="province-name">สมุทรสงคราม</div>
+            <span class="province-badge">เปิดให้บริการ</span>
+          </div>
+        </a>
+        <div class="province-card coming-soon" onclick="showComingSoon('กรุงเทพมหานคร')">
+          <div class="province-icon">🏙</div>
+          <div><div class="province-name">กรุงเทพมหานคร</div></div>
+        </div>
+        <div class="province-card coming-soon" onclick="showComingSoon('นนทบุรี')">
+          <div class="province-icon">🏛</div>
+          <div><div class="province-name">นนทบุรี</div></div>
+        </div>
+        <div class="province-card coming-soon" onclick="showComingSoon('ปทุมธานี')">
+          <div class="province-icon">🌿</div>
+          <div><div class="province-name">ปทุมธานี</div></div>
+        </div>
+        <div class="province-card coming-soon" onclick="showComingSoon('สมุทรปราการ')">
+          <div class="province-icon">⚓</div>
+          <div><div class="province-name">สมุทรปราการ</div></div>
+        </div>
+        <div class="province-card coming-soon" onclick="showComingSoon('สมุทรสาคร')">
+          <div class="province-icon">🦐</div>
+          <div><div class="province-name">สมุทรสาคร</div></div>
+        </div>
+        <div class="province-card coming-soon" onclick="showComingSoon('ราชบุรี')">
+          <div class="province-icon">🏺</div>
+          <div><div class="province-name">ราชบุรี</div></div>
+        </div>
+        <div class="province-card coming-soon" onclick="showComingSoon('เพชรบุรี')">
+          <div class="province-icon">🎨</div>
+          <div><div class="province-name">เพชรบุรี</div></div>
+        </div>
+        <div class="province-card coming-soon" onclick="showComingSoon('อยุธยา')">
+          <div class="province-icon">🏯</div>
+          <div><div class="province-name">พระนครศรีอยุธยา</div></div>
+        </div>
+        <div class="province-card coming-soon" onclick="showComingSoon('สุพรรณบุรี')">
+          <div class="province-icon">🐃</div>
+          <div><div class="province-name">สุพรรณบุรี</div></div>
+        </div>
+        <div class="province-card coming-soon" onclick="showComingSoon('กาญจนบุรี')">
+          <div class="province-icon">🌁</div>
+          <div><div class="province-name">กาญจนบุรี</div></div>
+        </div>
+        <div class="province-card coming-soon" onclick="showComingSoon('นครปฐม')">
+          <div class="province-icon">🛕</div>
+          <div><div class="province-name">นครปฐม</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ภาคเหนือ -->
+    <div class="region-section" data-region="เหนือ">
+      <div class="region-title">⛰ ภาคเหนือ</div>
+      <div class="provinces-grid">
+        <div class="province-card coming-soon" onclick="showComingSoon('เชียงใหม่')"><div class="province-icon">🌸</div><div><div class="province-name">เชียงใหม่</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('เชียงราย')"><div class="province-icon">🍵</div><div><div class="province-name">เชียงราย</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('ลำปาง')"><div class="province-icon">🐘</div><div><div class="province-name">ลำปาง</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('ลำพูน')"><div class="province-icon">🌺</div><div><div class="province-name">ลำพูน</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('แม่ฮ่องสอน')"><div class="province-icon">🏔</div><div><div class="province-name">แม่ฮ่องสอน</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('น่าน')"><div class="province-icon">🌾</div><div><div class="province-name">น่าน</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('พะเยา')"><div class="province-icon">🦢</div><div><div class="province-name">พะเยา</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('แพร่')"><div class="province-icon">🪵</div><div><div class="province-name">แพร่</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('อุตรดิตถ์')"><div class="province-icon">🥭</div><div><div class="province-name">อุตรดิตถ์</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('สุโขทัย')"><div class="province-icon">🏛</div><div><div class="province-name">สุโขทัย</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('ตาก')"><div class="province-icon">🌊</div><div><div class="province-name">ตาก</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('กำแพงเพชร')"><div class="province-icon">🔷</div><div><div class="province-name">กำแพงเพชร</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('นครสวรรค์')"><div class="province-icon">🐲</div><div><div class="province-name">นครสวรรค์</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('พิษณุโลก')"><div class="province-icon">✨</div><div><div class="province-name">พิษณุโลก</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('พิจิตร')"><div class="province-icon">🎣</div><div><div class="province-name">พิจิตร</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('เพชรบูรณ์')"><div class="province-icon">🌻</div><div><div class="province-name">เพชรบูรณ์</div></div></div>
+      </div>
+    </div>
+
+    <!-- ภาคตะวันออกเฉียงเหนือ -->
+    <div class="region-section" data-region="อีสาน">
+      <div class="region-title">🌅 ภาคตะวันออกเฉียงเหนือ (อีสาน)</div>
+      <div class="provinces-grid">
+        <div class="province-card coming-soon" onclick="showComingSoon('ขอนแก่น')"><div class="province-icon">🥁</div><div><div class="province-name">ขอนแก่น</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('อุดรธานี')"><div class="province-icon">🪘</div><div><div class="province-name">อุดรธานี</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('นครราชสีมา')"><div class="province-icon">🏟</div><div><div class="province-name">นครราชสีมา</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('อุบลราชธานี')"><div class="province-icon">🌸</div><div><div class="province-name">อุบลราชธานี</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('สุรินทร์')"><div class="province-icon">🐘</div><div><div class="province-name">สุรินทร์</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('บุรีรัมย์')"><div class="province-icon">⚽</div><div><div class="province-name">บุรีรัมย์</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('ศรีสะเกษ')"><div class="province-icon">🌷</div><div><div class="province-name">ศรีสะเกษ</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('ยโสธร')"><div class="province-icon">🕯</div><div><div class="province-name">ยโสธร</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('ร้อยเอ็ด')"><div class="province-icon">🌾</div><div><div class="province-name">ร้อยเอ็ด</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('มหาสารคาม')"><div class="province-icon">📚</div><div><div class="province-name">มหาสารคาม</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('กาฬสินธุ์')"><div class="province-icon">🦕</div><div><div class="province-name">กาฬสินธุ์</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('สกลนคร')"><div class="province-icon">🦆</div><div><div class="province-name">สกลนคร</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('นครพนม')"><div class="province-icon">🛕</div><div><div class="province-name">นครพนม</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('หนองคาย')"><div class="province-icon">🏞</div><div><div class="province-name">หนองคาย</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('บึงกาฬ')"><div class="province-icon">🌿</div><div><div class="province-name">บึงกาฬ</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('เลย')"><div class="province-icon">🌨</div><div><div class="province-name">เลย</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('หนองบัวลำภู')"><div class="province-icon">🌺</div><div><div class="province-name">หนองบัวลำภู</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('ชัยภูมิ')"><div class="province-icon">⚡</div><div><div class="province-name">ชัยภูมิ</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('อำนาจเจริญ')"><div class="province-icon">🌳</div><div><div class="province-name">อำนาจเจริญ</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('มุกดาหาร')"><div class="province-icon">💠</div><div><div class="province-name">มุกดาหาร</div></div></div>
+      </div>
+    </div>
+
+    <!-- ภาคตะวันออก -->
+    <div class="region-section" data-region="ตะวันออก">
+      <div class="region-title">🌅 ภาคตะวันออก</div>
+      <div class="provinces-grid">
+        <div class="province-card coming-soon" onclick="showComingSoon('ชลบุรี')"><div class="province-icon">🏖</div><div><div class="province-name">ชลบุรี</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('ระยอง')"><div class="province-icon">⛽</div><div><div class="province-name">ระยอง</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('จันทบุรี')"><div class="province-icon">💎</div><div><div class="province-name">จันทบุรี</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('ตราด')"><div class="province-icon">🏝</div><div><div class="province-name">ตราด</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('ฉะเชิงเทรา')"><div class="province-icon">🐊</div><div><div class="province-name">ฉะเชิงเทรา</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('ปราจีนบุรี')"><div class="province-icon">🦋</div><div><div class="province-name">ปราจีนบุรี</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('สระแก้ว')"><div class="province-icon">🌿</div><div><div class="province-name">สระแก้ว</div></div></div>
+      </div>
+    </div>
+
+    <!-- ภาคใต้ -->
+    <div class="region-section" data-region="ใต้">
+      <div class="region-title">🌴 ภาคใต้</div>
+      <div class="provinces-grid">
+        <div class="province-card coming-soon" onclick="showComingSoon('ภูเก็ต')"><div class="province-icon">🏝</div><div><div class="province-name">ภูเก็ต</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('สุราษฎร์ธานี')"><div class="province-icon">🥥</div><div><div class="province-name">สุราษฎร์ธานี</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('นครศรีธรรมราช')"><div class="province-icon">🐘</div><div><div class="province-name">นครศรีธรรมราช</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('สงขลา')"><div class="province-icon">🐟</div><div><div class="province-name">สงขลา</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('กระบี่')"><div class="province-icon">🪨</div><div><div class="province-name">กระบี่</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('ชุมพร')"><div class="province-icon">🌊</div><div><div class="province-name">ชุมพร</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('ระนอง')"><div class="province-icon">💧</div><div><div class="province-name">ระนอง</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('พังงา')"><div class="province-icon">🌅</div><div><div class="province-name">พังงา</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('ตรัง')"><div class="province-icon">🐢</div><div><div class="province-name">ตรัง</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('พัทลุง')"><div class="province-icon">🦜</div><div><div class="province-name">พัทลุง</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('สตูล')"><div class="province-icon">🌺</div><div><div class="province-name">สตูล</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('ยะลา')"><div class="province-icon">🍊</div><div><div class="province-name">ยะลา</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('ปัตตานี')"><div class="province-icon">🎣</div><div><div class="province-name">ปัตตานี</div></div></div>
+        <div class="province-card coming-soon" onclick="showComingSoon('นราธิวาส')"><div class="province-icon">🌙</div><div><div class="province-name">นราธิวาส</div></div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ JOIN CTA ══ -->
+<div class="dark-banner">
+  <div class="container">
+    <span class="tag tag-gold mb-20">✦ ร่วมพัฒนา</span>
+    <h2>จังหวัดของคุณยังไม่เปิด?</h2>
+    <p>ร่วมเป็นผู้นำภูมิปัญญาท้องถิ่นของจังหวัดคุณ ติดต่อเราเพื่อเริ่มต้นบันทึกความรู้ชุมชน</p>
+    <div class="flex-center gap-14 flex-wrap">
+      <a href="contact.html" class="btn btn-primary">ติดต่อเรา</a>
+      <a href="index.html" class="btn btn-ghost" data-i18n="btn_back_home">กลับหน้าแรก</a>
+    </div>
+  </div>
+</div>
+
+<script src="i18n.js"></script>
+<script src="search.js"></script>
+<script src="nav.js"></script>
+<script>
+function filterProvinces(q) {
+  const query = q.toLowerCase().trim();
+  document.querySelectorAll('.province-card').forEach(card => {
+    const name = card.querySelector('.province-name').textContent.toLowerCase();
+    card.style.display = (!query || name.includes(query)) ? '' : 'none';
+  });
+  // Hide empty region sections
+  document.querySelectorAll('.region-section').forEach(section => {
+    const visible = [...section.querySelectorAll('.province-card')].some(c => c.style.display !== 'none');
+    section.style.display = visible ? '' : 'none';
+  });
+}
+
+function showComingSoon(name) {
+  showToast(`${name} — กำลังพัฒนา เร็วๆ นี้!`, 'success');
+}
+</script>
+</body>
+</html>

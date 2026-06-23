@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>คลังความรู้ภูมิปัญญา — ภูมิปัญญาสมุทรสงคราม</title>
+  <meta name="description" content="สำรวจคลังความรู้ภูมิปัญญาท้องถิ่นสมุทรสงคราม ครบทุกหมวด — ประวัติศาสตร์ หัตถกรรม สมุนไพร อาหาร ประเพณี และวิถีชีวิตริมน้ำ">
+  <meta property="og:title" content="คลังความรู้ภูมิปัญญา — สมุทรสงคราม">
+  <meta property="og:description" content="ศูนย์รวมองค์ความรู้ภูมิปัญญาท้องถิ่นแห่งเมืองสามน้ำ">
+  <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Amphawa_Floating_Market.jpg/1200px-Amphawa_Floating_Market.jpg">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@300;400;500;600;700&family=Chakra+Petch:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script>window.NAV_CONFIG = { active: 'wisdom', heroMode: false };</script>
+  <style>
+    /* ── Charm-specific styles ── */
+    .charm-hero {
+      background: linear-gradient(160deg, #2C1810 0%, #5C2E0A 50%, #8B4513 100%);
+      padding: calc(var(--nav-h, 72px) + 64px) 0 72px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .charm-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Amphawa_Floating_Market.jpg/1280px-Amphawa_Floating_Market.jpg') center/cover;
+      opacity: .12;
+    }
+    .charm-hero .container { position: relative; z-index: 1; }
+    .charm-hero h1 { color: #fff; font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 16px; }
+    .charm-hero p  { color: rgba(255,255,255,.78); max-width: 560px; margin: 0 auto 32px; font-size: 1.05rem; line-height: 1.7; }
+
+    /* Search bar */
+    .charm-search {
+      display: flex; gap: 0; max-width: 520px; margin: 0 auto 16px;
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,.3);
+    }
+    .charm-search input {
+      flex: 1; padding: 16px 20px;
+      border: none; outline: none;
+      font-family: var(--font-body); font-size: 1rem;
+      background: #fff; color: var(--ink);
+    }
+    .charm-search button {
+      padding: 16px 28px; background: var(--earth); color: #fff;
+      border: none; font-family: var(--font-ui); font-size: .9rem;
+      font-weight: 700; cursor: pointer; transition: background .2s;
+      white-space: nowrap;
+    }
+    .charm-search button:hover { background: #6B3A1F; }
+
+    /* Quick tag hints */
+    .charm-hints { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+    .charm-hint  {
+      padding: 5px 14px; border-radius: 99px;
+      background: rgba(255,255,255,.15); color: rgba(255,255,255,.8);
+      font-family: var(--font-ui); font-size: .75rem; cursor: pointer;
+      border: 1px solid rgba(255,255,255,.2); transition: background .2s;
+    }
+    .charm-hint:hover { background: rgba(255,255,255,.28); color: #fff; }
+
+    /* ── Category grid ── */
+    .charm-cat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 900px) { .charm-cat-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 560px) { .charm-cat-grid { grid-template-columns: 1fr; } }
+
+    .charm-cat {
+      border-radius: 16px; overflow: hidden;
+      background: var(--white);
+      box-shadow: var(--sh-sm);
+      border: 1px solid var(--cream-dark);
+      display: flex; flex-direction: column;
+      transition: transform .25s, box-shadow .25s;
+      text-decoration: none; color: var(--ink);
+    }
+    .charm-cat:hover { transform: translateY(-6px); box-shadow: var(--sh-lg); }
+
+    .charm-cat-img { aspect-ratio: 16/9; overflow: hidden; position: relative; }
+    .charm-cat-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .charm-cat:hover .charm-cat-img img { transform: scale(1.06); }
+    .charm-cat-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(20,10,5,.55) 0%, transparent 60%);
+    }
+    .charm-cat-badge {
+      position: absolute; top: 12px; left: 12px;
+    }
+    .charm-cat-status {
+      position: absolute; top: 12px; right: 12px;
+      font-family: var(--font-ui); font-size: .65rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 99px;
+      background: rgba(255,255,255,.9); color: var(--teal);
+    }
+    .charm-cat-status.soon { color: var(--ink-muted); }
+
+    .charm-cat-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+    .charm-cat-body h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .charm-cat-body p  { font-size: .85rem; color: var(--ink-muted); line-height: 1.65; flex: 1; margin-bottom: 14px; }
+    .charm-cat-meta   { display: flex; justify-content: space-between; align-items: center; }
+    .charm-cat-count  { font-family: var(--font-ui); font-size: .72rem; color: var(--ink-muted); }
+    .charm-cat-arrow  {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--cream-dark); color: var(--earth);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .85rem; transition: background .2s;
+    }
+    .charm-cat:hover .charm-cat-arrow { background: var(--earth); color: #fff; }
+
+    /* ── Featured spotlight ── */
+    .charm-spotlight {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px; align-items: center;
+      background: linear-gradient(135deg, var(--earth) 0%, #6B3A1F 100%);
+      border-radius: 20px; overflow: hidden;
+      padding: 0;
+    }
+    @media (max-width: 768px) { .charm-spotlight { grid-template-columns: 1fr; } }
+    .charm-spotlight-img { aspect-ratio: 4/3; overflow: hidden; }
+    .charm-spotlight-img img { width: 100%; height: 100%; object-fit: cover; opacity: .8; }
+    .charm-spotlight-body { padding: 40px 40px 40px 0; color: #fff; }
+    @media (max-width: 768px) {
+      .charm-spotlight-body { padding: 28px 28px; }
+    }
+    .charm-spotlight-body .eyebrow { color: var(--gold); letter-spacing: .14em; }
+    .charm-spotlight-body h2 { color: #fff; margin: 12px 0; font-size: 1.6rem; }
+    .charm-spotlight-body p  { color: rgba(255,255,255,.78); line-height: 1.7; margin-bottom: 24px; }
+
+    /* ── Knowledge stats ── */
+    .charm-stat-row {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    }
+    @media (max-width: 600px) { .charm-stat-row { grid-template-columns: repeat(2,1fr); } }
+    .charm-stat-card {
+      background: var(--white); border: 1px solid var(--cream-dark);
+      border-radius: 14px; padding: 24px 20px; text-align: center;
+      box-shadow: var(--sh-sm);
+    }
+    .charm-stat-num  { font-family: var(--font-serif); font-size: 2rem; font-weight: 700; color: var(--earth); line-height: 1; margin-bottom: 6px; }
+    .charm-stat-lbl  { font-family: var(--font-ui); font-size: .72rem; color: var(--ink-muted); letter-spacing: .04em; }
+
+    /* ── Recent additions ── */
+    .charm-recent-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    }
+    @media (max-width: 700px) { .charm-recent-grid { grid-template-columns: 1fr; } }
+    .charm-recent-card {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 16px; background: var(--white);
+      border: 1px solid var(--cream-dark); border-radius: 12px;
+      box-shadow: var(--sh-sm); text-decoration: none; color: var(--ink);
+      transition: box-shadow .2s, transform .2s;
+    }
+    .charm-recent-card:hover { box-shadow: var(--sh-md); transform: translateY(-2px); }
+    .charm-recent-icon { font-size: 1.6rem; flex-shrink: 0; }
+    .charm-recent-body h4 { font-size: .9rem; margin-bottom: 4px; }
+    .charm-recent-body p  { font-size: .78rem; color: var(--ink-muted); margin: 0; line-height: 1.5; }
+    .charm-recent-cat {
+      display: inline-block; margin-top: 6px;
+      font-family: var(--font-ui); font-size: .65rem; font-weight: 600;
+      padding: 2px 8px; border-radius: 99px;
+      background: var(--cream-dark); color: var(--ink-muted);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<div class="charm-hero">
+  <div class="container">
+    <nav class="breadcrumb" style="justify-content:center;margin-bottom:20px" aria-label="breadcrumb">
+      <a href="index.html" style="color:rgba(255,255,255,.6)">หน้าแรก</a>
+      <span class="sep" style="color:rgba(255,255,255,.3)">›</span>
+      <span style="color:rgba(255,255,255,.9)">คลังความรู้</span>
+    </nav>
+    <span class="tag tag-gold" style="display:inline-block;margin-bottom:20px">📚 คลังความรู้ภูมิปัญญา</span>
+    <h1>สำรวจภูมิปัญญา<br>แห่งเมืองสามน้ำ</h1>
+    <p>องค์ความรู้ที่ชาวสมุทรสงครามสั่งสมและส่งต่อจากรุ่นสู่รุ่น รวบรวมไว้ในคลังเดียว</p>
+
+    <!-- Search -->
+    <div class="charm-search">
+      <input type="text" id="charmSearchInput" placeholder="ค้นหา เช่น กะปิ, ไพล, ประวัติศาสตร์...">
+      <button id="charmSearchBtn">ค้นหา →</button>
+    </div>
+    <div class="charm-hints">
+      <span class="charm-hint" onclick="fillSearch('กะปิ')">กะปิแม่กลอง</span>
+      <span class="charm-hint" onclick="fillSearch('จักสาน')">งานจักสาน</span>
+      <span class="charm-hint" onclick="fillSearch('สมุนไพร')">สมุนไพร</span>
+      <span class="charm-hint" onclick="fillSearch('ร.2')">รัชกาลที่ 2</span>
+      <span class="charm-hint" onclick="fillSearch('อัมพวา')">ตลาดน้ำ</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ STATS ══ -->
+<section class="section-sm bg-cream-dark">
+  <div class="container">
+    <div class="charm-stat-row">
+      <div class="charm-stat-card fade-in">
+        <div class="charm-stat-num">6</div>
+        <div class="charm-stat-lbl">หมวดภูมิปัญญา</div>
+      </div>
+      <div class="charm-stat-card fade-in stagger-1">
+        <div class="charm-stat-num">40+</div>
+        <div class="charm-stat-lbl">องค์ความรู้</div>
+      </div>
+      <div class="charm-stat-card fade-in stagger-2">
+        <div class="charm-stat-num">300+</div>
+        <div class="charm-stat-lbl">ปีประวัติศาสตร์</div>
+      </div>
+      <div class="charm-stat-card fade-in stagger-3">
+        <div class="charm-stat-num">3</div>
+        <div class="charm-stat-lbl">ระบบนิเวศ</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CATEGORY GRID ══ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow label-ui">เลือกหมวดที่สนใจ</span>
+      <h2>ทุกหมวดภูมิปัญญา</h2>
+      <div class="divider"></div>
+      <p>คลิกหมวดที่สนใจเพื่อสำรวจองค์ความรู้เชิงลึก</p>
+    </div>
+
+    <div class="charm-cat-grid">
+
+      <!-- ประวัติศาสตร์ -->
+      <a href="maeklong-history.html" class="charm-cat fade-in">
+        <div class="charm-cat-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Amphawa_Floating_Market.jpg/800px-Amphawa_Floating_Market.jpg" alt="ประวัติศาสตร์" loading="lazy">
+          <div class="charm-cat-img-overlay"></div>
+          <div class="charm-cat-badge"><span class="tag tag-earth">📜 ประวัติศาสตร์</span></div>
+          <div class="charm-cat-status">✓ เปิดแล้ว</div>
+        </div>
+        <div class="charm-cat-body">
+          <h3>ประวัติศาสตร์ชุมชน</h3>
+          <p>300 ปีจากเมืองท่าอยุธยา สู่ดินแดนที่ผลิตรัชกาลที่ 2 Timeline บุคคลสำคัญ และสถานที่ประวัติศาสตร์</p>
+          <div class="charm-cat-meta">
+            <span class="charm-cat-count">4 เรื่องราว · 3 สถานที่</span>
+            <span class="charm-cat-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- หัตถกรรม -->
+      <a href="craft.html" class="charm-cat fade-in stagger-1">
+        <div class="charm-cat-img">
+          <img src="https://images.unsplash.com/photo-1548086816-a99cb4400b4b?w=800&q=80" alt="หัตถกรรม" loading="lazy">
+          <div class="charm-cat-img-overlay"></div>
+          <div class="charm-cat-badge"><span class="tag tag-teal">🎋 หัตถกรรม</span></div>
+          <div class="charm-cat-status">✓ เปิดแล้ว</div>
+        </div>
+        <div class="charm-cat-body">
+          <h3>หัตถกรรมและงานฝีมือ</h3>
+          <p>จักสานไม้ไผ่ การทำกะปิแบบดั้งเดิม เครื่องมือประมงโบราณ ผ้าทอลายริมน้ำ และงานไม้แกะสลัก</p>
+          <div class="charm-cat-meta">
+            <span class="charm-cat-count">8 ภูมิปัญญา · Workshop</span>
+            <span class="charm-cat-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- สมุนไพร -->
+      <a href="herbs.html" class="charm-cat fade-in stagger-2">
+        <div class="charm-cat-img">
+          <img src="https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?w=800&q=80" alt="สมุนไพร" loading="lazy">
+          <div class="charm-cat-img-overlay"></div>
+          <div class="charm-cat-badge"><span class="tag tag-teal">🌿 สมุนไพร</span></div>
+          <div class="charm-cat-status">✓ เปิดแล้ว</div>
+        </div>
+        <div class="charm-cat-body">
+          <h3>สมุนไพรและพืชพื้นบ้าน</h3>
+          <p>40+ ชนิดจาก 3 ระบบนิเวศ ป่าชายเลน ริมแม่น้ำ และสวน พร้อมสรรพคุณและภูมิปัญญาหมอพื้นบ้าน</p>
+          <div class="charm-cat-meta">
+            <span class="charm-cat-count">12 ชนิดพืช · สวนสมุนไพร</span>
+            <span class="charm-cat-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- อาหาร -->
+      <a href="maeklong-food.html" class="charm-cat fade-in">
+        <div class="charm-cat-img">
+          <img src="https://images.unsplash.com/photo-1509731987499-fd9bba3a46cc?w=800&q=80" alt="อาหารท้องถิ่น" loading="lazy">
+          <div class="charm-cat-img-overlay"></div>
+          <div class="charm-cat-badge"><span class="tag tag-spice">🍜 อาหาร</span></div>
+          <div class="charm-cat-status">✓ เปิดแล้ว</div>
+        </div>
+        <div class="charm-cat-body">
+          <h3>อาหารและตำรับท้องถิ่น</h3>
+          <p>กะปิแม่กลอง ปลาทูนึ่งมะนาว แกงส้มใบชะคราม ขนมทองม้วน และตำรับดั้งเดิมที่หาที่ไหนไม่ได้</p>
+          <div class="charm-cat-meta">
+            <span class="charm-cat-count">8 ตำรับ · 3 ตลาด</span>
+            <span class="charm-cat-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- ประเพณี -->
+      <a href="activities.html" class="charm-cat fade-in stagger-1">
+        <div class="charm-cat-img">
+          <img src="https://images.unsplash.com/photo-1592664474496-8f2d85c6a8e0?w=800&q=80" alt="ประเพณี" loading="lazy">
+          <div class="charm-cat-img-overlay"></div>
+          <div class="charm-cat-badge"><span class="tag tag-gold">🛕 ประเพณี</span></div>
+          <div class="charm-cat-status">✓ เปิดแล้ว</div>
+        </div>
+        <div class="charm-cat-body">
+          <h3>ประเพณีและพิธีกรรม</h3>
+          <p>งานแห่หลวงพ่อบ้านแหลม ลอยกระทงแม่กลอง วันพระราชสมภพ ร.2 และพิธีกรรมตามฤดูกาล</p>
+          <div class="charm-cat-meta">
+            <span class="charm-cat-count">7 กิจกรรม · ปฏิทินปี</span>
+            <span class="charm-cat-arrow">→</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- วิถีชีวิต -->
+      <a href="coming-soon.html?page=lifestyle" class="charm-cat fade-in stagger-2" style="opacity:.7">
+        <div class="charm-cat-img">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="วิถีชีวิต" loading="lazy">
+          <div class="charm-cat-img-overlay"></div>
+          <div class="charm-cat-badge"><span class="tag tag-river">🌊 วิถีชีวิต</span></div>
+          <div class="charm-cat-status soon">⏳ เร็วๆ นี้</div>
+        </div>
+        <div class="charm-cat-body">
+          <h3>วิถีชีวิตและภูมินิเวศ</h3>
+          <p>ชาวประมง เกษตรกรและชาวสวน วิถีชีวิตที่หล่อหลอมโดยสายน้ำ ความรู้เรื่องน้ำขึ้น-ลงและฤดูกาล</p>
+          <div class="charm-cat-meta">
+            <span class="charm-cat-count">กำลังรวบรวม...</span>
+            <span class="charm-cat-arrow" style="opacity:.4">→</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ SPOTLIGHT ══ -->
+<section class="section-sm bg-cream-dark">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow label-ui">แนะนำพิเศษ</span>
+      <h2>ภูมิปัญญาที่น่าสนใจ</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="charm-spotlight fade-in">
+      <div class="charm-spotlight-img">
+        <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=800&q=80" alt="การทำกะปิ">
+      </div>
+      <div class="charm-spotlight-body">
+        <span class="eyebrow label-ui">✦ ภูมิปัญญาเด่น</span>
+        <h2>การทำกะปิ<br>แบบดั้งเดิม</h2>
+        <p>กรรมวิธีที่สืบทอดมากกว่า 100 ปี ใช้กุ้งเคยอ่าวไทยและเกลือสมุทร หมักในไหดินโบราณ รู้ได้จากประสบการณ์และการสังเกตเท่านั้น — ไม่มีสูตรตายตัวในหนังสือ</p>
+        <a href="craft.html" class="btn btn-primary">สำรวจหัตถกรรม →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ RECENT ADDITIONS ══ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header centered">
+      <span class="eyebrow label-ui">เพิ่มล่าสุด</span>
+      <h2>องค์ความรู้ที่เพิ่งบันทึก</h2>
+      <div class="divider" style="margin:16px auto"></div>
+    </div>
+    <div class="charm-recent-grid">
+
+      <a href="herbs.html" class="charm-recent-card fade-in">
+        <div class="charm-recent-icon">🌿</div>
+        <div class="charm-recent-body">
+          <h4>ใบชะคราม</h4>
+          <p>พืชป่าชายเลนเฉพาะถิ่น รสเปรี้ยวอมเค็ม ใช้ทำแกงส้มและมีสรรพคุณทางยา</p>
+          <span class="charm-recent-cat">สมุนไพร</span>
+        </div>
+      </a>
+
+      <a href="craft.html" class="charm-recent-card fade-in stagger-1">
+        <div class="charm-recent-icon">🎋</div>
+        <div class="charm-recent-body">
+          <h4>งานจักสานไม้ไผ่</h4>
+          <p>ตัดช่วงหน้าแล้ง ข้างแรม 7–14 ค่ำ เนื้อไม้แข็งและไม่มอด — เคล็ดลับที่ไม่มีในตำรา</p>
+          <span class="charm-recent-cat">หัตถกรรม</span>
+        </div>
+      </a>
+
+      <a href="maeklong-history.html" class="charm-recent-card fade-in stagger-2">
+        <div class="charm-recent-icon">⚔️</div>
+        <div class="charm-recent-body">
+          <h4>ยุทธการค่ายบางกุ้ง</h4>
+          <p>ชาวบ้านและทหารต้านทัพพม่าด้วยความรู้เรื่องน้ำขึ้น-ลงและภูมิประเทศ พ.ศ. 2310</p>
+          <span class="charm-recent-cat">ประวัติศาสตร์</span>
+        </div>
+      </a>
+
+      <a href="maeklong-food.html" class="charm-recent-card fade-in">
+        <div class="charm-recent-icon">🍜</div>
+        <div class="charm-recent-body">
+          <h4>แกงส้มใบชะคราม</h4>
+          <p>ใบชะครามขึ้นได้เฉพาะในโซนน้ำกร่อย ทำให้อาหารจานนี้ผูกติดกับสมุทรสงคราม 100%</p>
+          <span class="charm-recent-cat">อาหาร</span>
+        </div>
+      </a>
+
+      <a href="craft.html" class="charm-recent-card fade-in stagger-1">
+        <div class="charm-recent-icon">🪵</div>
+        <div class="charm-recent-body">
+          <h4>งานไม้แกะสลัก</h4>
+          <p>ใช้ไม้แสมจากป่าชายเลนที่ตายเองตามธรรมชาติ ไม่ตัดมาใหม่ — การใช้ทรัพยากรอย่างรับผิดชอบ</p>
+          <span class="charm-recent-cat">หัตถกรรม</span>
+        </div>
+      </a>
+
+      <a href="herbs.html" class="charm-recent-card fade-in stagger-2">
+        <div class="charm-recent-icon">🌴</div>
+        <div class="charm-recent-body">
+          <h4>น้ำมันมะพร้าวสกัดเย็น</h4>
+          <p>บำรุงผิวและเส้นผม แก้แผลไฟไหม้ ต้านเชื้อแบคทีเรีย ชาวบ้านสมุทรสงครามใช้มาหลายชั่วอายุคน</p>
+          <span class="charm-recent-cat">สมุนไพร</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ROW ══ -->
+<section class="section-sm bg-cream-dark">
+  <div class="container" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;align-items:center">
+    <div style="flex:1;min-width:240px">
+      <span class="eyebrow label-ui" style="color:var(--earth)">✦ ร่วมกันสร้างคลัง</span>
+      <h3 style="margin:8px 0 6px;font-size:1.2rem">มีภูมิปัญญาอยากแบ่งปัน?</h3>
+      <p style="font-size:.88rem;color:var(--ink-muted);margin:0">ร่วมบันทึกความรู้ชุมชนของคุณไว้ในคลังนี้</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="contact.html" class="btn btn-primary">ติดต่อเรา</a>
+      <a href="search-results.html" class="btn btn-outline">ค้นหาภูมิปัญญา</a>
+    </div>
+  </div>
+</section>
+
+<script src="js/i18n.js"></script>
+<script src="js/search.js"></script>
+<script src="js/nav.js"></script>
+<script>
+// Search
+function fillSearch(q) {
+  document.getElementById('charmSearchInput').value = q;
+  document.getElementById('charmSearchInput').focus();
+}
+document.getElementById('charmSearchBtn').addEventListener('click', function() {
+  var q = document.getElementById('charmSearchInput').value.trim();
+  if (q) window.location.href = 'search-results.html?q=' + encodeURIComponent(q);
+});
+document.getElementById('charmSearchInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') document.getElementById('charmSearchBtn').click();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ผลการค้นหา — ภูมิปัญญาท้องถิ่นจังหวัดสมุทรสงคราม</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@300;400;500;600;700&family=Chakra+Petch:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Nav config: heroMode = true for transparent-to-solid transition -->
+  <script>window.NAV_CONFIG = { active: '', heroMode: false };</script>
+  
+</head>
+<body>
+
+<!-- ══ SEARCH HERO ══ -->
+<div class="search-hero">
+  <div class="container">
+    <nav class="breadcrumb dark" aria-label="เส้นทางนำทาง">
+      <a href="index.html">หน้าแรก</a>
+      <span class="sep">›</span>
+      <span>ผลการค้นหา</span>
+    </nav>
+    <h1>ผลการค้นหา</h1>
+    <p id="searchSummary" class="text-muted">กำลังค้นหา...</p>
+    <div class="search-hero-form">
+      <input type="text" class="search-hero-input" id="mainSearchInput" placeholder="ค้นหาภูมิปัญญา...">
+      <button class="search-hero-btn" id="mainSearchBtn">ค้นหา</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ RESULTS ══ -->
+<section class="section">
+  <div class="container">
+    <div id="resultsWrap">
+      <div class="search-results-grid" id="resultsList"></div>
+    </div>
+  </div>
+</section>
+
+<script src="i18n.js"></script>
+<script src="search.js"></script>
+<script src="nav.js"></script>
+<script>
+const CAT_ICONS = {
+  'ประวัติศาสตร์': '📜',
+  'อาหาร': '🍜',
+  'กิจกรรม': '📅',
+  'ร้านค้า': '🛒',
+  'สถานที่': '📍',
+  'ภูมิปัญญา': '📚',
+};
+
+function renderResults(query) {
+  const results = searchIndex(query);
+  const summary = document.getElementById('searchSummary');
+  const list = document.getElementById('resultsList');
+
+  if (!query || query.trim().length < 2) {
+    summary.textContent = 'กรุณากรอกคำค้นหา';
+    list.innerHTML = `<div class="search-no-results"><div class="icon">🔍</div><h3>พิมพ์คำค้นหาในช่องด้านบน</h3></div>`;
+    return;
+  }
+
+  summary.textContent = results.length
+    ? `พบ ${results.length} ผลลัพธ์สำหรับ "${query}"`
+    : `ไม่พบผลลัพธ์สำหรับ "${query}"`;
+
+  if (!results.length) {
+    list.innerHTML = `
+      <div class="search-no-results">
+        <div class="icon">🔍</div>
+        <h3>ไม่พบผลลัพธ์</h3>
+        <p>ลองค้นหาด้วยคำอื่น หรือสำรวจหมวดหมู่ด้านล่าง</p>
+        <div class="flex-center gap-14 flex-wrap" style="margin-top:24px">
+          <a href="Charm.html" class="btn btn-primary">คลังภูมิปัญญา</a>
+          <a href="maeklong-food.html" class="btn btn-outline">อาหารท้องถิ่น</a>
+          <a href="activities.html" class="btn btn-outline">กิจกรรม</a>
+        </div>
+      </div>`;
+    return;
+  }
+
+  list.innerHTML = results.map(r => {
+    const icon = CAT_ICONS[r.cat] || '📄';
+    const tags = (r.tags || []).slice(0, 3).map(t => `<span class="tag tag-earth">${t}</span>`).join('');
+    return `
+      <a href="${r.url}" class="search-result-item" style="text-decoration:none">
+        <div class="search-result-icon">${icon}</div>
+        <div class="search-result-body">
+          <h3>${r.title}</h3>
+          ${r.title_en ? `<p class="label-ui text-muted mb-4" style="font-size:.7rem">${r.title_en}</p>` : ''}
+          <p>${r.desc}</p>
+          <div class="search-result-meta">
+            <span class="tag tag-river">${r.cat}</span>
+            ${tags}
+          </div>
+        </div>
+      </a>`;
+  }).join('');
+}
+
+// Init from URL param
+const params = new URLSearchParams(window.location.search);
+const q = params.get('q') || '';
+const inp = document.getElementById('mainSearchInput');
+inp.value = q;
+renderResults(q);
+
+// New search
+document.getElementById('mainSearchBtn').addEventListener('click', () => {
+  const newQ = inp.value.trim();
+  if (newQ) {
+    window.history.pushState({}, '', `?q=${encodeURIComponent(newQ)}`);
+    document.title = `ค้นหา "${newQ}" — ภูมิปัญญาท้องถิ่นจังหวัดสมุทรสงคราม`;
+    renderResults(newQ);
+  }
+});
+inp.addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('mainSearchBtn').click();
+});
+</script>
+</body>
+</html>

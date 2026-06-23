@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ปฏิทินกิจกรรมชุมชน — ภูมิปัญญาท้องถิ่นจังหวัดสมุทรสงคราม</title>
+  <meta name="description" content="ปฏิทินกิจกรรมทางวัฒนธรรม งานประเพณี และการถ่ายทอดภูมิปัญญาท้องถิ่นของสมุทรสงคราม">
+  <meta property="og:title" content="ปฏิทินกิจกรรมชุมชน — ภูมิปัญญาท้องถิ่นจังหวัดสมุทรสงคราม">
+  <meta property="og:description" content="งานประเพณี กิจกรรมถ่ายทอดภูมิปัญญา และเทศกาลสำคัญของสมุทรสงครามตลอดปี">
+  <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Amphawa_Floating_Market.jpg/1200px-Amphawa_Floating_Market.jpg">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@300;400;500;600;700&family=Chakra+Petch:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script>window.NAV_CONFIG = { active: 'activities', heroMode: false };</script>
+</head>
+<body>
+
+<!-- ══ PAGE HERO ══ -->
+<div class="page-hero">
+  <div class="page-hero-bg" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Amphawa_Floating_Market.jpg/1280px-Amphawa_Floating_Market.jpg')"></div>
+  <div class="container">
+    <div class="page-hero-content">
+      <nav class="breadcrumb" aria-label="เส้นทางนำทาง">
+        <a href="index.html" data-i18n="breadcrumb_home">หน้าแรก</a>
+        <span class="sep">›</span>
+        <span data-i18n="nav_activities">ปฏิทินกิจกรรม</span>
+      </nav>
+      <span class="tag tag-gold mb-16">📅 ปี 2569</span>
+      <h1>ปฏิทินกิจกรรมชุมชน</h1>
+      <p>งานประเพณี กิจกรรมถ่ายทอดภูมิปัญญา และเทศกาลสำคัญของสมุทรสงครามตลอดทั้งปี</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ INFO BANNER ══ -->
+<div style="background: var(--teal-light); border-left: 4px solid var(--teal); padding: 14px 0">
+  <div class="container">
+    <p style="color: var(--teal); font-size: .9rem; margin: 0">
+      <strong>หมายเหตุ:</strong> กิจกรรมในปฏิทินนี้จัดโดยชุมชนและหน่วยงานท้องถิ่น กรุณาติดต่อผู้จัดโดยตรงสำหรับรายละเอียดและการเข้าร่วม
+    </p>
+  </div>
+</div>
+
+<!-- ══ FILTER + VIEW TOGGLE ══ -->
+<section class="section-sm bg-cream-dark">
+  <div class="container">
+    <div class="flex-between flex-wrap" style="gap:16px;margin-bottom:16px">
+      <div class="filter-strip" id="filterStrip" style="margin-bottom:0">
+        <button class="filter-btn active" onclick="filterActivity(this,'all')">ทั้งหมด</button>
+        <button class="filter-btn" onclick="filterActivity(this,'festival')">🎊 งานเทศกาล</button>
+        <button class="filter-btn" onclick="filterActivity(this,'craft')">🎋 ถ่ายทอดภูมิปัญญา</button>
+        <button class="filter-btn" onclick="filterActivity(this,'nature')">🌿 ธรรมชาติ</button>
+        <button class="filter-btn" onclick="filterActivity(this,'food')">🍜 อาหารและตลาด</button>
+        <button class="filter-btn" onclick="filterActivity(this,'temple')">🛕 ประเพณีวัด</button>
+      </div>
+      <div class="view-toggle" role="group" aria-label="รูปแบบการแสดงผล">
+        <button class="view-toggle-btn active" id="btnList" onclick="switchView('list')">☰ รายการ</button>
+        <button class="view-toggle-btn" id="btnCal" onclick="switchView('calendar')">📅 ปฏิทิน</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LIST VIEW ══ -->
+<section class="section">
+  <div class="container">
+
+    <div class="list-wrap active" id="listView">
+      <div class="activity-grid" id="activityGrid">
+
+        <div class="activity-card fade-in" data-cat="temple" data-month="3">
+          <div class="activity-img">
+            <img src="https://images.unsplash.com/photo-1592664474496-8f2d85c6a8e0?w=800&q=80" alt="งานแห่หลวงพ่อบ้านแหลม" loading="lazy">
+            <div class="activity-month-badge">มีนาคม</div>
+          </div>
+          <div class="activity-body">
+            <span class="tag tag-gold mb-8">🛕 ประเพณีวัด</span>
+            <h3>งานแห่หลวงพ่อบ้านแหลม</h3>
+            <p>ประเพณีแห่พระพุทธรูปศักดิ์สิทธิ์ทางน้ำซึ่งจัดขึ้นสืบเนื่องกันมายาวนาน แสดงถึงความศรัทธาของชาวเมืองที่ผสานกับวิถีชีวิตริมน้ำ</p>
+            <div class="activity-meta">
+              <div class="activity-meta-item">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                มีนาคม–เมษายน
+              </div>
+              <div class="activity-meta-item">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
+                วัดเพชรสมุทรวรวิหาร
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="activity-card fade-in stagger-1" data-cat="craft" data-month="5">
+          <div class="activity-img">
+            <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=800&q=80" alt="Workshop ทำกะปิ" loading="lazy">
+            <div class="activity-month-badge">ตลอดปี</div>
+          </div>
+          <div class="activity-body">
+            <span class="tag tag-teal mb-8">🦐 ถ่ายทอดภูมิปัญญา</span>
+            <h3>การสาธิตทำกะปิแบบดั้งเดิม</h3>
+            <p>ชุมชนนางตะเคียนเปิดให้เข้าชมกระบวนการทำกะปิตั้งแต่การแยกกุ้งเคย การหมัก ไปจนถึงการบ่มในไหดิน</p>
+            <div class="activity-meta">
+              <div class="activity-meta-item">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                ตามฤดูกาลกุ้งเคย (พค.–สค.)
+              </div>
+              <div class="activity-meta-item">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
+                ชุมชนบ้านนางตะเคียน
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="activity-card fade-in stagger-2" data-cat="nature" data-month="0">
+          <div class="activity-img">
+            <img src="https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?w=800&q=80" alt="ดอนหอยหลอด" loading="lazy">
+            <div class="activity-month-badge">ตลอดปี</div>
+          </div>
+          <div class="activity-body">
+            <span class="tag tag-river mb-8">🌊 ธรรมชาติและนิเวศ</span>
+            <h3>เรียนรู้วิถีจับหอยหลอดกับชาวบ้าน</h3>
+            <p>ร่วมเรียนรู้ภูมิปัญญาการจัดการทรัพยากรหอยหลอดที่ชาวดอนหอยหลอดรักษาไว้ — ไม่ใช่แค่การจับ แต่รวมถึงการอนุรักษ์และการฟื้นฟู</p>
+            <div class="activity-meta">
+              <div class="activity-meta-item">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                ช่วงน้ำลง · ตลอดปี
+              </div>
+              <div class="activity-meta-item">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
+                ดอนหอยหลอด อ.เมือง
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="activity-card fade-in" data-cat="food" data-month="0">
+          <div class="activity-img">
+            <img src="https://images.unsplash.com/photo-1548086816-a99cb4400b4b?w=800&q=80" alt="ตลาดน้ำอัมพวา" loading="lazy">
+            <div class="activity-month-badge">ตลอดปี</div>
+          </div>
+          <div class="activity-body">
+            <span class="tag tag-spice mb-8">🍜 อาหารและตลาด</span>
+            <h3>ตลาดน้ำอัมพวา</h3>
+            <p>ตลาดน้ำยามค่ำคืนที่มีอาหารทะเล ผลิตภัณฑ์ชุมชน และบรรยากาศวิถีชีวิตริมน้ำ เปิดทุกศุกร์–อาทิตย์</p>
+            <div class="activity-meta">
+              <div class="activity-meta-item">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                ศุกร์–อาทิตย์ 12:00–21:00
+              </div>
+              <div class="activity-meta-item">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
+                อ.อัมพวา
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="activity-card fade-in stagger-1" data-cat="temple" data-month="11">
+          <div class="activity-img">
+            <img src="https://images.unsplash.com/photo-1592664474496-8f2d85c6a8e0?w=800&q=80" alt="ลอยกระทง" loading="lazy">
+            <div class="activity-month-badge">พฤศจิกายน</div>
+          </div>
+          <div class="activity-body">
+            <span class="tag tag-gold mb-8">🏮 ประเพณีวัด</span>
+            <h3>เทศกาลลอยกระทง</h3>
+            <p>งานลอยกระทงริมแม่น้ำแม่กลอง สวยงามเป็นพิเศษเนื่องจากสายน้ำกว้างและบรรยากาศชุมชนดั้งเดิม</p>
+            <div class="activity-meta">
+              <div class="activity-meta-item">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                วันเพ็ญเดือน 12 (ไทย)
+              </div>
+              <div class="activity-meta-item">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
+                แม่น้ำแม่กลอง ตัวเมือง
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="activity-card fade-in stagger-2" data-cat="nature" data-month="0">
+          <div class="activity-img">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="ป่าชายเลนคลองโคน" loading="lazy">
+            <div class="activity-month-badge">ตลอดปี</div>
+          </div>
+          <div class="activity-body">
+            <span class="tag tag-river mb-8">🌿 ธรรมชาติและนิเวศ</span>
+            <h3>เรียนรู้ระบบนิเวศป่าชายเลนคลองโคน</h3>
+            <p>ชุมชนคลองโคนเปิดพื้นที่ป่าชายเลนอนุรักษ์ให้เรียนรู้กระบวนการฟื้นฟูธรรมชาติ โดยมีนักวิชาการชุมชนนำชม</p>
+            <div class="activity-meta">
+              <div class="activity-meta-item">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                08:00–12:00 ทุกวัน
+              </div>
+              <div class="activity-meta-item">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
+                คลองโคน อ.เมือง
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="activity-card fade-in" data-cat="festival" data-month="2">
+          <div class="activity-img">
+            <img src="https://images.unsplash.com/photo-1509731987499-fd9bba3a46cc?w=800&q=80" alt="วันพระราชสมภพ ร.2" loading="lazy">
+            <div class="activity-month-badge">กุมภาพันธ์</div>
+          </div>
+          <div class="activity-body">
+            <span class="tag tag-spice mb-8">🎊 งานเทศกาล</span>
+            <h3>งานวันพระราชสมภพ รัชกาลที่ 2</h3>
+            <p>งานรำลึกถึงรัชกาลที่ 2 ณ อุทยานพระราชวังสมัยรัชกาลที่ 2 พร้อมการแสดงดนตรีไทย โขน และนิทรรศการวรรณกรรมท้องถิ่น</p>
+            <div class="activity-meta">
+              <div class="activity-meta-item">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                24 กุมภาพันธ์ ทุกปี
+              </div>
+              <div class="activity-meta-item">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
+                อุทยาน ร.2 อ.อัมพวา
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /listView -->
+
+    <!-- ══ CALENDAR VIEW ══ -->
+    <div class="calendar-wrap" id="calendarView">
+      <div class="calendar-header">
+        <button class="calendar-nav-btn" id="calPrev" aria-label="เดือนก่อนหน้า">‹</button>
+        <h3 id="calMonthLabel" style="font-size:1.2rem;margin:0"></h3>
+        <button class="calendar-nav-btn" id="calNext" aria-label="เดือนถัดไป">›</button>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<div class="dark-banner">
+  <div class="container">
+    <span class="tag tag-gold mb-20">✦ มีกิจกรรมในชุมชนของคุณ?</span>
+    <h2>ร่วมประชาสัมพันธ์กิจกรรมชุมชน</h2>
+    <p>หากคุณเป็นผู้จัดกิจกรรมหรือชุมชนที่มีกิจกรรมภูมิปัญญา ร่วมแจ้งให้เราทราบเพื่อลงในปฏิทิน</p>
+    <div class="flex-center gap-14 flex-wrap">
+      <a href="contact.html" class="btn btn-primary">แจ้งกิจกรรมของคุณ</a>
+      <a href="index.html" class="btn btn-ghost" data-i18n="btn_back_home">กลับหน้าแรก</a>
+    </div>
+  </div>
+</div>
+
+<script src="i18n.js"></script>
+<script src="nav.js"></script>
+<script src="search.js"></script>
+<script>
+// ── Filter ──
+function filterActivity(btn, cat) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.activity-card').forEach(card => {
+    card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'flex' : 'none';
+  });
+  currentFilter = cat;
+  if (document.getElementById('calendarView').classList.contains('active')) renderCalendar();
+}
+
+// ── View toggle ──
+function switchView(view) {
+  const listEl = document.getElementById('listView');
+  const calEl  = document.getElementById('calendarView');
+  const btnList = document.getElementById('btnList');
+  const btnCal  = document.getElementById('btnCal');
+
+  if (view === 'list') {
+    listEl.classList.add('active'); calEl.classList.remove('active');
+    btnList.classList.add('active'); btnCal.classList.remove('active');
+  } else {
+    calEl.classList.add('active'); listEl.classList.remove('active');
+    btnCal.classList.add('active'); btnList.classList.remove('active');
+    renderCalendar();
+  }
+}
+
+// ── Calendar ──
+const THAI_MONTHS = ['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
+const THAI_DAYS   = ['อา','จ','อ','พ','พฤ','ศ','ส'];
+let calDate = new Date(); calDate.setDate(1);
+let currentFilter = 'all';
+
+// Calendar events data
+const CAL_EVENTS = [
+  { month: 2,  day: 24, label: 'วันพระราชสมภพ ร.2', cat: 'festival' },
+  { month: 3,  day: 15, label: 'แห่หลวงพ่อบ้านแหลม', cat: 'temple' },
+  { month: 5,  day: 1,  label: 'สาธิตทำกะปิ', cat: 'craft' },
+  { month: 5,  day: 10, label: 'สาธิตทำกะปิ', cat: 'craft' },
+  { month: 11, day: 5,  label: 'ลอยกระทง', cat: 'temple' },
+];
+
+function renderCalendar() {
+  const year  = calDate.getFullYear();
+  const month = calDate.getMonth();
+  document.getElementById('calMonthLabel').textContent = `${THAI_MONTHS[month]} ${year + 543}`;
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth  = new Date(year, month + 1, 0).getDate();
+  const daysInPrev   = new Date(year, month, 0).getDate();
+  const today = new Date();
+
+  const dayNames = THAI_DAYS.map(d => `<div class="cal-day-name">${d}</div>`).join('');
+
+  let cells = '';
+  // Prev month overflow
+  for (let i = firstDay - 1; i >= 0; i--) {
+    cells += `<div class="cal-day other-month"><div class="cal-day-num">${daysInPrev - i}</div></div>`;
+  }
+  // Current month
+  for (let d = 1; d <= daysInMonth; d++) {
+    const isToday = (year === today.getFullYear() && month === today.getMonth() && d === today.getDate());
+    const events = CAL_EVENTS.filter(e => e.month === (month + 1) && e.day === d);
+    const visibleEvents = currentFilter === 'all' ? events : events.filter(e => e.cat === currentFilter);
+    const eventDots = visibleEvents.map(e =>
+      `<div class="cal-event-dot cat-${e.cat}" title="${e.label}">${e.label.substring(0,6)}…</div>`
+    ).join('');
+    cells += `<div class="cal-day${isToday ? ' today' : ''}">
+      <div class="cal-day-num">${d}</div>
+      ${eventDots}
+    </div>`;
+  }
+  // Next month overflow
+  const totalCells = firstDay + daysInMonth;
+  const remaining  = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+  for (let i = 1; i <= remaining; i++) {
+    cells += `<div class="cal-day other-month"><div class="cal-day-num">${i}</div></div>`;
+  }
+
+  document.getElementById('calGrid').innerHTML = dayNames + cells;
+}
+
+document.getElementById('calPrev').addEventListener('click', () => {
+  calDate.setMonth(calDate.getMonth() - 1);
+  renderCalendar();
+});
+document.getElementById('calNext').addEventListener('click', () => {
+  calDate.setMonth(calDate.getMonth() + 1);
+  renderCalendar();
+});
+
+// Init fade-in
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

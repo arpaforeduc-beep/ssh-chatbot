@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🔧 Debug — ตรวจสอบระบบ</title>
+  <style>
+    body { font-family: monospace; padding: 20px; background: #1a1a1a; color: #e0e0e0; }
+    h1 { color: #f0c040; }
+    .ok  { color: #4caf50; }
+    .err { color: #f44336; }
+    .warn{ color: #ff9800; }
+    .row { padding: 6px 0; border-bottom: 1px solid #333; display:flex; gap:12px; }
+    .label { min-width: 320px; }
+    pre { background: #111; padding: 12px; border-radius: 6px; overflow-x: auto; font-size:11px; }
+    button { background: #f0c040; color: #111; border: none; padding: 8px 16px; 
+             border-radius: 4px; cursor: pointer; font-size:14px; margin: 4px; }
+  </style>
+</head>
+<body>
+<h1>🔧 Debug Panel — ภูมิปัญญาท้องถิ่นจังหวัดสมุทรสงคราม</h1>
+<p>เปิดหน้านี้ในเบราว์เซอร์ แล้วส่งผลลัพธ์ให้ทีมงาน</p>
+
+<div id="results"></div>
+<pre id="log"></pre>
+<button onclick="runTests()">▶ Run Tests</button>
+<button onclick="location.reload()">↺ Reload</button>
+
+<script>
+var log = [];
+function out(label, ok, detail) {
+  var r = document.getElementById('results');
+  var row = document.createElement('div');
+  row.className = 'row';
+  row.innerHTML = '<span class="label">' + label + '</span>' +
+    '<span class="' + (ok ? 'ok' : 'err') + '">' + (ok ? '✅ OK' : '❌ FAIL') + '</span>' +
+    (detail ? ' <span style="color:#aaa;font-size:12px">' + detail + '</span>' : '');
+  r.appendChild(row);
+  log.push((ok?'OK':'FAIL') + ' | ' + label + (detail?' | '+detail:''));
+}
+function warn(label, detail) {
+  var r = document.getElementById('results');
+  var row = document.createElement('div');
+  row.className = 'row';
+  row.innerHTML = '<span class="label">' + label + '</span>' +
+    '<span class="warn">⚠ WARN</span>' +
+    (detail ? ' <span style="color:#aaa;font-size:12px">' + detail + '</span>' : '');
+  r.appendChild(row);
+}
+
+function runTests() {
+  document.getElementById('results').innerHTML = '';
+  log = [];
+
+  // 1. CSS loaded?
+  var sheets = document.styleSheets;
+  var cssLoaded = false;
+  for (var i=0; i<sheets.length; i++) {
+    try { if (sheets[i].cssRules && sheets[i].cssRules.length > 10) cssLoaded = true; }
+    catch(e) {}
+  }
+  out('style.css loaded', cssLoaded, sheets.length + ' stylesheet(s)');
+
+  // 2. Check CSS variables
+  var cs = getComputedStyle(document.documentElement);
+  var earthColor = cs.getPropertyValue('--earth').trim();
+  out('CSS variable --earth defined', !!earthColor, earthColor || 'MISSING');
+
+  // 3. i18n.js loaded?
+  out('i18n.js loaded (typeof I18N)', typeof I18N !== 'undefined', typeof I18N);
+  out('i18n.js: setLang() exists', typeof setLang === 'function');
+  out('i18n.js: i18nApply() exists', typeof i18nApply === 'function');
+
+  // 4. search.js loaded?
+  out('search.js loaded (typeof SEARCH_INDEX)', typeof SEARCH_INDEX !== 'undefined',
+      typeof SEARCH_INDEX !== 'undefined' ? 'items: '+SEARCH_INDEX.length : 'MISSING');
+  out('search.js: searchIndex() exists', typeof searchIndex === 'function');
+  out('search.js: doSearch() exists', typeof doSearch === 'function');
+
+  // 5. nav.js loaded & injected?
+  var navbar = document.getElementById('navbar');
+  out('nav.js: navbar injected', !!navbar,
+      navbar ? 'class="'+navbar.className+'"' : '#navbar NOT FOUND in DOM');
+
+  var footer = document.querySelector('footer.footer');
+  out('nav.js: footer injected', !!footer);
+
+  var toastC = document.getElementById('toastContainer');
+  out('nav.js: toastContainer injected', !!toastC);
+
+  out('nav.js: showToast() exists', typeof showToast === 'function');
+  out('nav.js: openMap() exists', typeof openMap === 'function');
+
+  // 6. Navbar visible?
+  if (navbar) {
+    var rect = navbar.getBoundingClientRect();
+    out('navbar visible in viewport', rect.height > 0, 
+        'height='+rect.height+'px top='+rect.top+'px');
+    var style = getComputedStyle(navbar);
+    out('navbar not hidden (display)', style.display !== 'none', 'display='+style.display);
+    out('navbar not hidden (visibility)', style.visibility !== 'hidden', style.visibility);
+    out('navbar z-index >= 1000', parseInt(style.zIndex) >= 1000, 'z-index='+style.zIndex);
+    out('navbar has background (solid mode)', 
+        style.background !== 'transparent' || navbar.classList.contains('hero-mode'),
+        navbar.className);
+  }
+
+  // 7. NAV_CONFIG set?
+  out('window.NAV_CONFIG set', typeof window.NAV_CONFIG !== 'undefined',
+      window.NAV_CONFIG ? JSON.stringify(window.NAV_CONFIG) : 'NOT SET');
+
+  // 8. JS errors in console
+  warn('Check browser console', 'Open DevTools → Console tab → look for red errors');
+
+  // 9. File structure
+  warn('File structure check', 'All HTML files must be in root, JS files in js/ subfolder');
+
+  document.getElementById('log').textContent = log.join('\n');
+}
+
+// Auto-run after short delay (let nav.js finish)
+setTimeout(runTests, 500);
+</script>
+
+<!-- Load the actual project scripts to test them -->
+<script>window.NAV_CONFIG = { active: '', heroMode: false };</script>
+<script src="i18n.js"></script>
+<script src="nav.js"></script>
+<script src="search.js"></script>
+</body>
+</html>

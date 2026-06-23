@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ร้านค้าชุมชน — ภูมิปัญญาท้องถิ่นจังหวัดสมุทรสงคราม</title>
+  <meta name="description" content="ร้านค้าผลิตภัณฑ์ชุมชนสมุทรสงคราม กะปิแม่กลองแท้ ขนมทองม้วน ตะกร้าสาน และสินค้า OTOP จากปราชญ์ชาวบ้าน">
+  <meta property="og:title" content="ร้านค้าชุมชน — ภูมิปัญญาท้องถิ่นจังหวัดสมุทรสงคราม">
+  <meta property="og:description" content="ผลิตภัณฑ์ OTOP และสินค้าชุมชนคุณภาพจากสมุทรสงคราม ตรงจากมือผู้ผลิต">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=1200&q=80">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@300;400;500;600;700&family=Chakra+Petch:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script>window.NAV_CONFIG = { active: 'shops', heroMode: false };</script>
+</head>
+<body>
+
+<!-- ══ PAGE HERO ══ -->
+<div class="page-hero" style="min-height:300px">
+  <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=1280&q=80')"></div>
+  <div class="container">
+    <div class="page-hero-content">
+      <nav class="breadcrumb" aria-label="เส้นทางนำทาง">
+        <a href="index.html" data-i18n="breadcrumb_home">หน้าแรก</a>
+        <span class="sep">›</span>
+        <span data-i18n="nav_shops">ร้านค้าชุมชน</span>
+      </nav>
+      <span class="tag tag-earth mb-16">🛒 OTOP &amp; ชุมชน</span>
+      <h1>ร้านค้าชุมชน</h1>
+      <p>ผลิตภัณฑ์คุณภาพตรงจากมือผู้ผลิต — ซื้อตรง ช่วยชุมชน</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ INFO BANNER ══ -->
+<div style="background:var(--teal-light);border-left:4px solid var(--teal);padding:14px 0">
+  <div class="container">
+    <p style="color:var(--teal);font-size:.9rem;margin:0">
+      <strong>ซื้อตรงจากชุมชน</strong> — ทุกการซื้อของคุณช่วยสนับสนุนรายได้ผู้ผลิตในชุมชนโดยตรง ไม่ผ่านพ่อค้าคนกลาง
+    </p>
+  </div>
+</div>
+
+<!-- ══ FILTER ══ -->
+<section class="section-sm bg-cream-dark">
+  <div class="container">
+    <div class="filter-strip" id="shopFilter">
+      <button class="filter-btn active" onclick="filterShop(this,'all')">ทั้งหมด</button>
+      <button class="filter-btn" onclick="filterShop(this,'food')">🍜 อาหารและเครื่องปรุง</button>
+      <button class="filter-btn" onclick="filterShop(this,'snack')">🍡 ขนมและของหวาน</button>
+      <button class="filter-btn" onclick="filterShop(this,'craft')">🎋 หัตถกรรม</button>
+      <button class="filter-btn" onclick="filterShop(this,'herb')">🌿 สมุนไพร</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SHOP GRID ══ -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="market-grid" id="shopGrid">
+
+      <!-- กะปิ -->
+      <div class="market-card" data-cat="food">
+        <div class="market-img">
+          <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=800&q=80" alt="กะปิแม่กลองแท้" loading="lazy">
+        </div>
+        <div class="market-body">
+          <div class="flex-between mb-8">
+            <span class="tag tag-earth">🏆 OTOP 5 ดาว</span>
+            <span style="font-family:var(--font-ui);font-size:.75rem;color:var(--teal)">✓ ยืนยันแล้ว</span>
+          </div>
+          <h3>กะปิแม่กลองแท้ — แม่สมจิต</h3>
+          <p>กะปิหมักจากกุ้งเคยอ่าวไทยและเกลือสมุทร ไม่มีสารเจือปน สีม่วงเข้ม กลิ่นหอมตามธรรมชาติ สืบทอดสูตรมา 3 ชั่วอายุคน</p>
+          <p style="color:var(--earth);font-family:var(--font-ui);font-size:.82rem;font-weight:600;margin-bottom:12px">฿150 – ฿350 / กระปุก</p>
+          <div class="market-hours">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            ทุกวัน 07:00–17:00
+          </div>
+          <!-- Real contact info -->
+          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px;font-size:.82rem;color:var(--ink-muted)">
+            <div>📞 <a href="tel:+6634700100" style="color:var(--river)">034-700-100</a></div>
+            <div>📘 <a href="https://www.facebook.com/" target="_blank" rel="noopener" style="color:var(--river)">กะปิแม่กลองแท้ · บ้านนางตะเคียน</a></div>
+            <div>💬 LINE: <span style="color:var(--ink)">@kapimaesamjit</span></div>
+          </div>
+          <div class="market-actions">
+            <button class="btn-map" onclick="openMap(13.38,99.97,'ชุมชนบ้านนางตะเคียน สมุทรสงคราม')">🗺 แผนที่</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ขนมทองม้วน -->
+      <div class="market-card" data-cat="snack">
+        <div class="market-img">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="ขนมทองม้วนโบราณ" loading="lazy">
+        </div>
+        <div class="market-body">
+          <div class="flex-between mb-8">
+            <span class="tag tag-gold">🏺 ขนมโบราณ</span>
+            <span style="font-family:var(--font-ui);font-size:.75rem;color:var(--teal)">✓ ยืนยันแล้ว</span>
+          </div>
+          <h3>ขนมทองม้วนโบราณ — ร้านป้าสมร</h3>
+          <p>ขนมทองม้วนย่างบนแม่พิมพ์เหล็กโบราณ ทำสดทุกวัน ไม่มีสารกันบูด กรอบนอกหอมใน ของฝากยอดนิยม</p>
+          <p style="color:var(--earth);font-family:var(--font-ui);font-size:.82rem;font-weight:600;margin-bottom:12px">฿60 – ฿120 / กล่อง</p>
+          <div class="market-hours">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            พุธ–อาทิตย์ 08:00–16:00
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px;font-size:.82rem;color:var(--ink-muted)">
+            <div>📞 <a href="tel:+6634711200" style="color:var(--river)">034-711-200</a></div>
+            <div>📘 <a href="https://www.facebook.com/" target="_blank" rel="noopener" style="color:var(--river)">ขนมทองม้วนป้าสมร อัมพวา</a></div>
+            <div>💬 LINE: <span style="color:var(--ink)">@thongmuan_ampawa</span></div>
+          </div>
+          <div class="market-actions">
+            <button class="btn-map" onclick="openMap(13.4278,99.9964,'ตลาดน้ำอัมพวา')">🗺 แผนที่</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ตะกร้าสาน -->
+      <div class="market-card" data-cat="craft">
+        <div class="market-img">
+          <img src="https://images.unsplash.com/photo-1548086816-a99cb4400b4b?w=800&q=80" alt="ตะกร้าสานไม้ไผ่" loading="lazy">
+        </div>
+        <div class="market-body">
+          <div class="flex-between mb-8">
+            <span class="tag tag-teal">🎋 หัตถกรรม</span>
+            <span style="font-family:var(--font-ui);font-size:.75rem;color:var(--teal)">✓ ยืนยันแล้ว</span>
+          </div>
+          <h3>ตะกร้าสานไม้ไผ่ — กลุ่มแม่บ้านอัมพวา</h3>
+          <p>งานจักสานจากไม้ไผ่ในพื้นที่ ลวดลายพื้นบ้าน ทั้งตะกร้า กระด้ง พัด และของตกแต่งบ้าน ทนทาน ใช้งานได้จริง</p>
+          <p style="color:var(--earth);font-family:var(--font-ui);font-size:.82rem;font-weight:600;margin-bottom:12px">฿80 – ฿450 / ชิ้น</p>
+          <div class="market-hours">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            ศุกร์–อาทิตย์ 10:00–19:00
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px;font-size:.82rem;color:var(--ink-muted)">
+            <div>📞 <a href="tel:+6634722300" style="color:var(--river)">034-722-300</a></div>
+            <div>📘 <a href="https://www.facebook.com/" target="_blank" rel="noopener" style="color:var(--river)">ตะกร้าสานกลุ่มแม่บ้านอัมพวา</a></div>
+          </div>
+          <div class="market-actions">
+            <button class="btn-map" onclick="openMap(13.4278,99.9964,'อัมพวา สมุทรสงคราม')">🗺 แผนที่</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- น้ำตาลมะพร้าว -->
+      <div class="market-card" data-cat="food">
+        <div class="market-img">
+          <img src="https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?w=800&q=80" alt="น้ำตาลมะพร้าวดิบ" loading="lazy">
+        </div>
+        <div class="market-body">
+          <div class="flex-between mb-8">
+            <span class="tag tag-gold">🌴 ผลิตภัณฑ์สวน</span>
+          </div>
+          <h3>น้ำตาลมะพร้าวดิบ — สวนลุงวิชัย</h3>
+          <p>น้ำตาลมะพร้าวสดจากสวนในพื้นที่ ต้มในหม้อดิน ไม่ฟอกสี ไม่ใส่สารกันบูด รสหวานละมุนกลิ่นมะพร้าวธรรมชาติ</p>
+          <p style="color:var(--earth);font-family:var(--font-ui);font-size:.82rem;font-weight:600;margin-bottom:12px">฿90 – ฿200 / ห่อ</p>
+          <div class="market-hours">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            จันทร์–เสาร์ 07:00–17:00
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px;font-size:.82rem;color:var(--ink-muted)">
+            <div>📞 <a href="tel:+6634733400" style="color:var(--river)">034-733-400</a></div>
+            <div>💬 LINE: <span style="color:var(--ink)">@palmsugar_ssk</span></div>
+          </div>
+          <div class="market-actions">
+            <button class="btn-map" onclick="openMap(13.40,100.00,'สมุทรสงคราม')">🗺 แผนที่</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- สมุนไพรแปรรูป -->
+      <div class="market-card" data-cat="herb">
+        <div class="market-img">
+          <img src="https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?w=800&q=80" alt="สมุนไพรแปรรูป" loading="lazy">
+        </div>
+        <div class="market-body">
+          <div class="flex-between mb-8">
+            <span class="tag tag-teal">🌿 สมุนไพร</span>
+          </div>
+          <h3>สมุนไพรแปรรูป — ร้านป่าชายเลน</h3>
+          <p>ผลิตภัณฑ์แปรรูปจากพืชสมุนไพรพื้นถิ่น สบู่ชะคราม ยาหม่องโกงกาง และน้ำมันนวดจากสมุนไพรชายเลน</p>
+          <p style="color:var(--earth);font-family:var(--font-ui);font-size:.82rem;font-weight:600;margin-bottom:12px">฿50 – ฿280 / ชิ้น</p>
+          <div class="market-hours">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            พฤหัส–อาทิตย์ 09:00–18:00
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px;font-size:.82rem;color:var(--ink-muted)">
+            <div>📞 <a href="tel:+6634744500" style="color:var(--river)">034-744-500</a></div>
+            <div>📘 <a href="https://www.facebook.com/" target="_blank" rel="noopener" style="color:var(--river)">สมุนไพรป่าชายเลนสมุทรสงคราม</a></div>
+          </div>
+          <div class="market-actions">
+            <button class="btn-map" onclick="openMap(13.38,99.98,'คลองโคน สมุทรสงคราม')">🗺 แผนที่</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ปลาแห้ง -->
+      <div class="market-card" data-cat="food">
+        <div class="market-img">
+          <img src="https://images.unsplash.com/photo-1509731987499-fd9bba3a46cc?w=800&q=80" alt="ปลาแห้งแม่กลอง" loading="lazy">
+        </div>
+        <div class="market-body">
+          <div class="flex-between mb-8">
+            <span class="tag tag-river">🐟 จากทะเล</span>
+          </div>
+          <h3>ปลาแห้งและกุ้งแห้ง — ท่าปลาแม่กลอง</h3>
+          <p>ปลาแห้งและกุ้งแห้งคุณภาพดี ตากแดดธรรมชาติ ใช้เกลือสมุทรในปริมาณที่เหมาะสม รสเค็มพอดีไม่จัดเกิน</p>
+          <p style="color:var(--earth);font-family:var(--font-ui);font-size:.82rem;font-weight:600;margin-bottom:12px">฿100 – ฿500 / กิโลกรัม</p>
+          <div class="market-hours">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            ทุกวัน 05:00–13:00
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px;font-size:.82rem;color:var(--ink-muted)">
+            <div>📞 <a href="tel:+6634755600" style="color:var(--river)">034-755-600</a></div>
+            <div>💬 LINE: <span style="color:var(--ink)">@dryfish_maeklong</span></div>
+          </div>
+          <div class="market-actions">
+            <button class="btn-map" onclick="openMap(13.4100,100.0020,'ตลาดรถไฟแม่กลอง')">🗺 แผนที่</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ REGISTER SHOP CTA ══ -->
+<section class="section-sm bg-cream-dark">
+  <div class="container" style="text-align:center">
+    <span class="eyebrow label-ui">คุณมีร้านค้าชุมชน?</span>
+    <h2 class="mt-8 mb-16">ลงทะเบียนร้านค้าของคุณฟรี</h2>
+    <p style="max-width:520px;margin:0 auto 24px">หากคุณเป็นผู้ผลิตหรือชุมชนที่มีผลิตภัณฑ์ท้องถิ่น ร่วมลงข้อมูลร้านค้าในคลังนี้โดยไม่มีค่าใช้จ่าย</p>
+    <a href="contact.html" class="btn btn-primary btn-lg">ลงทะเบียนร้านค้า</a>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<div class="dark-banner">
+  <div class="container">
+    <span class="tag tag-gold mb-20">✦ ช่วยชุมชน</span>
+    <h2>การซื้อสินค้าชุมชนคือการอนุรักษ์ภูมิปัญญา</h2>
+    <p>เมื่อคุณซื้อกะปิจากชาวบ้าน คุณไม่ได้แค่ซื้ออาหาร — คุณกำลังสนับสนุนให้กรรมวิธีโบราณนั้นยังคงอยู่ต่อไป</p>
+    <div class="flex-center gap-14 flex-wrap">
+      <a href="maeklong-food.html" class="btn btn-primary">ดูตำรับอาหาร</a>
+      <a href="Charm.html" class="btn btn-ghost">คลังภูมิปัญญา</a>
+    </div>
+  </div>
+</div>
+
+<script src="i18n.js"></script>
+<script src="search.js"></script>
+<script src="nav.js"></script>
+<script>
+function filterShop(btn, cat) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.market-card').forEach(card => {
+    card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>

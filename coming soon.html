@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เร็วๆ นี้ — ภูมิปัญญาท้องถิ่นจังหวัดสมุทรสงคราม</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@300;400;500;600;700&family=Chakra+Petch:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script>window.NAV_CONFIG = { active: '', heroMode: false };</script>
+</head>
+<body>
+
+<div class="coming-soon-wrap">
+  <div>
+    <div class="coming-soon-icon">🚧</div>
+    <span class="tag tag-gold" id="pageTag" style="display:inline-block;margin-bottom:20px">กำลังพัฒนา</span>
+    <h1 id="csTitle">หน้านี้กำลังพัฒนา</h1>
+    <p id="csDesc">เรากำลังรวบรวมและจัดเตรียมเนื้อหาที่ดีที่สุดสำหรับคุณ โปรดติดตามเร็วๆ นี้</p>
+
+    <!-- Progress bar cosmetic -->
+    <div style="max-width:320px;margin:0 auto 32px;text-align:left">
+      <div style="display:flex;justify-content:space-between;font-family:var(--font-ui);font-size:.72rem;color:var(--ink-muted);margin-bottom:6px">
+        <span>ความคืบหน้า</span><span id="progressLabel">40%</span>
+      </div>
+      <div style="background:var(--cream-dark);border-radius:99px;height:8px;overflow:hidden">
+        <div id="progressBar" style="width:40%;height:100%;background:linear-gradient(90deg,var(--earth),var(--gold));border-radius:99px;transition:width 1.2s ease"></div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="index.html" class="btn btn-primary" data-i18n="btn_back_home">กลับหน้าแรก</a>
+      <a href="contact.html" class="btn btn-outline">แจ้งความสนใจ</a>
+    </div>
+
+    <!-- Notify form -->
+    <div style="margin-top:40px;padding:24px;background:var(--cream);border-radius:var(--r-lg);max-width:400px;margin-left:auto;margin-right:auto">
+      <p style="font-family:var(--font-ui);font-size:.82rem;font-weight:600;color:var(--ink-soft);margin-bottom:12px">รับการแจ้งเตือนเมื่อหน้านี้พร้อม</p>
+      <div style="display:flex;gap:0;border-radius:var(--r-sm);overflow:hidden;box-shadow:var(--sh-sm)">
+        <input type="email" id="notifyEmail" placeholder="อีเมลของคุณ"
+          style="flex:1;padding:10px 14px;border:1.5px solid var(--cream-dark);border-right:none;font-family:var(--font-body);font-size:.9rem;background:var(--white);outline:none;border-radius:var(--r-sm) 0 0 var(--r-sm)">
+        <button onclick="subscribeNotify()"
+          style="padding:10px 18px;background:var(--earth);color:var(--white);border:none;font-family:var(--font-ui);font-size:.82rem;font-weight:600;cursor:pointer;border-radius:0 var(--r-sm) var(--r-sm) 0">
+          แจ้งเตือน
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="i18n.js"></script>
+<script src="nav.js"></script>
+<script src="search.js"></script>
+<script>
+// Map page param to friendly name + progress
+const PAGE_MAP = {
+  herb:      { title: 'สมุนไพรและพืชพื้นบ้าน', desc: 'เรารวบรวมข้อมูลสมุนไพรพื้นบ้านจากป่าชายเลนและริมน้ำสมุทรสงคราม', progress: 55 },
+  lifestyle: { title: 'วิถีชีวิตและภูมินิเวศ', desc: 'บันทึกวิถีชีวิตชาวประมงและเกษตรกรริมน้ำที่ผสมผสานกับระบบนิเวศ', progress: 30 },
+  craft:     { title: 'หัตถกรรมและงานฝีมือ', desc: 'รวมภูมิปัญญางานจักสาน งานทอ และเครื่องมือจับสัตว์น้ำแบบโบราณ', progress: 60 },
+  about:     { title: 'เกี่ยวกับโครงการ', desc: 'ข้อมูลเกี่ยวกับโครงการบันทึกภูมิปัญญาท้องถิ่นสมุทรสงคราม', progress: 70 },
+  privacy:   { title: 'นโยบายความเป็นส่วนตัว', desc: 'นโยบายการเก็บและใช้ข้อมูลของเว็บไซต์', progress: 80 },
+};
+
+const params = new URLSearchParams(window.location.search);
+const page   = params.get('page') || '';
+const cfg    = PAGE_MAP[page] || { title: 'หน้านี้กำลังพัฒนา', desc: 'เรากำลังรวบรวมเนื้อหาที่ดีที่สุดสำหรับคุณ', progress: 40 };
+
+document.getElementById('csTitle').textContent = cfg.title;
+document.getElementById('csDesc').textContent  = cfg.desc;
+document.getElementById('progressLabel').textContent = cfg.progress + '%';
+setTimeout(() => { document.getElementById('progressBar').style.width = cfg.progress + '%'; }, 200);
+if (page) document.title = cfg.title + ' — ภูมิปัญญาท้องถิ่นจังหวัดสมุทรสงคราม';
+
+function subscribeNotify() {
+  const email = document.getElementById('notifyEmail').value.trim();
+  if (!email || !email.includes('@')) {
+    showToast('กรุณากรอกอีเมลให้ถูกต้อง', 'error');
+    return;
+  }
+  showToast('บันทึกอีเมลสำเร็จ เราจะแจ้งเตือนคุณเมื่อหน้านี้พร้อม!', 'success');
+  document.getElementById('notifyEmail').value = '';
+}
+</script>
+</body>
+</html>
