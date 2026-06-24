@@ -21,7 +21,7 @@
 
     /* ── Navbar shell ── */
     '.mm-nav{',
-    '  position:sticky;top:0;z-index:1000;',
+    '  position:fixed;top:0;left:0;right:0;z-index:1000;',
     '  height:var(--nav-h,72px);',
     '  display:flex;align-items:center;',
     '  background:rgba(247,242,232,.97);',
@@ -31,6 +31,8 @@
     '}',
     '.mm-nav.hero-mode{background:transparent;box-shadow:none}',
     '.mm-nav.hero-mode.scrolled{background:rgba(247,242,232,.97);box-shadow:0 2px 20px rgba(30,20,16,.08)}',
+    /* Push body down so content isn't hidden under fixed nav (skip for hero-mode pages) */
+    'body:not(.has-hero) { padding-top: var(--nav-h, 72px); }',
 
     /* ── Container ── */
     '.mm-nav__wrap{',
@@ -381,6 +383,9 @@
   /* ── INJECT ── */
   document.body.insertAdjacentHTML('afterbegin', navHTML);
   document.body.insertAdjacentHTML('beforeend', footerHTML);
+
+  /* ── hero-mode: tag body so CSS skips padding-top ── */
+  if (heroMode) document.body.classList.add('has-hero');
 
   /* ── i18n re-apply ── */
   if (typeof i18nApply === 'function') i18nApply();
