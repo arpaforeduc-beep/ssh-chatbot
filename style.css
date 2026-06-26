@@ -505,14 +505,14 @@ p  { font-size: 1rem; color: var(--ink-soft); }
 .place-card-actions { display: flex; gap: 8px; margin-top: auto; }
 
 /* ══════════════════════════════════════════
-   Charm / KNOWLEDGE CARDS
+   charm / KNOWLEDGE CARDS
 ══════════════════════════════════════════ */
-.Charm-grid {
+.charm-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
 }
-.Charm-card {
+.charm-card {
   background: var(--white);
   border-radius: var(--r-md);
   overflow: hidden;
@@ -522,15 +522,15 @@ p  { font-size: 1rem; color: var(--ink-soft); }
   flex-direction: column;
   transition: var(--ease);
 }
-.Charm-card:hover { box-shadow: var(--sh-md); transform: translateY(-4px); }
-.Charm-card-img      { aspect-ratio: 4/3; overflow: hidden; position: relative; }
-.Charm-card-img img  { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
-.Charm-card:hover .Charm-card-img img { transform: scale(1.06); }
-.Charm-card-badge    { position: absolute; top: 10px; left: 10px; }
-.Charm-card-body     { padding: 18px; flex: 1; display: flex; flex-direction: column; }
-.Charm-card-body h3  { font-size: 1.05rem; margin-bottom: 6px; }
-.Charm-card-body p   { font-size: .85rem; color: var(--ink-muted); flex: 1; line-height: 1.6; margin-bottom: 14px; }
-.Charm-card-tags     { display: flex; gap: 6px; flex-wrap: wrap; margin-top: auto; }
+.charm-card:hover { box-shadow: var(--sh-md); transform: translateY(-4px); }
+.charm-card-img      { aspect-ratio: 4/3; overflow: hidden; position: relative; }
+.charm-card-img img  { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.charm-card:hover .charm-card-img img { transform: scale(1.06); }
+.charm-card-badge    { position: absolute; top: 10px; left: 10px; }
+.charm-card-body     { padding: 18px; flex: 1; display: flex; flex-direction: column; }
+.charm-card-body h3  { font-size: 1.05rem; margin-bottom: 6px; }
+.charm-card-body p   { font-size: .85rem; color: var(--ink-muted); flex: 1; line-height: 1.6; margin-bottom: 14px; }
+.charm-card-tags     { display: flex; gap: 6px; flex-wrap: wrap; margin-top: auto; }
 
 /* ══════════════════════════════════════════
    DISH / FOOD CARDS
@@ -1039,14 +1039,14 @@ p  { font-size: 1rem; color: var(--ink-soft); }
 .search-results-grid  { display: flex; flex-direction: column; gap: 16px; }
 
 /* ══════════════════════════════════════════
-   Charm HUB PAGE
+   charm HUB PAGE
 ══════════════════════════════════════════ */
-.Charm-hub-grid {
+.charm-hub-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 24px;
 }
-.Charm-hub-card {
+.charm-hub-card {
   background: var(--white);
   border-radius: var(--r-lg);
   overflow: hidden;
@@ -1056,13 +1056,13 @@ p  { font-size: 1rem; color: var(--ink-soft); }
   display: flex;
   flex-direction: column;
 }
-.Charm-hub-card:hover { box-shadow: var(--sh-lg); transform: translateY(-6px); }
-.Charm-hub-card-img   { aspect-ratio: 3/2; overflow: hidden; position: relative; }
-.Charm-hub-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
-.Charm-hub-card:hover .Charm-hub-card-img img { transform: scale(1.06); }
-.Charm-hub-card-body  { padding: 24px; flex: 1; display: flex; flex-direction: column; }
-.Charm-hub-card-body h3  { margin-bottom: 10px; }
-.Charm-hub-card-body p   { font-size: .9rem; color: var(--ink-muted); flex: 1; line-height: 1.7; margin-bottom: 16px; }
+.charm-hub-card:hover { box-shadow: var(--sh-lg); transform: translateY(-6px); }
+.charm-hub-card-img   { aspect-ratio: 3/2; overflow: hidden; position: relative; }
+.charm-hub-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.charm-hub-card:hover .charm-hub-card-img img { transform: scale(1.06); }
+.charm-hub-card-body  { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+.charm-hub-card-body h3  { margin-bottom: 10px; }
+.charm-hub-card-body p   { font-size: .9rem; color: var(--ink-muted); flex: 1; line-height: 1.7; margin-bottom: 16px; }
 
 /* ══════════════════════════════════════════
    CALENDAR VIEW (Activities Page)
