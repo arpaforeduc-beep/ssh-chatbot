@@ -1,12 +1,11 @@
 /**
- * search.js — Real Search System  (v2 — bug-fixed)
+ * search.js — Real Search System (v3 — clean)
  *
- * BUG FIX 1: DOMContentLoaded ไม่ทำงานเมื่อ script อยู่ท้าย <body>
- *            → ตรวจ readyState แทน
- * BUG FIX 2: searchSubmit button ใน navbar inject โดย nav.js (ทีหลัง)
- *            → ใช้ event delegation บน document แทนการ querySelector ตรง
+ * ใช้ event delegation ทั้งหมด เพราะ nav.js inject #searchInput ทีหลัง
+ * searchIndex(query) → export ให้ search-results.html ใช้ตรงๆ ได้
  */
 
+/* ══ SEARCH INDEX ══════════════════════════════════════════ */
 var SEARCH_INDEX = [
   /* ── ประวัติศาสตร์ ── */
   { title:'ประวัติศาสตร์เมืองสมุทรสงคราม', title_en:'History of Samutsongkhram',
@@ -76,25 +75,47 @@ var SEARCH_INDEX = [
   /* ── ภูมิปัญญา ── */
   { title:'หัตถกรรมและงานจักสาน', title_en:'Crafts & Weaving',
     desc:'ภูมิปัญญาการจักสานไม้ไผ่ งานทอ และหัตถกรรมพื้นบ้านของชุมชน',
-    url:'charm.html', cat:'ภูมิปัญญา', tags:['จักสาน','ไม้ไผ่','หัตถกรรม','ฝีมือ'] },
+    url:'craft.html', cat:'ภูมิปัญญา', tags:['จักสาน','ไม้ไผ่','หัตถกรรม','ฝีมือ'] },
   { title:'สมุนไพรพื้นบ้าน', title_en:'Traditional Herbal Medicine',
     desc:'สมุนไพรและพืชพื้นบ้านในระบบนิเวศป่าชายเลนและริมน้ำสมุทรสงคราม',
-    url:'charm.html', cat:'ภูมิปัญญา', tags:['สมุนไพร','พืช','ยา','ป่าชายเลน'] },
+    url:'herbs.html', cat:'ภูมิปัญญา', tags:['สมุนไพร','พืช','ยา','ป่าชายเลน'] },
+  { title:'ใบชะคราม', title_en:'Chameleon Plant',
+    desc:'พืชป่าชายเลนเฉพาะถิ่น รสเปรี้ยวอมเค็ม ใช้ทำแกงส้มและมีสรรพคุณทางยา',
+    url:'herbs.html', cat:'สมุนไพร', tags:['ชะคราม','สมุนไพร','ป่าชายเลน','แกง'] },
+  { title:'น้ำมันมะพร้าวสกัดเย็น', title_en:'Cold-pressed Coconut Oil',
+    desc:'บำรุงผิวและเส้นผม แก้แผลไฟไหม้ ต้านเชื้อแบคทีเรีย',
+    url:'herbs.html', cat:'สมุนไพร', tags:['มะพร้าว','น้ำมัน','ผิว','บำรุง'] },
+  { title:'การทำกะปิแบบดั้งเดิม', title_en:'Traditional Shrimp Paste Making',
+    desc:'กรรมวิธีสืบทอดมากกว่า 100 ปี ใช้กุ้งเคยและเกลือสมุทร หมักในไหดินโบราณ',
+    url:'craft.html', cat:'ภูมิปัญญา', tags:['กะปิ','หมัก','กุ้งเคย','ดั้งเดิม'] },
+  { title:'งานจักสานไม้ไผ่', title_en:'Bamboo Weaving',
+    desc:'ตัดช่วงหน้าแล้ง ข้างแรม 7–14 ค่ำ เนื้อไม้แข็งและไม่มอด',
+    url:'craft.html', cat:'หัตถกรรม', tags:['จักสาน','ไม้ไผ่','ฤดูกาล','ภูมิปัญญา'] },
+  { title:'งานไม้แกะสลัก', title_en:'Wood Carving',
+    desc:'ใช้ไม้แสมจากป่าชายเลนที่ตายเองตามธรรมชาติ การใช้ทรัพยากรอย่างรับผิดชอบ',
+    url:'craft.html', cat:'หัตถกรรม', tags:['ไม้','แกะสลัก','แสม','ป่าชายเลน'] },
+  { title:'ยุทธการค่ายบางกุ้ง', title_en:'Battle of Bang Kung',
+    desc:'ชาวบ้านและทหารต้านทัพพม่าด้วยความรู้เรื่องน้ำขึ้น-ลงและภูมิประเทศ พ.ศ. 2310',
+    url:'maeklong-history.html', cat:'ประวัติศาสตร์', tags:['ค่ายบางกุ้ง','พม่า','อยุธยา','สงคราม'] },
 ];
 
+/* ══ SEARCH FUNCTION ═══════════════════════════════════════ */
 function searchIndex(query) {
   if (!query || query.trim().length < 2) return [];
+
   var q     = query.trim().toLowerCase();
   var terms = q.split(/\s+/);
 
   var scored = SEARCH_INDEX.map(function (item) {
     var score = 0;
     terms.forEach(function (t) {
-      if (item.title.toLowerCase().indexOf(t)           > -1) score += 10;
-      if ((item.title_en||'').toLowerCase().indexOf(t)  > -1) score += 8;
-      if (item.cat.toLowerCase().indexOf(t)             > -1) score += 6;
-      if ((item.tags||[]).some(function(tag){ return tag.toLowerCase().indexOf(t) > -1; })) score += 4;
-      if (item.desc.toLowerCase().indexOf(t)            > -1) score += 2;
+      if (item.title.toLowerCase().indexOf(t)              > -1) score += 10;
+      if ((item.title_en || '').toLowerCase().indexOf(t)   > -1) score += 8;
+      if (item.cat.toLowerCase().indexOf(t)                > -1) score += 6;
+      if ((item.tags || []).some(function (tag) {
+        return tag.toLowerCase().indexOf(t) > -1;
+      })) score += 4;
+      if (item.desc.toLowerCase().indexOf(t)               > -1) score += 2;
     });
     return Object.assign({}, item, { score: score });
   }).filter(function (r) { return r.score > 0; });
@@ -102,33 +123,37 @@ function searchIndex(query) {
   return scored.sort(function (a, b) { return b.score - a.score; });
 }
 
+/* ══ NAVIGATE TO RESULTS PAGE ══════════════════════════════ */
 function doSearch(query) {
   if (!query || !query.trim()) return;
   window.location.href = 'search-results.html?q=' + encodeURIComponent(query.trim());
 }
 
-/* ── Wire up search inputs ──
-   BUG FIX 2: ใช้ event delegation เพราะ #searchInput อยู่ใน navbar
-   ที่ nav.js inject ทีหลัง — ถ้า querySelector ตรงตอนนี้จะ null
-*/
-function wireSearch() {
-  /* keyboard on any search input */
-  document.addEventListener('keydown', function (e) {
-    if (e.key !== 'Enter') return;
-    var t = e.target;
-    if (t && (t.id === 'searchInput' || t.classList.contains('search-hero-input'))) {
-      if (t.value.trim()) doSearch(t.value);
-    }
-  });
+/* ══ EVENT DELEGATION (works even if nav.js injects input later) ═ */
+document.addEventListener('keydown', function (e) {
+  if (e.key !== 'Enter') return;
+  var t = e.target;
+  if (!t) return;
+  /* nav search input */
+  if (t.id === 'searchInput' && t.value.trim()) {
+    doSearch(t.value);
+  }
+  /* Charm.html hero search input */
+  if (t.id === 'charmSearchInput' && t.value.trim()) {
+    doSearch(t.value);
+  }
+});
 
-  /* click on submit buttons (delegation) */
-  document.addEventListener('click', function (e) {
-    var btn = e.target.closest('[data-search-trigger]');
-    if (!btn) return;
-    var inp = document.getElementById('searchInput');
-    if (inp && inp.value.trim()) doSearch(inp.value);
-  });
-}
-
-/* Run immediately — DOM is ready when script is at end of <body> */
-wireSearch();
+document.addEventListener('click', function (e) {
+  /* nav search button */
+  var navBtn = e.target.closest('[data-search-trigger]');
+  if (navBtn) {
+    var navInput = document.getElementById('searchInput');
+    if (navInput && navInput.value.trim()) doSearch(navInput.value);
+  }
+  /* Charm.html hero search button */
+  if (e.target.id === 'charmSearchBtn') {
+    var charmInput = document.getElementById('charmSearchInput');
+    if (charmInput && charmInput.value.trim()) doSearch(charmInput.value);
+  }
+});
