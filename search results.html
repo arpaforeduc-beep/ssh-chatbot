@@ -7,10 +7,67 @@
   <meta name="robots" content="noindex">
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@300;400;500;600;700&family=Chakra+Petch:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
-  
-  <!-- Nav config: heroMode = true for transparent-to-solid transition -->
   <script>window.NAV_CONFIG = { active: '', heroMode: false };</script>
-  
+  <style>
+    /* ── Filter bar ── */
+    .filter-bar {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .filter-btn {
+      padding: 6px 16px;
+      font-family: var(--font-ui); font-size: .72rem; font-weight: 600;
+      border-radius: 99px; cursor: pointer;
+      border: 1.5px solid var(--border);
+      background: var(--white); color: var(--ink-muted);
+      transition: all .15s;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--earth); color: #fff; border-color: var(--earth);
+    }
+
+    /* ── Result count badge ── */
+    .result-count-badge {
+      display: inline-block;
+      background: var(--cream-dark); color: var(--ink-muted);
+      font-family: var(--font-ui); font-size: .7rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 99px;
+      margin-left: 8px; vertical-align: middle;
+    }
+
+    /* ── Suggestions when no results ── */
+    .suggest-row {
+      display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+      margin-top: 28px;
+    }
+    .suggest-chip {
+      padding: 8px 18px; border-radius: 99px;
+      background: var(--cream-dark); color: var(--ink);
+      font-family: var(--font-ui); font-size: .78rem;
+      text-decoration: none; transition: background .15s;
+    }
+    .suggest-chip:hover { background: var(--cream); color: var(--earth); }
+
+    /* ── Recent / popular when query empty ── */
+    .popular-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    }
+    @media (max-width: 640px) { .popular-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 380px) { .popular-grid { grid-template-columns: 1fr; } }
+
+    .popular-chip {
+      display: flex; align-items: center; gap: 10px;
+      padding: 14px 16px; border-radius: 12px;
+      background: var(--white); border: 1px solid var(--cream-dark);
+      text-decoration: none; color: var(--ink); cursor: pointer;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .popular-chip:hover { border-color: var(--earth); box-shadow: var(--sh-sm); }
+    .popular-chip .icon { font-size: 1.3rem; flex-shrink: 0; }
+    .popular-chip .label { font-size: .82rem; font-weight: 600; }
+    .popular-chip .sub   { font-size: .7rem; color: var(--ink-muted); margin-top: 2px; }
+  </style>
 </head>
 <body>
 
@@ -20,13 +77,16 @@
     <nav class="breadcrumb dark" aria-label="เส้นทางนำทาง">
       <a href="index.html">หน้าแรก</a>
       <span class="sep">›</span>
+      <a href="Charm.html">คลังความรู้</a>
+      <span class="sep">›</span>
       <span>ผลการค้นหา</span>
     </nav>
     <h1>ผลการค้นหา</h1>
     <p id="searchSummary" class="text-muted">กำลังค้นหา...</p>
     <div class="search-hero-form">
-      <input type="text" class="search-hero-input" id="mainSearchInput" placeholder="ค้นหาภูมิปัญญา...">
-      <button class="search-hero-btn" id="mainSearchBtn">ค้นหา</button>
+      <input type="search" class="search-hero-input" id="mainSearchInput"
+             placeholder="ค้นหาภูมิปัญญา สมุนไพร อาหาร..." aria-label="ค้นหา">
+      <button class="search-hero-btn" id="mainSearchBtn">ค้นหา →</button>
     </div>
   </div>
 </div>
@@ -34,93 +94,200 @@
 <!-- ══ RESULTS ══ -->
 <section class="section">
   <div class="container">
-    <div id="resultsWrap">
-      <div class="search-results-grid" id="resultsList"></div>
+    <!-- Filter bar -->
+    <div class="filter-bar" id="filterBar" style="display:none">
+      <button class="filter-btn active" data-cat="ทั้งหมด">ทั้งหมด</button>
+      <button class="filter-btn" data-cat="ประวัติศาสตร์">📜 ประวัติศาสตร์</button>
+      <button class="filter-btn" data-cat="อาหาร">🍜 อาหาร</button>
+      <button class="filter-btn" data-cat="หัตถกรรม">🎋 หัตถกรรม</button>
+      <button class="filter-btn" data-cat="สมุนไพร">🌿 สมุนไพร</button>
+      <button class="filter-btn" data-cat="ภูมิปัญญา">📚 ภูมิปัญญา</button>
+      <button class="filter-btn" data-cat="กิจกรรม">📅 กิจกรรม</button>
+      <button class="filter-btn" data-cat="สถานที่">📍 สถานที่</button>
+      <button class="filter-btn" data-cat="ร้านค้า">🛒 ร้านค้า</button>
     </div>
+    <!-- Results list -->
+    <div class="search-results-grid" id="resultsList"></div>
   </div>
 </section>
 
-<script src="i18n.js"></script>
 <script src="search.js"></script>
 <script src="nav.js"></script>
 <script>
-const CAT_ICONS = {
-  'ประวัติศาสตร์': '📜',
-  'อาหาร': '🍜',
-  'กิจกรรม': '📅',
-  'ร้านค้า': '🛒',
-  'สถานที่': '📍',
-  'ภูมิปัญญา': '📚',
+/* ─── Icons ─── */
+var CAT_ICONS = {
+  'ประวัติศาสตร์':  '📜',
+  'อาหาร':         '🍜',
+  'กิจกรรม':        '📅',
+  'ร้านค้า':        '🛒',
+  'สถานที่':        '📍',
+  'ภูมิปัญญา':     '📚',
+  'หัตถกรรม':      '🎋',
+  'สมุนไพร':       '🌿',
+  'สถานที่สำคัญ':  '🏛️',
 };
 
+/* ─── State ─── */
+var allResults  = [];
+var activeFilter = 'ทั้งหมด';
+
+/* ─── Render ─── */
 function renderResults(query) {
-  const results = searchIndex(query);
-  const summary = document.getElementById('searchSummary');
-  const list = document.getElementById('resultsList');
+  allResults = searchIndex(query);
+  activeFilter = 'ทั้งหมด';
+  syncFilterBtns();
+  showFiltered(query);
+  updateMeta(query);
+}
 
+function showFiltered(query) {
+  var list = document.getElementById('resultsList');
+  var filtered = activeFilter === 'ทั้งหมด'
+    ? allResults
+    : allResults.filter(function (r) { return r.cat === activeFilter; });
+
+  /* No query → show popular */
   if (!query || query.trim().length < 2) {
-    summary.textContent = 'กรุณากรอกคำค้นหา';
-    list.innerHTML = `<div class="search-no-results"><div class="icon">🔍</div><h3>พิมพ์คำค้นหาในช่องด้านบน</h3></div>`;
+    document.getElementById('filterBar').style.display = 'none';
+    list.innerHTML = renderPopular();
     return;
   }
 
-  summary.textContent = results.length
-    ? `พบ ${results.length} ผลลัพธ์สำหรับ "${query}"`
-    : `ไม่พบผลลัพธ์สำหรับ "${query}"`;
+  /* Has query, show filter bar if results */
+  document.getElementById('filterBar').style.display =
+    allResults.length ? 'flex' : 'none';
 
-  if (!results.length) {
-    list.innerHTML = `
-      <div class="search-no-results">
-        <div class="icon">🔍</div>
-        <h3>ไม่พบผลลัพธ์</h3>
-        <p>ลองค้นหาด้วยคำอื่น หรือสำรวจหมวดหมู่ด้านล่าง</p>
-        <div class="flex-center gap-14 flex-wrap" style="margin-top:24px">
-          <a href="Charm.html" class="btn btn-primary">คลังภูมิปัญญา</a>
-          <a href="maeklong-food.html" class="btn btn-outline">อาหารท้องถิ่น</a>
-          <a href="activities.html" class="btn btn-outline">กิจกรรม</a>
-        </div>
-      </div>`;
+  if (!filtered.length) {
+    list.innerHTML = renderNoResults(query);
     return;
   }
 
-  list.innerHTML = results.map(r => {
-    const icon = CAT_ICONS[r.cat] || '📄';
-    const tags = (r.tags || []).slice(0, 3).map(t => `<span class="tag tag-earth">${t}</span>`).join('');
-    return `
-      <a href="${r.url}" class="search-result-item" style="text-decoration:none">
-        <div class="search-result-icon">${icon}</div>
-        <div class="search-result-body">
-          <h3>${r.title}</h3>
-          ${r.title_en ? `<p class="label-ui text-muted mb-4" style="font-size:.7rem">${r.title_en}</p>` : ''}
-          <p>${r.desc}</p>
-          <div class="search-result-meta">
-            <span class="tag tag-river">${r.cat}</span>
-            ${tags}
-          </div>
-        </div>
-      </a>`;
+  list.innerHTML = filtered.map(function (r) {
+    var icon = CAT_ICONS[r.cat] || '📄';
+    var tags = (r.tags || []).slice(0, 3)
+      .map(function (t) { return '<span class="tag tag-earth">' + t + '</span>'; })
+      .join('');
+    return [
+      '<a href="' + r.url + '" class="search-result-item fade-in">',
+      '  <div class="search-result-icon">' + icon + '</div>',
+      '  <div class="search-result-body">',
+      '    <h3>' + r.title + '</h3>',
+      r.title_en ? '    <p class="label-ui text-muted mb-4" style="font-size:.7rem">' + r.title_en + '</p>' : '',
+      '    <p>' + r.desc + '</p>',
+      '    <div class="search-result-meta">',
+      '      <span class="tag tag-river">' + r.cat + '</span>',
+      '      ' + tags,
+      '    </div>',
+      '  </div>',
+      '</a>',
+    ].join('\n');
   }).join('');
 }
 
-// Init from URL param
-const params = new URLSearchParams(window.location.search);
-const q = params.get('q') || '';
-const inp = document.getElementById('mainSearchInput');
-inp.value = q;
-renderResults(q);
-
-// New search
-document.getElementById('mainSearchBtn').addEventListener('click', () => {
-  const newQ = inp.value.trim();
-  if (newQ) {
-    window.history.pushState({}, '', `?q=${encodeURIComponent(newQ)}`);
-    document.title = `ค้นหา "${newQ}" — ภูมิปัญญาท้องถิ่นจังหวัดสมุทรสงคราม`;
-    renderResults(newQ);
+function updateMeta(query) {
+  var summary = document.getElementById('searchSummary');
+  if (!query || query.trim().length < 2) {
+    summary.textContent = 'ค้นหาภูมิปัญญาท้องถิ่นจังหวัดสมุทรสงคราม';
+    document.title = 'ผลการค้นหา — ภูมิปัญญาท้องถิ่นจังหวัดสมุทรสงคราม';
+    return;
   }
+  var n = allResults.length;
+  summary.textContent = n
+    ? 'พบ ' + n + ' ผลลัพธ์สำหรับ "' + query + '"'
+    : 'ไม่พบผลลัพธ์สำหรับ "' + query + '"';
+  document.title = 'ค้นหา "' + query + '" — ภูมิปัญญาสมุทรสงคราม';
+}
+
+function renderNoResults(query) {
+  return [
+    '<div class="search-no-results">',
+    '  <div class="icon">🔍</div>',
+    '  <h3>ไม่พบผลลัพธ์สำหรับ "' + query + '"</h3>',
+    '  <p>ลองคำค้นหาอื่น หรือสำรวจหมวดหมู่ที่แนะนำ</p>',
+    '  <div class="suggest-row">',
+    '    <a class="suggest-chip" href="Charm.html">📚 คลังภูมิปัญญา</a>',
+    '    <a class="suggest-chip" href="maeklong-food.html">🍜 อาหารท้องถิ่น</a>',
+    '    <a class="suggest-chip" href="craft.html">🎋 หัตถกรรม</a>',
+    '    <a class="suggest-chip" href="herbs.html">🌿 สมุนไพร</a>',
+    '    <a class="suggest-chip" href="activities.html">📅 กิจกรรม</a>',
+    '  </div>',
+    '</div>',
+  ].join('\n');
+}
+
+function renderPopular() {
+  var popular = [
+    { q:'กะปิ',        icon:'🦐', label:'กะปิแม่กลอง',    sub:'ภูมิปัญญาหัตถกรรม' },
+    { q:'จักสาน',      icon:'🎋', label:'งานจักสาน',      sub:'หัตถกรรม' },
+    { q:'สมุนไพร',     icon:'🌿', label:'สมุนไพร',        sub:'พืชพื้นบ้าน' },
+    { q:'ร.2',         icon:'👑', label:'รัชกาลที่ 2',    sub:'ประวัติศาสตร์' },
+    { q:'ตลาดน้ำ',     icon:'🛶', label:'ตลาดน้ำ',        sub:'สถานที่ท่องเที่ยว' },
+    { q:'ชะคราม',      icon:'🍃', label:'ใบชะคราม',       sub:'สมุนไพร-อาหาร' },
+  ];
+  return [
+    '<div style="margin-bottom:20px">',
+    '  <span class="eyebrow label-ui" style="color:var(--ink-muted)">หัวข้อยอดนิยม</span>',
+    '</div>',
+    '<div class="popular-grid">',
+    popular.map(function (p) {
+      return [
+        '<button class="popular-chip" onclick="runSearch(\'' + p.q + '\')">',
+        '  <span class="icon">' + p.icon + '</span>',
+        '  <span><div class="label">' + p.label + '</div><div class="sub">' + p.sub + '</div></span>',
+        '</button>',
+      ].join('');
+    }).join('\n'),
+    '</div>',
+  ].join('\n');
+}
+
+/* ─── Filter buttons ─── */
+function syncFilterBtns() {
+  document.querySelectorAll('.filter-btn').forEach(function (btn) {
+    btn.classList.toggle('active', btn.dataset.cat === activeFilter);
+  });
+}
+
+document.getElementById('filterBar').addEventListener('click', function (e) {
+  var btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  activeFilter = btn.dataset.cat;
+  syncFilterBtns();
+  var q = document.getElementById('mainSearchInput').value.trim();
+  showFiltered(q);
 });
-inp.addEventListener('keydown', e => {
+
+/* ─── Run search ─── */
+function runSearch(q) {
+  document.getElementById('mainSearchInput').value = q;
+  window.history.pushState({}, '', '?q=' + encodeURIComponent(q));
+  renderResults(q);
+}
+
+/* ─── Buttons & keyboard ─── */
+document.getElementById('mainSearchBtn').addEventListener('click', function () {
+  var q = document.getElementById('mainSearchInput').value.trim();
+  if (q) runSearch(q);
+});
+document.getElementById('mainSearchInput').addEventListener('keydown', function (e) {
   if (e.key === 'Enter') document.getElementById('mainSearchBtn').click();
 });
+
+/* ─── Browser back/forward ─── */
+window.addEventListener('popstate', function () {
+  var p = new URLSearchParams(window.location.search);
+  var q = p.get('q') || '';
+  document.getElementById('mainSearchInput').value = q;
+  renderResults(q);
+});
+
+/* ─── Init ─── */
+(function () {
+  var params = new URLSearchParams(window.location.search);
+  var q = params.get('q') || '';
+  document.getElementById('mainSearchInput').value = q;
+  renderResults(q);
+})();
 </script>
 </body>
 </html>
