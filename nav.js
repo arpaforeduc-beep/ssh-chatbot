@@ -327,6 +327,9 @@
   + '</div>'
 
   /* Lang */
+<!-- วางโค้ดนี้ในจุดที่ต้องการให้ปุ่มสลับภาษาแสดงผล -->
+<div id="google_translate_element"></div>
+
 <script type="text/javascript">
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({
@@ -337,6 +340,7 @@ function googleTranslateElementInit() {
 }
 </script>
 <script type="text/javascript" src="//://google.com"></script>
+
 
   /* Hamburger */
   + '<button class="mm-ham" id="mmHam" aria-label="เมนู">'
