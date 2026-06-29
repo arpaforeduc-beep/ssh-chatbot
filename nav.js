@@ -327,10 +327,16 @@
   + '</div>'
 
   /* Lang */
-  + '<div class="mm-lang">'
-  + '<button class="mm-lang-btn" id="langTH" onclick="setLang(\'th\')">TH</button>'
-  + '<button class="mm-lang-btn" id="langEN" onclick="setLang(\'en\')">EN</button>'
-  + '</div>'
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'th', 
+    includedLanguages: 'en,zh-CN,ja,ko,fr,de', // ใส่รหัสภาษาที่ต้องการให้รองรับ
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+  }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//://google.com"></script>
 
   /* Hamburger */
   + '<button class="mm-ham" id="mmHam" aria-label="เมนู">'
