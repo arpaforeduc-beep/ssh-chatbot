@@ -28,9 +28,22 @@
 
   <!-- Nav config: heroMode = true for transparent-to-solid transition -->
   <script>window.NAV_CONFIG = { active: 'home', heroMode: true };</script>
+  <!-- วางโค้ดนี้ในจุดที่ต้องการให้ปุ่มสลับภาษาแสดงผล -->
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'th', 
+    includedLanguages: 'en,zh-CN,ja,ko,fr,de', // ใส่รหัสภาษาที่ต้องการให้รองรับ
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+  }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//://google.com"></script>
+
 </head>
 <body>
-
 <!-- ══ HERO ══ -->
 <section class="hero">
   <div class="hero-bg"></div>
