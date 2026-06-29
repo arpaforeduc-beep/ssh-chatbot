@@ -314,34 +314,12 @@
   /* Controls */
   + '<div class="mm-controls">'
 
-  /* Search */
-  + '<div class="mm-search-wrap">'
-  + '<button class="mm-search-btn" id="mmSearchBtn" aria-label="ค้นหา">'
-  + '<svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>'
-  + '</button>'
-  + '<div class="mm-search-box" id="mmSearchBox">'
-  + '<svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="flex-shrink:0;color:#8B7355"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>'
-  + '<input type="text" id="searchInput" data-i18n-attr="placeholder:search_placeholder" placeholder="ค้นหาภูมิปัญญา...">'
-  + '<button class="mm-search-submit" id="searchSubmit" data-search-trigger aria-label="ค้นหา">→</button>'
-  + '</div>'
-  + '</div>'
-
   /* Lang */
-<!-- วางโค้ดนี้ในจุดที่ต้องการให้ปุ่มสลับภาษาแสดงผล -->
-<div id="google_translate_element"></div>
-
-<script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({
-    pageLanguage: 'th', 
-    includedLanguages: 'en,zh-CN,ja,ko,fr,de', // ใส่รหัสภาษาที่ต้องการให้รองรับ
-    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-  }, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="//://google.com"></script>
-
-
+  + '<div class="mm-lang">'
+  + '<button class="mm-lang-btn" id="langTH" onclick="setLang(\'th\')">TH</button>'
+  + '<button class="mm-lang-btn" id="langEN" onclick="setLang(\'en\')">EN</button>'
+  + '</div>'
+    
   /* Hamburger */
   + '<button class="mm-ham" id="mmHam" aria-label="เมนู">'
   + '<span></span><span></span><span></span>'
