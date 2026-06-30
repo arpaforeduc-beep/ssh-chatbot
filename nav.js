@@ -305,12 +305,6 @@
 
   /* Controls */
   + '<div class="mm-controls">'
-
-  /* Lang */
-  + '<div class="mm-lang">'
-  + '<button class="mm-lang-btn" id="langTH" onclick="setLang(\'th\')">TH</button>'
-  + '<button class="mm-lang-btn" id="langEN" onclick="setLang(\'en\')">EN</button>'
-  + '</div>'
     
   /* Hamburger */
   + '<button class="mm-ham" id="mmHam" aria-label="เมนู">'
