@@ -1485,7 +1485,7 @@ body {
   font-size: 16px;
   line-height: 1.65;
   color: var(--ink);
-  background: var(--white);
+  background: var(--ink-muted);
   -webkit-font-smoothing: antialiased;
 }
 img { max-width: 100%; display: block; }
