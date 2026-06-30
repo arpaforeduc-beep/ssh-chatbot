@@ -1485,12 +1485,12 @@ body {
   font-size: 16px;
   line-height: 1.65;
   color: var(--ink);
-  background: var(--teal);
+  background: var(--earth-dark);
   -webkit-font-smoothing: antialiased;
 }
 img { max-width: 100%; display: block; }
 a { color: var(--earth); }
-a:hover { color: var(--earth-dark); }
+a:hover { color: var(--ink-muted); }
 
 /* ── CONTAINER ── */
 .container {
