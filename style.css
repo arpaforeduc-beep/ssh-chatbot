@@ -1493,7 +1493,7 @@ body {
 }
 img { max-width: 100%; display: block; }
 a { color: var(--earth); }
-a:hover { color: var(--ink-muted); }
+a:hover { color: var(--cream); }
 
 /* ── CONTAINER ── */
 .container {
