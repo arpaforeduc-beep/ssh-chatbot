@@ -965,7 +965,7 @@ p  { font-size: 1rem; color: var(--ink-soft); }
   color: rgba(255,255,255,.75);
   margin-bottom: 16px;
 }
-.breadcrumb a           { color: rgba(255,255,255,.75); transition: color var(--ease); }
+.breadcrumb a           { color: rgba(255,255,255,.75); transition: color var(--white); }
 .breadcrumb a:hover     { color: var(--white); }
 .breadcrumb .sep        { color: rgba(255,255,255,.45); }
 .breadcrumb.dark        { color: var(--ink-muted); }
