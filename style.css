@@ -1512,7 +1512,7 @@ h2 {
   font-family: var(--font-serif);
   font-weight: 700;
   line-height: 1.25;
-  color: var(--earth-dark);
+  color: var(--cream);
 }
 h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
 h2 { font-size: clamp(1.4rem, 3vw, 2rem); }
@@ -1686,7 +1686,7 @@ p:last-child { margin-bottom: 0; }
   font-family: var(--font-ui); font-size: .72rem; color: var(--ink-muted);
 }
 .breadcrumb a { color: inherit; text-decoration: none; }
-.breadcrumb a:hover { color: var(--earth); }
+.breadcrumb a:hover { color: var(--cream); }
 .breadcrumb .sep { opacity: .5; }
 
 /* ── CARDS (generic) ── */
