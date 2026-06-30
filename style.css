@@ -30,6 +30,7 @@
   --ink-muted:    #7A6558;
   --white:        #FFFFFF;
   --yellow:       #edd498;
+  --mustard       #d39c1e;
 
   /* Typography */
   --font-serif:   'Noto Serif Thai', serif;
@@ -1512,7 +1513,7 @@ h2 {
   font-family: var(--font-serif);
   font-weight: 700;
   line-height: 1.25;
-  color: var(--cream);
+  color: var(--mustard);
 }
 h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
 h2 { font-size: clamp(1.4rem, 3vw, 2rem); }
