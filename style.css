@@ -1488,12 +1488,12 @@ body {
   font-size: 16px;
   line-height: 1.65;
   color: var(--mustard);
-  background: var(--ink-muted);
+  background: var(--cream);
   -webkit-font-smoothing: antialiased;
 }
 img { max-width: 100%; display: block; }
 a { color: var(--earth); }
-a:hover { color: var(--cream); }
+a:hover { color: var(--earth); }
 
 /* ── CONTAINER ── */
 .container {
