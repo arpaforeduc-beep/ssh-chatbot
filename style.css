@@ -1456,7 +1456,8 @@ p  { font-size: 1rem; color: var(--ink-soft); }
   --teal-light:  #4AA898;
   --river:       #3D6B8A;   /* น้ำเข้ม */
   --spice:       #B84C2A;   /* สีพริก */
-
+  --brown-wd:    #6a3c1c;
+   
   --ink:         #1A0E08;
   --ink-muted:   #6B5648;
   --white:       #FEFCF9;
@@ -1486,7 +1487,7 @@ body {
   font-size: 16px;
   line-height: 1.65;
   color: var(--ink);
-  background: var(--earth-dark);
+  background: var(--brown-wd);
   -webkit-font-smoothing: antialiased;
 }
 img { max-width: 100%; display: block; }
