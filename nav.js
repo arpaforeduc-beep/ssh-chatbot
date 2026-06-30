@@ -151,14 +151,6 @@
     '.mm-search-submit{background:var(--earth,#8B4513);color:#fff;border:none;border-radius:6px;padding:3px 9px;cursor:pointer;font-size:.85rem;transition:background .2s}',
     '.mm-search-submit:hover{background:#6B3A1F}',
 
-    /* Lang */
-    '.mm-lang{display:flex;align-items:center;background:var(--cream-dark,#E8DDD0);border-radius:99px;padding:3px;gap:2px}',
-    '.mm-lang-btn{font-family:var(--font-ui,"Chakra Petch",sans-serif);font-size:.64rem;font-weight:600;letter-spacing:.06em;padding:3px 9px;border-radius:99px;color:var(--ink-muted,#8B7355);border:none;background:transparent;cursor:pointer;transition:background .2s,color .2s}',
-    '.mm-lang-btn.active{background:var(--earth,#8B4513);color:#fff}',
-    '.mm-nav.hero-mode:not(.scrolled) .mm-lang{background:rgba(255,255,255,.15)}',
-    '.mm-nav.hero-mode:not(.scrolled) .mm-lang-btn{color:rgba(255,255,255,.7)}',
-    '.mm-nav.hero-mode:not(.scrolled) .mm-lang-btn.active{background:rgba(255,255,255,.3);color:#fff}',
-
     /* Hamburger */
     '.mm-ham{display:none;flex-direction:column;gap:5px;padding:8px;background:none;border:none;cursor:pointer;flex-shrink:0}',
     '.mm-ham span{display:block;width:22px;height:2px;background:var(--ink,#2C1810);border-radius:2px;transition:.3s}',
