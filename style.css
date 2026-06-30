@@ -29,6 +29,7 @@
   --ink-soft:     #4A3828;
   --ink-muted:    #7A6558;
   --white:        #FFFFFF;
+  --yellow:       #edd498;
 
   /* Typography */
   --font-serif:   'Noto Serif Thai', serif;
@@ -114,7 +115,7 @@ p  { font-size: 1rem; color: var(--ink-soft); }
 .section-header .eyebrow  {
   display: inline-block;
   padding: 5px 16px;
-  background: var #edd498;
+  background: var(--yellow);
   color: var(--gold);
   border-radius: 99px;
   margin-bottom: 14px;
