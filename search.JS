@@ -138,7 +138,7 @@ document.addEventListener('keydown', function (e) {
   if (t.id === 'searchInput' && t.value.trim()) {
     doSearch(t.value);
   }
-  /* Charm.html hero search input */
+  /* charm.html hero search input */
   if (t.id === 'charmSearchInput' && t.value.trim()) {
     doSearch(t.value);
   }
@@ -151,7 +151,7 @@ document.addEventListener('click', function (e) {
     var navInput = document.getElementById('searchInput');
     if (navInput && navInput.value.trim()) doSearch(navInput.value);
   }
-  /* Charm.html hero search button */
+  /* charm.html hero search button */
   if (e.target.id === 'charmSearchBtn') {
     var charmInput = document.getElementById('charmSearchInput');
     if (charmInput && charmInput.value.trim()) doSearch(charmInput.value);
