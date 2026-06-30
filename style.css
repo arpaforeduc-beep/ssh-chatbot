@@ -964,7 +964,7 @@ p  { font-size: 1rem; color: var(--ink-soft); }
   gap: 8px;
   font-family: var(--font-ui);
   font-size: .78rem;
-  color: rgba(255,255,255,.75);
+  color: rgba(190, 141, 52, 0.814);
   margin-bottom: 16px;
 }
 .breadcrumb a           { color: rgba(255,255,255,.75); transition: color var(--ease); }
