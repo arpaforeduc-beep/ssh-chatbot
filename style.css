@@ -1252,7 +1252,7 @@ p  { font-size: 1rem; color: var(--ink-soft); }
    CONTACT PAGE
 ══════════════════════════════════════════ */
 .page-hero-bg {
-  background-image: url('Bg01.jpg');
+  background-image: img src="img/Bg01.png" alt="Backgrond"
   background-size: cover;
   background-position: center;
 }
