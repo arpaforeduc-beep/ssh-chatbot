@@ -213,7 +213,7 @@
   /* Brand */
   + '<a href="index.html" class="mm-brand">'
   + '<img src="https://charm-of-samutsongkhram-nine.vercel.app/img/logo.png" alt="ภูมิปัญญาสมุทรสงคราม" onerror="this.style.display=\'none\'">'
-  + '<div class="mm-brand-text">ภูมิปัญญาสมุทรสงคราม<span>Charm of Samutsongkhram</span></div>'
+  + '<div class="mm-brand-text">ภูมิปัญญาท้องถิ่นจังหวัดสมุทรสงคราม<span>Charm of Samutsongkhram</span></div>'
   + '</a>'
 
   /* Nav list */
