@@ -9,64 +9,159 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@300;400;500;600;700&family=Chakra+Petch:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
   <script>window.NAV_CONFIG = { active: '', heroMode: false };</script>
   <style>
-    /* ── Filter bar ── */
-    .filter-bar {
-      display: flex; gap: 8px; flex-wrap: wrap;
-      margin-bottom: 24px;
+    /* ── Charm-specific styles ── */
+    .charm-hero {
+      background: linear-gradient(160deg, #2C1810 0%, #5C2E0A 50%, #8B4513 100%);
+      padding: calc(var(--nav-h, 72px) + 64px) 0 72px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    .filter-btn {
-      padding: 6px 16px;
-      font-family: var(--font-ui); font-size: .72rem; font-weight: 600;
-      border-radius: 99px; cursor: pointer;
-      border: 1.5px solid var(--border);
-      background: var(--white); color: var(--ink-muted);
-      transition: all .15s;
+    .charm-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Amphawa_Floating_Market.jpg/1280px-Amphawa_Floating_Market.jpg') center/cover;
+      opacity: .12;
     }
-    .filter-btn:hover,
-    .filter-btn.active {
-      background: var(--earth); color: #fff; border-color: var(--earth);
-    }
+    .charm-hero .container { position: relative; z-index: 1; }
+    .charm-hero h1 { color: #fff; font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 16px; }
+    .charm-hero p  { color: rgba(255,255,255,.78); max-width: 560px; margin: 0 auto 32px; font-size: 1.05rem; line-height: 1.7; }
 
-    /* ── Result count badge ── */
-    .result-count-badge {
-      display: inline-block;
-      background: var(--cream-dark); color: var(--ink-muted);
-      font-family: var(--font-ui); font-size: .7rem; font-weight: 700;
+    /* Search bar */
+    .charm-search {
+      display: flex; gap: 0; max-width: 520px; margin: 0 auto 16px;
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,.3);
+    }
+    .charm-search input {
+      flex: 1; padding: 16px 20px;
+      border: none; outline: none;
+      font-family: var(--font-body); font-size: 1rem;
+      background: #fff; color: var(--ink);
+    }
+    .charm-search button {
+      padding: 16px 28px; background: var(--earth); color: #fff;
+      border: none; font-family: var(--font-ui); font-size: .9rem;
+      font-weight: 700; cursor: pointer; transition: background .2s;
+      white-space: nowrap;
+    }
+    .charm-search button:hover { background: #6B3A1F; }
+
+    /* Quick tag hints */
+    .charm-hints { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+    .charm-hint  {
+      padding: 5px 14px; border-radius: 99px;
+      background: rgba(255,255,255,.15); color: rgba(255,255,255,.8);
+      font-family: var(--font-ui); font-size: .75rem; cursor: pointer;
+      border: 1px solid rgba(255,255,255,.2); transition: background .2s;
+    }
+    .charm-hint:hover { background: rgba(255,255,255,.28); color: #fff; }
+
+    /* ── Category grid ── */
+    .charm-cat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 900px) { .charm-cat-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 560px) { .charm-cat-grid { grid-template-columns: 1fr; } }
+
+    .charm-cat {
+      border-radius: 16px; overflow: hidden;
+      background: var(--white);
+      box-shadow: var(--sh-sm);
+      border: 1px solid var(--cream-dark);
+      display: flex; flex-direction: column;
+      transition: transform .25s, box-shadow .25s;
+      text-decoration: none; color: var(--ink);
+    }
+    .charm-cat:hover { transform: translateY(-6px); box-shadow: var(--sh-lg); }
+
+    .charm-cat-img { aspect-ratio: 16/9; overflow: hidden; position: relative; }
+    .charm-cat-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .charm-cat:hover .charm-cat-img img { transform: scale(1.06); }
+    .charm-cat-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(20,10,5,.55) 0%, transparent 60%);
+    }
+    .charm-cat-badge {
+      position: absolute; top: 12px; left: 12px;
+    }
+    .charm-cat-status {
+      position: absolute; top: 12px; right: 12px;
+      font-family: var(--font-ui); font-size: .65rem; font-weight: 700;
       padding: 3px 10px; border-radius: 99px;
-      margin-left: 8px; vertical-align: middle;
+      background: rgba(255,255,255,.9); color: var(--teal);
     }
+    .charm-cat-status.soon { color: var(--ink-muted); }
 
-    /* ── Suggestions when no results ── */
-    .suggest-row {
-      display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
-      margin-top: 28px;
+    .charm-cat-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+    .charm-cat-body h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .charm-cat-body p  { font-size: .85rem; color: var(--ink-muted); line-height: 1.65; flex: 1; margin-bottom: 14px; }
+    .charm-cat-meta   { display: flex; justify-content: space-between; align-items: center; }
+    .charm-cat-count  { font-family: var(--font-ui); font-size: .72rem; color: var(--ink-muted); }
+    .charm-cat-arrow  {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--cream-dark); color: var(--earth);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .85rem; transition: background .2s;
     }
-    .suggest-chip {
-      padding: 8px 18px; border-radius: 99px;
-      background: var(--cream-dark); color: var(--ink);
-      font-family: var(--font-ui); font-size: .78rem;
-      text-decoration: none; transition: background .15s;
-    }
-    .suggest-chip:hover { background: var(--cream); color: var(--earth); }
+    .charm-cat:hover .charm-cat-arrow { background: var(--earth); color: #fff; }
 
-    /* ── Recent / popular when query empty ── */
-    .popular-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    /* ── Featured spotlight ── */
+    .charm-spotlight {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px; align-items: center;
+      background: linear-gradient(135deg, var(--earth) 0%, #6B3A1F 100%);
+      border-radius: 20px; overflow: hidden;
+      padding: 0;
     }
-    @media (max-width: 640px) { .popular-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 380px) { .popular-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) { .charm-spotlight { grid-template-columns: 1fr; } }
+    .charm-spotlight-img { aspect-ratio: 4/3; overflow: hidden; }
+    .charm-spotlight-img img { width: 100%; height: 100%; object-fit: cover; opacity: .8; }
+    .charm-spotlight-body { padding: 40px 40px 40px 0; color: #fff; }
+    @media (max-width: 768px) {
+      .charm-spotlight-body { padding: 28px 28px; }
+    }
+    .charm-spotlight-body .eyebrow { color: var(--gold); letter-spacing: .14em; }
+    .charm-spotlight-body h2 { color: #fff; margin: 12px 0; font-size: 1.6rem; }
+    .charm-spotlight-body p  { color: rgba(255,255,255,.78); line-height: 1.7; margin-bottom: 24px; }
 
-    .popular-chip {
-      display: flex; align-items: center; gap: 10px;
-      padding: 14px 16px; border-radius: 12px;
+    /* ── Knowledge stats ── */
+    .charm-stat-row {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    }
+    @media (max-width: 600px) { .charm-stat-row { grid-template-columns: repeat(2,1fr); } }
+    .charm-stat-card {
       background: var(--white); border: 1px solid var(--cream-dark);
-      text-decoration: none; color: var(--ink); cursor: pointer;
-      transition: border-color .15s, box-shadow .15s;
+      border-radius: 14px; padding: 24px 20px; text-align: center;
+      box-shadow: var(--sh-sm);
     }
-    .popular-chip:hover { border-color: var(--earth); box-shadow: var(--sh-sm); }
-    .popular-chip .icon { font-size: 1.3rem; flex-shrink: 0; }
-    .popular-chip .label { font-size: .82rem; font-weight: 600; }
-    .popular-chip .sub   { font-size: .7rem; color: var(--ink-muted); margin-top: 2px; }
+    .charm-stat-num  { font-family: var(--font-serif); font-size: 2rem; font-weight: 700; color: var(--earth); line-height: 1; margin-bottom: 6px; }
+    .charm-stat-lbl  { font-family: var(--font-ui); font-size: .72rem; color: var(--ink-muted); letter-spacing: .04em; }
+
+    /* ── Recent additions ── */
+    .charm-recent-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    }
+    @media (max-width: 700px) { .charm-recent-grid { grid-template-columns: 1fr; } }
+    .charm-recent-card {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 16px; background: var(--white);
+      border: 1px solid var(--cream-dark); border-radius: 12px;
+      box-shadow: var(--sh-sm); text-decoration: none; color: var(--ink);
+      transition: box-shadow .2s, transform .2s;
+    }
+    .charm-recent-card:hover { box-shadow: var(--sh-md); transform: translateY(-2px); }
+    .charm-recent-icon { font-size: 1.6rem; flex-shrink: 0; }
+    .charm-recent-body h4 { font-size: .9rem; margin-bottom: 4px; }
+    .charm-recent-body p  { font-size: .78rem; color: var(--ink-muted); margin: 0; line-height: 1.5; }
+    .charm-recent-cat {
+      display: inline-block; margin-top: 6px;
+      font-family: var(--font-ui); font-size: .65rem; font-weight: 600;
+      padding: 2px 8px; border-radius: 99px;
+      background: var(--cream-dark); color: var(--ink-muted);
+    }
   </style>
 </head>
 <body>
