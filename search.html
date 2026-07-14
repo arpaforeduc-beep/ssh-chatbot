@@ -1,388 +1,159 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ผลการค้นหา — ภูมิปัญญาท้องถิ่นจังหวัดสมุทรสงคราม</title>
-  <meta name="robots" content="noindex">
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@300;400;500;600;700&family=Chakra+Petch:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <script>window.NAV_CONFIG = { active: '', heroMode: false };</script>
-  <style>
-    /* ── Charm-specific styles ── */
-    .charm-hero {
-      background: linear-gradient(160deg, #2C1810 0%, #5C2E0A 50%, #8B4513 100%);
-      padding: calc(var(--nav-h, 72px) + 64px) 0 72px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .charm-hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Amphawa_Floating_Market.jpg/1280px-Amphawa_Floating_Market.jpg') center/cover;
-      opacity: .12;
-    }
-    .charm-hero .container { position: relative; z-index: 1; }
-    .charm-hero h1 { color: #fff; font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 16px; }
-    .charm-hero p  { color: rgba(255,255,255,.78); max-width: 560px; margin: 0 auto 32px; font-size: 1.05rem; line-height: 1.7; }
+/**
+ * search.js — Real Search System (v3 — clean)
+ *
+ * ใช้ event delegation ทั้งหมด เพราะ nav.js inject #searchInput ทีหลัง
+ * searchIndex(query) → export ให้ search.html ใช้ตรงๆ ได้
+ */
 
-    /* Search bar */
-    .charm-search {
-      display: flex; gap: 0; max-width: 520px; margin: 0 auto 16px;
-      border-radius: 10px; overflow: hidden;
-      box-shadow: 0 8px 32px rgba(0,0,0,.3);
-    }
-    .charm-search input {
-      flex: 1; padding: 16px 20px;
-      border: none; outline: none;
-      font-family: var(--font-body); font-size: 1rem;
-      background: #fff; color: var(--ink);
-    }
-    .charm-search button {
-      padding: 16px 28px; background: var(--earth); color: #fff;
-      border: none; font-family: var(--font-ui); font-size: .9rem;
-      font-weight: 700; cursor: pointer; transition: background .2s;
-      white-space: nowrap;
-    }
-    .charm-search button:hover { background: #6B3A1F; }
+/* ══ SEARCH INDEX ══════════════════════════════════════════ */
+var SEARCH_INDEX = [
+  /* ── ประวัติศาสตร์ ── */
+  { title:'ประวัติศาสตร์เมืองสมุทรสงคราม', title_en:'History of Samutsongkhram',
+    desc:'เมืองสมุทรสงครามมีประวัติศาสตร์ยาวนานกว่า 300 ปี จากเมืองท่าสมัยอยุธยา',
+    url:'maeklong-history.html', cat:'ประวัติศาสตร์', tags:['อยุธยา','รัตนโกสินทร์','เมืองสามน้ำ','ประวัติ'] },
+  { title:'รัชกาลที่ 2 — พระราชสมภพสมุทรสงคราม', title_en:'King Rama II',
+    desc:'รัชกาลที่ 2 ประสูติที่สมุทรสงคราม ทรงเป็นกวีและนักดนตรีที่ยิ่งใหญ่ของไทย',
+    url:'maeklong-history.html', cat:'ประวัติศาสตร์', tags:['รัชกาลที่2','ร.2','กษัตริย์','อุทยาน'] },
+  { title:'ค่ายบางกุ้ง', title_en:'Bang Kung Camp',
+    desc:'ค่ายทหารประวัติศาสตร์ที่ต้านทัพพม่าในสมัยอยุธยา',
+    url:'maeklong-history.html', cat:'ประวัติศาสตร์', tags:['ค่าย','พม่า','สงคราม','อยุธยา'] },
+  { title:'วัดจุฬามณี', title_en:'Wat Chulamani',
+    desc:'วัดเก่าแก่ที่มีโบสถ์ปรกโพธิ์อันลือชื่อ ต้นโพธิ์ขึ้นปกคลุมโบสถ์ทั้งหลัง',
+    url:'maeklong-history.html', cat:'สถานที่สำคัญ', tags:['วัด','โบสถ์','โพธิ์','ศาสนา'] },
+  /* ── อาหาร ── */
+  { title:'ปลาทูแม่กลอง', title_en:'Mae Klong Mackerel',
+    desc:'ปลาทูนึ่งมะนาวและปลาทูทอดขึ้นชื่อจากอ่าวแม่กลอง',
+    url:'maeklong-food.html', cat:'อาหาร', tags:['ปลาทู','อาหาร','ทะเล','อ่าว'] },
+  { title:'กะปิแม่กลอง', title_en:'Mae Klong Shrimp Paste',
+    desc:'กะปิหมักจากกุ้งเคยอ่าวไทย ขึ้นชื่อระดับประเทศ สีม่วงเข้มกลิ่นหอม',
+    url:'maeklong-food.html', cat:'อาหาร', tags:['กะปิ','กุ้งเคย','หมัก','เครื่องปรุง'] },
+  { title:'แกงส้มใบชะคราม', title_en:'Chameleon Plant Sour Curry',
+    desc:'แกงส้มสูตรพื้นบ้านที่ใช้ใบชะครามจากป่าชายเลน ไม่มีที่ไหนในโลก',
+    url:'maeklong-food.html', cat:'อาหาร', tags:['แกง','ชะคราม','พื้นบ้าน','ป่าชายเลน'] },
+  { title:'ขนมทองม้วน', title_en:'Golden Rolled Crepe',
+    desc:'ขนมพื้นบ้านทำจากแป้งข้าวเจ้า กะทิสด น้ำตาลมะพร้าว กรอบหอม',
+    url:'maeklong-food.html', cat:'อาหาร', tags:['ขนม','หวาน','โบราณ','กะทิ'] },
+  { title:'ลอดช่องสมุทรสงคราม', title_en:'Local Lod Chong',
+    desc:'ลอดช่องน้ำกะทิสูตรพื้นบ้านที่ขึ้นชื่อของชาวแม่กลอง',
+    url:'maeklong-food.html', cat:'อาหาร', tags:['ลอดช่อง','กะทิ','ขนมหวาน'] },
+  /* ── กิจกรรม ── */
+  { title:'งานแห่หลวงพ่อบ้านแหลม', title_en:'Luang Pho Ban Laem Festival',
+    desc:'ประเพณีแห่พระพุทธรูปศักดิ์สิทธิ์ทางน้ำ มีนาคม–เมษายน',
+    url:'activities.html', cat:'กิจกรรม', tags:['งาน','วัด','ประเพณี','แห่','พระ'] },
+  { title:'การสาธิตทำกะปิแบบดั้งเดิม', title_en:'Traditional Shrimp Paste Demo',
+    desc:'ชุมชนนางตะเคียนเปิดให้เข้าชมกระบวนการทำกะปิตลอดฤดูกาล',
+    url:'activities.html', cat:'กิจกรรม', tags:['workshop','กะปิ','ชุมชน','เรียนรู้'] },
+  { title:'เทศกาลลอยกระทง', title_en:'Loy Krathong Festival',
+    desc:'งานลอยกระทงริมแม่น้ำแม่กลองที่สวยงามและเต็มไปด้วยวัฒนธรรม',
+    url:'activities.html', cat:'กิจกรรม', tags:['ลอยกระทง','เทศกาล','แม่น้ำ','วัฒนธรรม'] },
+  { title:'งานวันพระราชสมภพ รัชกาลที่ 2', title_en:'Rama II Birthday',
+    desc:'24 กุมภาพันธ์ ทุกปี ณ อุทยาน ร.2 อ.อัมพวา ดนตรีไทย โขน',
+    url:'activities.html', cat:'กิจกรรม', tags:['ร.2','วันเกิด','อุทยาน','ดนตรีไทย','โขน'] },
+  /* ── ร้านค้า ── */
+  { title:'กะปิแม่กลองแท้', title_en:'Authentic Mae Klong Shrimp Paste',
+    desc:'กะปิหมักจากกุ้งเคยอ่าวไทย ไม่มีสารเจือปน ราคา 150–350 บาท',
+    url:'shops.html', cat:'ร้านค้า', tags:['กะปิ','ซื้อ','OTOP','ผลิตภัณฑ์'] },
+  { title:'ขนมทองม้วนโบราณ', title_en:'Traditional Golden Rolled Crepe Shop',
+    desc:'ขนมพื้นบ้านย่างบนแม่พิมพ์เหล็กโบราณ ราคา 60–120 บาท',
+    url:'shops.html', cat:'ร้านค้า', tags:['ขนม','ซื้อ','ของฝาก','โบราณ'] },
+  { title:'ตะกร้าสานไม้ไผ่', title_en:'Bamboo Woven Baskets',
+    desc:'งานจักสานจากชุมชนอัมพวา ราคา 80–450 บาท',
+    url:'shops.html', cat:'ร้านค้า', tags:['จักสาน','ไม้ไผ่','หัตถกรรม','OTOP'] },
+  /* ── สถานที่ ── */
+  { title:'ตลาดน้ำอัมพวา', title_en:'Amphawa Floating Market',
+    desc:'ตลาดน้ำยามค่ำคืนที่มีชื่อเสียงระดับโลก ศุกร์–อาทิตย์ 12:00–21:00',
+    url:'index.html#places', cat:'สถานที่', tags:['ตลาด','ตลาดน้ำ','อัมพวา','ท่องเที่ยว'] },
+  { title:'ตลาดรถไฟแม่กลอง', title_en:'Mae Klong Railway Market',
+    desc:'ตลาดสดที่รถไฟวิ่งผ่านกลางตลาด สถานที่ท่องเที่ยวชื่อดัง',
+    url:'index.html#places', cat:'สถานที่', tags:['ตลาด','รถไฟ','แม่กลอง','ท่องเที่ยว'] },
+  { title:'ดอนหอยหลอด', title_en:'Don Hoi Lot',
+    desc:'สันดอนธรรมชาติกลางทะเล แหล่งหอยหลอดและนกนานาชนิด',
+    url:'index.html#places', cat:'สถานที่', tags:['ดอน','หอยหลอด','ธรรมชาติ','ทะเล'] },
+  { title:'อุทยาน ร.2', title_en:'Rama II Memorial Park',
+    desc:'อุทยานรำลึกพระราชสมภพรัชกาลที่ 2 บ้านอัมพวา',
+    url:'maeklong-history.html', cat:'สถานที่', tags:['อุทยาน','ร.2','อัมพวา','ประวัติศาสตร์'] },
+  /* ── ภูมิปัญญา ── */
+  { title:'หัตถกรรมและงานจักสาน', title_en:'Crafts & Weaving',
+    desc:'ภูมิปัญญาการจักสานไม้ไผ่ งานทอ และหัตถกรรมพื้นบ้านของชุมชน',
+    url:'craft.html', cat:'ภูมิปัญญา', tags:['จักสาน','ไม้ไผ่','หัตถกรรม','ฝีมือ'] },
+  { title:'สมุนไพรพื้นบ้าน', title_en:'Traditional Herbal Medicine',
+    desc:'สมุนไพรและพืชพื้นบ้านในระบบนิเวศป่าชายเลนและริมน้ำสมุทรสงคราม',
+    url:'herbs.html', cat:'ภูมิปัญญา', tags:['สมุนไพร','พืช','ยา','ป่าชายเลน'] },
+  { title:'ใบชะคราม', title_en:'Chameleon Plant',
+    desc:'พืชป่าชายเลนเฉพาะถิ่น รสเปรี้ยวอมเค็ม ใช้ทำแกงส้มและมีสรรพคุณทางยา',
+    url:'herbs.html', cat:'สมุนไพร', tags:['ชะคราม','สมุนไพร','ป่าชายเลน','แกง'] },
+  { title:'น้ำมันมะพร้าวสกัดเย็น', title_en:'Cold-pressed Coconut Oil',
+    desc:'บำรุงผิวและเส้นผม แก้แผลไฟไหม้ ต้านเชื้อแบคทีเรีย',
+    url:'herbs.html', cat:'สมุนไพร', tags:['มะพร้าว','น้ำมัน','ผิว','บำรุง'] },
+  { title:'การทำกะปิแบบดั้งเดิม', title_en:'Traditional Shrimp Paste Making',
+    desc:'กรรมวิธีสืบทอดมากกว่า 100 ปี ใช้กุ้งเคยและเกลือสมุทร หมักในไหดินโบราณ',
+    url:'craft.html', cat:'ภูมิปัญญา', tags:['กะปิ','หมัก','กุ้งเคย','ดั้งเดิม'] },
+  { title:'งานจักสานไม้ไผ่', title_en:'Bamboo Weaving',
+    desc:'ตัดช่วงหน้าแล้ง ข้างแรม 7–14 ค่ำ เนื้อไม้แข็งและไม่มอด',
+    url:'craft.html', cat:'หัตถกรรม', tags:['จักสาน','ไม้ไผ่','ฤดูกาล','ภูมิปัญญา'] },
+  { title:'งานไม้แกะสลัก', title_en:'Wood Carving',
+    desc:'ใช้ไม้แสมจากป่าชายเลนที่ตายเองตามธรรมชาติ การใช้ทรัพยากรอย่างรับผิดชอบ',
+    url:'craft.html', cat:'หัตถกรรม', tags:['ไม้','แกะสลัก','แสม','ป่าชายเลน'] },
+  { title:'ยุทธการค่ายบางกุ้ง', title_en:'Battle of Bang Kung',
+    desc:'ชาวบ้านและทหารต้านทัพพม่าด้วยความรู้เรื่องน้ำขึ้น-ลงและภูมิประเทศ พ.ศ. 2310',
+    url:'maeklong-history.html', cat:'ประวัติศาสตร์', tags:['ค่ายบางกุ้ง','พม่า','อยุธยา','สงคราม'] },
+];
 
-    /* Quick tag hints */
-    .charm-hints { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
-    .charm-hint  {
-      padding: 5px 14px; border-radius: 99px;
-      background: rgba(255,255,255,.15); color: rgba(255,255,255,.8);
-      font-family: var(--font-ui); font-size: .75rem; cursor: pointer;
-      border: 1px solid rgba(255,255,255,.2); transition: background .2s;
-    }
-    .charm-hint:hover { background: rgba(255,255,255,.28); color: #fff; }
+/* ══ SEARCH FUNCTION ═══════════════════════════════════════ */
+function searchIndex(query) {
+  if (!query || query.trim().length < 2) return [];
 
-    /* ── Category grid ── */
-    .charm-cat-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    @media (max-width: 900px) { .charm-cat-grid { grid-template-columns: repeat(2,1fr); } }
-    @media (max-width: 560px) { .charm-cat-grid { grid-template-columns: 1fr; } }
+  var q     = query.trim().toLowerCase();
+  var terms = q.split(/\s+/);
 
-    .charm-cat {
-      border-radius: 16px; overflow: hidden;
-      background: var(--white);
-      box-shadow: var(--sh-sm);
-      border: 1px solid var(--cream-dark);
-      display: flex; flex-direction: column;
-      transition: transform .25s, box-shadow .25s;
-      text-decoration: none; color: var(--ink);
-    }
-    .charm-cat:hover { transform: translateY(-6px); box-shadow: var(--sh-lg); }
+  var scored = SEARCH_INDEX.map(function (item) {
+    var score = 0;
+    terms.forEach(function (t) {
+      if (item.title.toLowerCase().indexOf(t)              > -1) score += 10;
+      if ((item.title_en || '').toLowerCase().indexOf(t)   > -1) score += 8;
+      if (item.cat.toLowerCase().indexOf(t)                > -1) score += 6;
+      if ((item.tags || []).some(function (tag) {
+        return tag.toLowerCase().indexOf(t) > -1;
+      })) score += 4;
+      if (item.desc.toLowerCase().indexOf(t)               > -1) score += 2;
+    });
+    return Object.assign({}, item, { score: score });
+  }).filter(function (r) { return r.score > 0; });
 
-    .charm-cat-img { aspect-ratio: 16/9; overflow: hidden; position: relative; }
-    .charm-cat-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
-    .charm-cat:hover .charm-cat-img img { transform: scale(1.06); }
-    .charm-cat-img-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(20,10,5,.55) 0%, transparent 60%);
-    }
-    .charm-cat-badge {
-      position: absolute; top: 12px; left: 12px;
-    }
-    .charm-cat-status {
-      position: absolute; top: 12px; right: 12px;
-      font-family: var(--font-ui); font-size: .65rem; font-weight: 700;
-      padding: 3px 10px; border-radius: 99px;
-      background: rgba(255,255,255,.9); color: var(--teal);
-    }
-    .charm-cat-status.soon { color: var(--ink-muted); }
-
-    .charm-cat-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
-    .charm-cat-body h3 { font-size: 1.05rem; margin-bottom: 8px; }
-    .charm-cat-body p  { font-size: .85rem; color: var(--ink-muted); line-height: 1.65; flex: 1; margin-bottom: 14px; }
-    .charm-cat-meta   { display: flex; justify-content: space-between; align-items: center; }
-    .charm-cat-count  { font-family: var(--font-ui); font-size: .72rem; color: var(--ink-muted); }
-    .charm-cat-arrow  {
-      width: 30px; height: 30px; border-radius: 50%;
-      background: var(--cream-dark); color: var(--earth);
-      display: flex; align-items: center; justify-content: center;
-      font-size: .85rem; transition: background .2s;
-    }
-    .charm-cat:hover .charm-cat-arrow { background: var(--earth); color: #fff; }
-
-    /* ── Featured spotlight ── */
-    .charm-spotlight {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 24px; align-items: center;
-      background: linear-gradient(135deg, var(--earth) 0%, #6B3A1F 100%);
-      border-radius: 20px; overflow: hidden;
-      padding: 0;
-    }
-    @media (max-width: 768px) { .charm-spotlight { grid-template-columns: 1fr; } }
-    .charm-spotlight-img { aspect-ratio: 4/3; overflow: hidden; }
-    .charm-spotlight-img img { width: 100%; height: 100%; object-fit: cover; opacity: .8; }
-    .charm-spotlight-body { padding: 40px 40px 40px 0; color: #fff; }
-    @media (max-width: 768px) {
-      .charm-spotlight-body { padding: 28px 28px; }
-    }
-    .charm-spotlight-body .eyebrow { color: var(--gold); letter-spacing: .14em; }
-    .charm-spotlight-body h2 { color: #fff; margin: 12px 0; font-size: 1.6rem; }
-    .charm-spotlight-body p  { color: rgba(255,255,255,.78); line-height: 1.7; margin-bottom: 24px; }
-
-    /* ── Knowledge stats ── */
-    .charm-stat-row {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
-    }
-    @media (max-width: 600px) { .charm-stat-row { grid-template-columns: repeat(2,1fr); } }
-    .charm-stat-card {
-      background: var(--white); border: 1px solid var(--cream-dark);
-      border-radius: 14px; padding: 24px 20px; text-align: center;
-      box-shadow: var(--sh-sm);
-    }
-    .charm-stat-num  { font-family: var(--font-serif); font-size: 2rem; font-weight: 700; color: var(--earth); line-height: 1; margin-bottom: 6px; }
-    .charm-stat-lbl  { font-family: var(--font-ui); font-size: .72rem; color: var(--ink-muted); letter-spacing: .04em; }
-
-    /* ── Recent additions ── */
-    .charm-recent-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
-    }
-    @media (max-width: 700px) { .charm-recent-grid { grid-template-columns: 1fr; } }
-    .charm-recent-card {
-      display: flex; gap: 14px; align-items: flex-start;
-      padding: 16px; background: var(--white);
-      border: 1px solid var(--cream-dark); border-radius: 12px;
-      box-shadow: var(--sh-sm); text-decoration: none; color: var(--ink);
-      transition: box-shadow .2s, transform .2s;
-    }
-    .charm-recent-card:hover { box-shadow: var(--sh-md); transform: translateY(-2px); }
-    .charm-recent-icon { font-size: 1.6rem; flex-shrink: 0; }
-    .charm-recent-body h4 { font-size: .9rem; margin-bottom: 4px; }
-    .charm-recent-body p  { font-size: .78rem; color: var(--ink-muted); margin: 0; line-height: 1.5; }
-    .charm-recent-cat {
-      display: inline-block; margin-top: 6px;
-      font-family: var(--font-ui); font-size: .65rem; font-weight: 600;
-      padding: 2px 8px; border-radius: 99px;
-      background: var(--cream-dark); color: var(--ink-muted);
-    }
-  </style>
-</head>
-<body>
-
-<!-- ══ SEARCH HERO ══ -->
-<div class="search-hero">
-  <div class="container">
-    <nav class="breadcrumb dark" aria-label="เส้นทางนำทาง">
-      <a href="index.html">หน้าแรก</a>
-      <span class="sep">›</span>
-      <a href="charm.html">คลังความรู้</a>
-      <span class="sep">›</span>
-      <span>ผลการค้นหา</span>
-    </nav>
-    <h1>ผลการค้นหา</h1>
-    <p id="searchSummary" class="text-muted">กำลังค้นหา...</p>
-    <div class="search-hero-form">
-      <input type="search" class="search-hero-input" id="mainSearchInput"
-             placeholder="ค้นหาภูมิปัญญา สมุนไพร อาหาร..." aria-label="ค้นหา">
-      <button class="search-hero-btn" id="mainSearchBtn">ค้นหา →</button>
-    </div>
-  </div>
-</div>
-
-<!-- ══ RESULTS ══ -->
-<section class="section">
-  <div class="container">
-    <!-- Filter bar -->
-    <div class="filter-bar" id="filterBar" style="display:none">
-      <button class="filter-btn active" data-cat="ทั้งหมด">ทั้งหมด</button>
-      <button class="filter-btn" data-cat="ประวัติศาสตร์">📜 ประวัติศาสตร์</button>
-      <button class="filter-btn" data-cat="อาหาร">🍜 อาหาร</button>
-      <button class="filter-btn" data-cat="หัตถกรรม">🎋 หัตถกรรม</button>
-      <button class="filter-btn" data-cat="สมุนไพร">🌿 สมุนไพร</button>
-      <button class="filter-btn" data-cat="ภูมิปัญญา">📚 ภูมิปัญญา</button>
-      <button class="filter-btn" data-cat="กิจกรรม">📅 กิจกรรม</button>
-      <button class="filter-btn" data-cat="สถานที่">📍 สถานที่</button>
-      <button class="filter-btn" data-cat="ร้านค้า">🛒 ร้านค้า</button>
-    </div>
-    <!-- Results list -->
-    <div class="search-results-grid" id="resultsList"></div>
-  </div>
-</section>
-
-<script src="search.js"></script>
-<script src="nav.js"></script>
-<script>
-/* ─── Icons ─── */
-var CAT_ICONS = {
-  'ประวัติศาสตร์':  '📜',
-  'อาหาร':         '🍜',
-  'กิจกรรม':        '📅',
-  'ร้านค้า':        '🛒',
-  'สถานที่':        '📍',
-  'ภูมิปัญญา':     '📚',
-  'หัตถกรรม':      '🎋',
-  'สมุนไพร':       '🌿',
-  'สถานที่สำคัญ':  '🏛️',
-};
-
-/* ─── State ─── */
-var allResults  = [];
-var activeFilter = 'ทั้งหมด';
-
-/* ─── Render ─── */
-function renderResults(query) {
-  allResults = searchIndex(query);
-  activeFilter = 'ทั้งหมด';
-  syncFilterBtns();
-  showFiltered(query);
-  updateMeta(query);
+  return scored.sort(function (a, b) { return b.score - a.score; });
 }
 
-function showFiltered(query) {
-  var list = document.getElementById('resultsList');
-  var filtered = activeFilter === 'ทั้งหมด'
-    ? allResults
-    : allResults.filter(function (r) { return r.cat === activeFilter; });
+/* ══ NAVIGATE TO RESULTS PAGE ══════════════════════════════ */
+function doSearch(query) {
+  if (!query || !query.trim()) return;
+  window.location.href = 'search.html?q=' + encodeURIComponent(query.trim());
+}
 
-  /* No query → show popular */
-  if (!query || query.trim().length < 2) {
-    document.getElementById('filterBar').style.display = 'none';
-    list.innerHTML = renderPopular();
-    return;
+/* ══ EVENT DELEGATION (works even if nav.js injects input later) ═ */
+document.addEventListener('keydown', function (e) {
+  if (e.key !== 'Enter') return;
+  var t = e.target;
+  if (!t) return;
+  /* nav search input */
+  if (t.id === 'searchInput' && t.value.trim()) {
+    doSearch(t.value);
   }
-
-  /* Has query, show filter bar if results */
-  document.getElementById('filterBar').style.display =
-    allResults.length ? 'flex' : 'none';
-
-  if (!filtered.length) {
-    list.innerHTML = renderNoResults(query);
-    return;
+  /* charm.html hero search input */
+  if (t.id === 'charmSearchInput' && t.value.trim()) {
+    doSearch(t.value);
   }
+});
 
-  list.innerHTML = filtered.map(function (r) {
-    var icon = CAT_ICONS[r.cat] || '📄';
-    var tags = (r.tags || []).slice(0, 3)
-      .map(function (t) { return '<span class="tag tag-earth">' + t + '</span>'; })
-      .join('');
-    return [
-      '<a href="' + r.url + '" class="search-result-item fade-in">',
-      '  <div class="search-result-icon">' + icon + '</div>',
-      '  <div class="search-result-body">',
-      '    <h3>' + r.title + '</h3>',
-      r.title_en ? '    <p class="label-ui text-muted mb-4" style="font-size:.7rem">' + r.title_en + '</p>' : '',
-      '    <p>' + r.desc + '</p>',
-      '    <div class="search-result-meta">',
-      '      <span class="tag tag-river">' + r.cat + '</span>',
-      '      ' + tags,
-      '    </div>',
-      '  </div>',
-      '</a>',
-    ].join('\n');
-  }).join('');
-}
-
-function updateMeta(query) {
-  var summary = document.getElementById('searchSummary');
-  if (!query || query.trim().length < 2) {
-    summary.textContent = 'ค้นหาภูมิปัญญาท้องถิ่นจังหวัดสมุทรสงคราม';
-    document.title = 'ผลการค้นหา — ภูมิปัญญาท้องถิ่นจังหวัดสมุทรสงคราม';
-    return;
+document.addEventListener('click', function (e) {
+  /* nav search button */
+  var navBtn = e.target.closest('[data-search-trigger]');
+  if (navBtn) {
+    var navInput = document.getElementById('searchInput');
+    if (navInput && navInput.value.trim()) doSearch(navInput.value);
   }
-  var n = allResults.length;
-  summary.textContent = n
-    ? 'พบ ' + n + ' ผลลัพธ์สำหรับ "' + query + '"'
-    : 'ไม่พบผลลัพธ์สำหรับ "' + query + '"';
-  document.title = 'ค้นหา "' + query + '" — ภูมิปัญญาสมุทรสงคราม';
-}
-
-function renderNoResults(query) {
-  return [
-    '<div class="search-no-results">',
-    '  <div class="icon">🔍</div>',
-    '  <h3>ไม่พบผลลัพธ์สำหรับ "' + query + '"</h3>',
-    '  <p>ลองคำค้นหาอื่น หรือสำรวจหมวดหมู่ที่แนะนำ</p>',
-    '  <div class="suggest-row">',
-    '    <a class="suggest-chip" href="charm.html">📚 คลังภูมิปัญญา</a>',
-    '    <a class="suggest-chip" href="maeklong-food.html">🍜 อาหารท้องถิ่น</a>',
-    '    <a class="suggest-chip" href="craft.html">🎋 หัตถกรรม</a>',
-    '    <a class="suggest-chip" href="herbs.html">🌿 สมุนไพร</a>',
-    '    <a class="suggest-chip" href="activities.html">📅 กิจกรรม</a>',
-    '  </div>',
-    '</div>',
-  ].join('\n');
-}
-
-function renderPopular() {
-  var popular = [
-    { q:'กะปิ',        icon:'🦐', label:'กะปิแม่กลอง',    sub:'ภูมิปัญญาหัตถกรรม' },
-    { q:'จักสาน',      icon:'🎋', label:'งานจักสาน',      sub:'หัตถกรรม' },
-    { q:'สมุนไพร',     icon:'🌿', label:'สมุนไพร',        sub:'พืชพื้นบ้าน' },
-    { q:'ร.2',         icon:'👑', label:'รัชกาลที่ 2',    sub:'ประวัติศาสตร์' },
-    { q:'ตลาดน้ำ',     icon:'🛶', label:'ตลาดน้ำ',        sub:'สถานที่ท่องเที่ยว' },
-    { q:'ชะคราม',      icon:'🍃', label:'ใบชะคราม',       sub:'สมุนไพร-อาหาร' },
-  ];
-  return [
-    '<div style="margin-bottom:20px">',
-    '  <span class="eyebrow label-ui" style="color:var(--ink-muted)">หัวข้อยอดนิยม</span>',
-    '</div>',
-    '<div class="popular-grid">',
-    popular.map(function (p) {
-      return [
-        '<button class="popular-chip" onclick="runSearch(\'' + p.q + '\')">',
-        '  <span class="icon">' + p.icon + '</span>',
-        '  <span><div class="label">' + p.label + '</div><div class="sub">' + p.sub + '</div></span>',
-        '</button>',
-      ].join('');
-    }).join('\n'),
-    '</div>',
-  ].join('\n');
-}
-
-/* ─── Filter buttons ─── */
-function syncFilterBtns() {
-  document.querySelectorAll('.filter-btn').forEach(function (btn) {
-    btn.classList.toggle('active', btn.dataset.cat === activeFilter);
-  });
-}
-
-document.getElementById('filterBar').addEventListener('click', function (e) {
-  var btn = e.target.closest('.filter-btn');
-  if (!btn) return;
-  activeFilter = btn.dataset.cat;
-  syncFilterBtns();
-  var q = document.getElementById('mainSearchInput').value.trim();
-  showFiltered(q);
+  /* charm.html hero search button */
+  if (e.target.id === 'charmSearchBtn') {
+    var charmInput = document.getElementById('charmSearchInput');
+    if (charmInput && charmInput.value.trim()) doSearch(charmInput.value);
+  }
 });
-
-/* ─── Run search ─── */
-function runSearch(q) {
-  document.getElementById('mainSearchInput').value = q;
-  window.history.pushState({}, '', '?q=' + encodeURIComponent(q));
-  renderResults(q);
-}
-
-/* ─── Buttons & keyboard ─── */
-document.getElementById('mainSearchBtn').addEventListener('click', function () {
-  var q = document.getElementById('mainSearchInput').value.trim();
-  if (q) runSearch(q);
-});
-document.getElementById('mainSearchInput').addEventListener('keydown', function (e) {
-  if (e.key === 'Enter') document.getElementById('mainSearchBtn').click();
-});
-
-/* ─── Browser back/forward ─── */
-window.addEventListener('popstate', function () {
-  var p = new URLSearchParams(window.location.search);
-  var q = p.get('q') || '';
-  document.getElementById('mainSearchInput').value = q;
-  renderResults(q);
-});
-
-/* ─── Init ─── */
-(function () {
-  var params = new URLSearchParams(window.location.search);
-  var q = params.get('q') || '';
-  document.getElementById('mainSearchInput').value = q;
-  renderResults(q);
-})();
-</script>
-</body>
-</html>
