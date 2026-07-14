@@ -226,7 +226,7 @@
 
   /* คลังภูมิปัญญา — Mega Menu */
   + '<li class="mm-item mm-has-panel" id="mmWisdomItem">'
-  + '<a href="wisdom.html" class="mm-link mm-item-wisdom" data-i18n="nav_wisdom">'
+  + '<a href="charm.html" class="mm-link mm-item-wisdom" data-i18n="nav_Charm">'
   + 'คลังภูมิปัญญา'
   + '<span class="mm-caret">▼</span>'
   + '<span class="mm-caret-mobile">▼</span>'
@@ -264,7 +264,7 @@
   + '<span class="mm-panel-desc">กะปิแม่กลอง ปลาทู ขนมโบราณ</span></span>'
   + '</a>'
   + '<div class="mm-divider"></div>'
-  + '<a href="wisdom.html" class="mm-panel-link">'
+  + '<a href="charm.html" class="mm-panel-link">'
   + '<span class="mm-panel-icon">📚</span>'
   + '<span><span class="mm-panel-label">คลังภูมิปัญญาทั้งหมด</span>'
   + '<span class="mm-panel-desc">สำรวจทุกหมวดหมู่</span></span>'
@@ -305,7 +305,18 @@
 
   /* Controls */
   + '<div class="mm-controls">'
-    
+
+  /* Search */
+  + '<div class="mm-search-wrap">'
+  + '<button class="mm-search-btn" id="mmSearchBtn" aria-label="ค้นหา">'
+  + '<svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>'
+  + '</button>'
+  + '<div class="mm-search-box" id="mmSearchBox">'
+  + '<input type="search" id="searchInput" data-i18n-attr="placeholder:search_placeholder" placeholder="ค้นหาภูมิปัญญา...">'
+  + '<button class="mm-search-submit" data-search-trigger aria-label="ค้นหา">→</button>'
+  + '</div>'
+  + '</div>'
+
   /* Hamburger */
   + '<button class="mm-ham" id="mmHam" aria-label="เมนู">'
   + '<span></span><span></span><span></span>'
