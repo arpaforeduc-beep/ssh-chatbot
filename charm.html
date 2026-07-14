@@ -444,14 +444,14 @@
     </div>
     <div style="display:flex;gap:12px;flex-wrap:wrap">
       <a href="contact.html" class="btn btn-primary">ติดต่อเรา</a>
-      <a href="search-results.html" class="btn btn-outline">ค้นหาภูมิปัญญา</a>
+      <a href="search.html" class="btn btn-outline">ค้นหาภูมิปัญญา</a>
     </div>
   </div>
 </section>
 
-<script src="js/i18n.js"></script>
-<script src="js/search.js"></script>
-<script src="js/nav.js"></script>
+<script src="i18n.js"></script>
+<script src="search.js"></script>
+<script src="nav.js"></script>
 <script>
 // Search
 function fillSearch(q) {
@@ -460,7 +460,7 @@ function fillSearch(q) {
 }
 document.getElementById('charmSearchBtn').addEventListener('click', function() {
   var q = document.getElementById('charmSearchInput').value.trim();
-  if (q) window.location.href = 'search-results.html?q=' + encodeURIComponent(q);
+  if (q) window.location.href = 'search.html?q=' + encodeURIComponent(q);
 });
 document.getElementById('charmSearchInput').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') document.getElementById('charmSearchBtn').click();
