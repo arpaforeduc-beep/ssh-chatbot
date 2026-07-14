@@ -111,7 +111,7 @@ p  { font-size: 1rem; color: var(--ink-soft); }
 
 /* ── Section headers ── */
 .section-header   { margin-bottom: 52px; }
-.section-header.centered     { text-align: center; }
+.section-header   { text-align: center; }
 .section-header .eyebrow  {
   display: inline-block;
   padding: 5px 16px;
