@@ -125,6 +125,7 @@ p  { font-size: 1rem; color: var(--ink-soft); }
 .section-header.centered     { text-align: center; }
 .section-header.centered p   { margin: 0 auto; }
 .section-header.centered p   { text-align: center; }
+.section.centered p   { text-align: center; }
 
 .divider {
   display: inline-block;
