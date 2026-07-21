@@ -219,5 +219,37 @@
   </div>
 </section>
 
+<script src="i18n.js"></script>
+<script src="nav.js"></script>
+<script src="search.js"></script>
+<script>
+function submitForm() {
+  const fname   = document.getElementById('fname').value.trim();
+  const email   = document.getElementById('email').value.trim();
+  const subject = document.getElementById('subject').value;
+  const message = document.getElementById('message').value.trim();
+  const consent = document.getElementById('consent').checked;
+
+  if (!fname || !email || !subject || !message) {
+    showToast('กรุณากรอกข้อมูลให้ครบถ้วน', 'error');
+    return;
+  }
+  if (!consent) {
+    showToast('กรุณายอมรับนโยบายความเป็นส่วนตัว', 'error');
+    return;
+  }
+
+  // Simulate submit
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = 'กำลังส่ง...';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+    showToast('ส่งข้อความสำเร็จ!', 'success');
+  }, 1000);
+}
+</script>
 </body>
 </html>
