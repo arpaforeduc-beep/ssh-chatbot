@@ -1355,7 +1355,7 @@ p  { font-size: 1rem; color: var(--ink-soft); }
   max-width: 960px;
   margin: 0 auto;
   position: relative;
-  border-radius: 20px;
+  border-radius: 100px;
 }
 .source-card {
   background: rgba(160,120,80,1);
