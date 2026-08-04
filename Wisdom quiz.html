@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>เกมทายภูมิปัญญา — ภูมิปัญญาท้องถิ่นจังหวัดสมุทรสงคราม</title>
+<meta name="description" content="ทดสอบความรู้ภูมิปัญญาท้องถิ่นสมุทรสงคราม ผ่านเกมตอบคำถามสนุกๆ เกี่ยวกับกะปิ สมุนไพร ประวัติศาสตร์ อาหาร และหัตถกรรม">
+<meta property="og:title" content="เกมทายภูมิปัญญา — สมุทรสงคราม">
+<meta property="og:description" content="ทดสอบความรู้ภูมิปัญญาท้องถิ่นเมืองสามน้ำ สนุกและได้ความรู้">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Amphawa_Floating_Market.jpg/1200px-Amphawa_Floating_Market.jpg">
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@300;400;500;600;700&family=Chakra+Petch:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>window.NAV_CONFIG = { active: 'quiz', heroMode: false };</script>
+
+<style>
+  /* ── Game-scoped styles ── */
+  .quiz-wrap{ max-width:720px; margin:0 auto; }
+
+  .quiz-card{
+    background:var(--white);
+    border-radius:var(--r-lg);
+    box-shadow:var(--sh-md);
+    padding:36px;
+    border:1px solid var(--cream-dark);
+  }
+  @media(max-width:600px){ .quiz-card{ padding:24px 18px; } }
+
+  /* Start screen */
+  .quiz-start-icon{ font-size:3rem; margin-bottom:12px; }
+  .quiz-cat-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:12px; margin:24px 0 28px; }
+  .quiz-cat-pill{
+    display:flex; flex-direction:column; align-items:center; gap:6px;
+    padding:16px 10px; background:var(--cream); border-radius:var(--r-md);
+    border:1.5px solid var(--cream-dark); font-family:var(--font-ui); font-size:.78rem; color:var(--ink-soft);
+  }
+  .quiz-cat-pill .ico{ font-size:1.5rem; }
+
+  /* Progress */
+  .quiz-progress-row{ display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; font-family:var(--font-ui); font-size:.78rem; color:var(--ink-muted); }
+  .quiz-progress-track{ background:var(--cream-dark); border-radius:99px; height:8px; overflow:hidden; margin-bottom:26px; }
+  .quiz-progress-bar{ height:100%; background:linear-gradient(90deg,var(--earth),var(--gold)); border-radius:99px; transition:width .4s ease; }
+
+  .quiz-score-chip{ display:inline-flex; align-items:center; gap:6px; padding:4px 12px; background:var(--gold-light); color:#8a6400; border-radius:99px; font-family:var(--font-ui); font-size:.76rem; font-weight:700; }
+
+  /* Question */
+  .quiz-q-tag{ margin-bottom:14px; }
+  .quiz-q-text{ font-family:var(--font-serif); font-size:1.3rem; color:var(--ink); margin-bottom:24px; line-height:1.5; }
+  @media(max-width:600px){ .quiz-q-text{ font-size:1.1rem; } }
+
+  .quiz-options{ display:flex; flex-direction:column; gap:12px; }
+  .quiz-opt{
+    text-align:left; width:100%; padding:16px 18px; border-radius:var(--r-md);
+    border:1.5px solid var(--cream-dark); background:var(--cream);
+    font-family:var(--font-body); font-size:.98rem; color:var(--ink-soft);
+    cursor:pointer; transition:.18s; display:flex; align-items:center; gap:12px;
+  }
+  .quiz-opt:hover:not(:disabled){ border-color:var(--earth); background:var(--white); transform:translateY(-1px); box-shadow:var(--sh-sm); }
+  .quiz-opt .letter{
+    flex-shrink:0; width:28px; height:28px; border-radius:50%; background:var(--white);
+    border:1.5px solid var(--cream-dark); display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-ui); font-weight:700; font-size:.8rem; color:var(--ink-muted);
+  }
+  .quiz-opt.correct{ background:var(--teal-light); border-color:var(--teal); color:var(--teal); }
+  .quiz-opt.correct .letter{ background:var(--teal); border-color:var(--teal); color:#fff; }
+  .quiz-opt.wrong{ background:var(--spice-light); border-color:var(--spice); color:var(--spice); }
+  .quiz-opt.wrong .letter{ background:var(--spice); border-color:var(--spice); color:#fff; }
+  .quiz-opt:disabled{ cursor:default; }
+
+  .quiz-explain{
+    margin-top:20px; padding:16px 18px; background:var(--cream); border-radius:var(--r-md);
+    border-left:4px solid var(--earth); font-size:.9rem; color:var(--ink-soft); display:none;
+  }
+  .quiz-explain.show{ display:block; }
+
+  .quiz-next-row{ margin-top:24px; display:flex; justify-content:flex-end; }
+
+  /* Result screen */
+  .quiz-result-icon{ font-size:3.2rem; margin-bottom:8px; }
+  .quiz-result-score{ font-family:var(--font-serif); font-size:2.6rem; font-weight:700; color:var(--earth); margin:8px 0 4px; }
+  .quiz-result-bar-track{ background:var(--cream-dark); border-radius:99px; height:14px; overflow:hidden; margin:20px 0 8px; }
+  .quiz-result-bar{ height:100%; background:linear-gradient(90deg,var(--earth),var(--gold)); border-radius:99px; transition:width 1s ease; }
+  .quiz-badges{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin:20px 0; }
+
+  .fade-step{ animation:quizFade .35s ease; }
+  @keyframes quizFade{ from{ opacity:0; transform:translateY(6px); } to{ opacity:1; transform:translateY(0); } }
+</style>
+</head>
+<body>
+
+<!-- ══ PAGE HERO ══ -->
+<div class="page-hero" style="min-height:280px">
+  <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1548086816-a99cb4400b4b?w=1200&q=80')"></div>
+  <div class="container">
+    <div class="page-hero-content">
+      <nav class="breadcrumb" aria-label="เส้นทางนำทาง">
+        <a href="index.html" data-i18n="breadcrumb_home">หน้าแรก</a>
+        <span class="sep">›</span>
+        <span>เกมทายภูมิปัญญา</span>
+      </nav>
+      <span class="tag tag-gold mb-16">🎮 เล่นแล้วได้ความรู้</span>
+      <h1>เกมทายภูมิปัญญาสมุทรสงคราม</h1>
+      <p>ทดสอบว่าคุณรู้จักเมืองสามน้ำแค่ไหน — กะปิ สมุนไพร ประวัติศาสตร์ อาหาร และหัตถกรรม</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ GAME SECTION ══ -->
+<section class="section">
+  <div class="container">
+    <div class="quiz-wrap">
+
+      <!-- START SCREEN -->
+      <div id="screenStart" class="quiz-card fade-step" style="text-align:center">
+        <div class="quiz-start-icon">🦐🌿📜</div>
+        <span class="eyebrow label-ui" style="color:var(--earth)">✦ เกมภูมิปัญญา</span>
+        <h2 class="mt-8 mb-8">พร้อมทดสอบความรู้แล้วหรือยัง?</h2>
+        <p style="max-width:480px;margin:0 auto">ตอบคำถาม 10 ข้อ เกี่ยวกับภูมิปัญญาและวิถีชีวิตของชาวสมุทรสงคราม แต่ละข้อมีคำเฉลยอธิบายให้ความรู้เพิ่มเติมด้วย</p>
+
+        <div class="quiz-cat-grid">
+          <div class="quiz-cat-pill"><span class="ico">📜</span>ประวัติศาสตร์</div>
+          <div class="quiz-cat-pill"><span class="ico">🦐</span>หัตถกรรม/กะปิ</div>
+          <div class="quiz-cat-pill"><span class="ico">🌿</span>สมุนไพร</div>
+          <div class="quiz-cat-pill"><span class="ico">🍜</span>อาหารท้องถิ่น</div>
+        </div>
+
+        <button class="btn btn-primary" style="justify-content:center" onclick="startQuiz()">เริ่มเล่นเกม →</button>
+      </div>
+
+      <!-- QUESTION SCREEN -->
+      <div id="screenQuiz" class="quiz-card fade-step" style="display:none">
+        <div class="quiz-progress-row">
+          <span id="qCounter">คำถามที่ 1 / 10</span>
+          <span class="quiz-score-chip">⭐ <span id="qScore">0</span> คะแนน</span>
+        </div>
+        <div class="quiz-progress-track"><div class="quiz-progress-bar" id="qProgressBar" style="width:10%"></div></div>
+
+        <span class="tag tag-earth quiz-q-tag" id="qCatTag">หมวดหมู่</span>
+        <div class="quiz-q-text" id="qText">คำถาม</div>
+        <div class="quiz-options" id="qOptions"></div>
+
+        <div class="quiz-explain" id="qExplain"></div>
+
+        <div class="quiz-next-row">
+          <button class="btn btn-primary" id="qNextBtn" style="display:none" onclick="nextQuestion()">ข้อถัดไป →</button>
+        </div>
+      </div>
+
+      <!-- RESULT SCREEN -->
+      <div id="screenResult" class="quiz-card fade-step" style="display:none; text-align:center">
+        <div class="quiz-result-icon" id="resultIcon">🏆</div>
+        <span class="tag tag-gold" id="resultTag">ยอดเยี่ยม!</span>
+        <div class="quiz-result-score"><span id="resultScore">0</span> / 10</div>
+        <p id="resultDesc" style="max-width:480px;margin:0 auto">คุณรู้จักภูมิปัญญาสมุทรสงครามเป็นอย่างดี</p>
+
+        <div class="quiz-result-bar-track"><div class="quiz-result-bar" id="resultBar" style="width:0%"></div></div>
+
+        <div class="quiz-badges" id="resultBadges"></div>
+
+        <div class="flex-center gap-14 flex-wrap" style="margin-top:20px">
+          <button class="btn btn-primary" onclick="startQuiz()">เล่นอีกครั้ง ↺</button>
+          <a href="wisdom.html" class="btn btn-outline">สำรวจคลังภูมิปัญญา</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<div class="dark-banner">
+  <div class="container">
+    <span class="tag tag-gold mb-20">✦ อยากรู้เพิ่ม</span>
+    <h2>ทุกคำตอบมีเรื่องราวอยู่เบื้องหลัง</h2>
+    <p>สำรวจคลังภูมิปัญญาฉบับเต็ม เพื่อเรียนรู้เรื่องราวเบื้องหลังคำถามแต่ละข้อ</p>
+    <div class="flex-center gap-14 flex-wrap">
+      <a href="charm.html" class="btn btn-primary">สำรวจคลังความรู้</a>
+      <a href="index.html" class="btn btn-ghost" data-i18n="btn_back_home">กลับหน้าแรก</a>
+    </div>
+  </div>
+</div>
+
+<script src="i18n.js"></script>
+<script src="nav.js"></script>
+<script src="search.js"></script>
+
+<script>
+/* ══════════════════════════════════════════
+   QUIZ DATA
+═══════════════════════════════════════════ */
+var QUIZ_BANK = [
+  { cat:'ประวัติศาสตร์', icon:'📜',
+    q:'สมุทรสงครามมีประวัติศาสตร์เป็นเมืองท่ามาตั้งแต่สมัยใด?',
+    options:['สมัยสุโขทัย','สมัยอยุธยา','สมัยธนบุรี','สมัยรัชกาลที่ 5'],
+    answer:1,
+    explain:'สมุทรสงครามเป็นเมืองท่าสำคัญมาตั้งแต่สมัยอยุธยา และมีประวัติศาสตร์ยาวนานกว่า 300 ปี' },
+  { cat:'ประวัติศาสตร์', icon:'📜',
+    q:'พระมหากษัตริย์พระองค์ใดที่ประสูติที่สมุทรสงคราม?',
+    options:['รัชกาลที่ 1','รัชกาลที่ 2','รัชกาลที่ 3','รัชกาลที่ 4'],
+    answer:1,
+    explain:'รัชกาลที่ 2 ประสูติที่สมุทรสงคราม และทรงเป็นกวีและนักดนตรีคนสำคัญของไทย ปัจจุบันมีอุทยาน ร.2 ที่อัมพวาเพื่อรำลึกถึงพระองค์' },
+  { cat:'ประวัติศาสตร์', icon:'📜',
+    q:'ค่ายบางกุ้งมีความสำคัญทางประวัติศาสตร์อย่างไร?',
+    options:['เป็นตลาดน้ำเก่าแก่ที่สุด','เป็นค่ายทหารที่ต้านทัพพม่าในสมัยอยุธยา','เป็นวัดที่ใหญ่ที่สุดในจังหวัด','เป็นท่าเรือขนส่งสินค้า'],
+    answer:1,
+    explain:'ค่ายบางกุ้งเป็นค่ายทหารประวัติศาสตร์ที่ชาวบ้านและทหารใช้ต้านทัพพม่า โดยอาศัยความรู้เรื่องน้ำขึ้น-ลงและภูมิประเทศ' },
+  { cat:'หัตถกรรม', icon:'🦐',
+    q:'กะปิแม่กลองที่ขึ้นชื่อทำมาจากวัตถุดิบหลักคือ?',
+    options:['ปลาทู','กุ้งเคยและเกลือสมุทร','หอยหลอด','ใบชะคราม'],
+    answer:1,
+    explain:'กะปิแม่กลองทำจากกุ้งเคยหมักกับเกลือสมุทรตากแดด สืบทอดภูมิปัญญามากกว่า 100 ปี' },
+  { cat:'หัตถกรรม', icon:'🎋',
+    q:'ช่วงเวลาใดที่นิยมตัดไม้ไผ่มาทำงานจักสาน เพราะเนื้อไม้แข็งแรงไม่มอด?',
+    options:['หน้าฝน ข้างขึ้น','หน้าแล้ง ข้างแรม 7–14 ค่ำ','หน้าหนาว ข้างขึ้น','ตัดได้ทุกฤดู'],
+    answer:1,
+    explain:'ภูมิปัญญาชาวบ้านนิยมตัดไผ่ในหน้าแล้ง ช่วงข้างแรม 7–14 ค่ำ เพราะเนื้อไม้แข็งและทนทานไม่ถูกมอดกิน' },
+  { cat:'หัตถกรรม', icon:'🪵',
+    q:'งานไม้แกะสลักท้องถิ่นนิยมใช้ไม้ชนิดใดจากป่าชายเลน?',
+    options:['ไม้สัก','ไม้แสมที่ตายเองตามธรรมชาติ','ไม้มะค่า','ไม้ประดู่'],
+    answer:1,
+    explain:'ช่างแกะสลักท้องถิ่นเลือกใช้ไม้แสมที่ตายเองตามธรรมชาติจากป่าชายเลน สะท้อนการใช้ทรัพยากรอย่างรับผิดชอบ' },
+  { cat:'สมุนไพร', icon:'🌿',
+    q:'"ใบชะคราม" พืชเฉพาะถิ่นป่าชายเลน มีรสชาติแบบใด และนิยมนำไปทำอาหารอะไร?',
+    options:['รสหวาน ทำขนม','รสเปรี้ยวอมเค็ม ทำแกงส้ม','รสขม ทำยาดอง','รสเผ็ด ทำน้ำพริก'],
+    answer:1,
+    explain:'ใบชะครามมีรสเปรี้ยวอมเค็มเฉพาะตัว นิยมนำมาทำแกงส้มใบชะคราม สูตรพื้นบ้านที่ไม่มีที่ไหนในโลก' },
+  { cat:'สมุนไพร', icon:'🥥',
+    q:'น้ำมันมะพร้าวสกัดเย็นแบบภูมิปัญญาท้องถิ่น มีสรรพคุณเด่นด้านใด?',
+    options:['ลดไข้','บำรุงผิวและเส้นผม แก้แผลไฟไหม้','รักษาโรคกระเพาะ','แก้ปวดฟัน'],
+    answer:1,
+    explain:'น้ำมันมะพร้าวสกัดเย็นใช้บำรุงผิวและเส้นผม แก้แผลไฟไหม้ และมีฤทธิ์ต้านเชื้อแบคทีเรีย' },
+  { cat:'อาหารท้องถิ่น', icon:'🍜',
+    q:'เมนูใดที่ขึ้นชื่อที่สุดของอ่าวแม่กลอง?',
+    options:['ปลาทูนึ่งมะนาว','ต้มยำกุ้ง','ปลาแซลมอนย่าง','ปูผัดผงกะหรี่'],
+    answer:0,
+    explain:'ปลาทูนึ่งมะนาวและปลาทูทอดเป็นเมนูขึ้นชื่อจากอ่าวแม่กลอง แหล่งปลาทูที่มีชื่อเสียงระดับประเทศ' },
+  { cat:'อาหารท้องถิ่น', icon:'🍥',
+    q:'"ขนมทองม้วน" ขนมพื้นบ้านโบราณ ทำจากวัตถุดิบหลักใด?',
+    options:['แป้งสาลีและไข่','แป้งข้าวเจ้า กะทิสด น้ำตาลมะพร้าว','แป้งข้าวเหนียวและถั่ว','นมสดและเนย'],
+    answer:1,
+    explain:'ขนมทองม้วนทำจากแป้งข้าวเจ้า กะทิสด และน้ำตาลมะพร้าว ย่างบนแม่พิมพ์เหล็กจนกรอบหอม' }
+];
+
+/* ══════════════════════════════════════════
+   GAME STATE
+═══════════════════════════════════════════ */
+var state = { order: [], idx: 0, score: 0, answered: false };
+
+function shuffle(arr) {
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+  }
+  return a;
+}
+
+function startQuiz() {
+  state.order = shuffle(QUIZ_BANK.map(function(_, i){ return i; }));
+  state.idx = 0;
+  state.score = 0;
+  document.getElementById('screenStart').style.display = 'none';
+  document.getElementById('screenResult').style.display = 'none';
+  document.getElementById('screenQuiz').style.display = 'block';
+  renderQuestion();
+}
+
+function renderQuestion() {
+  state.answered = false;
+  var total = QUIZ_BANK.length;
+  var q = QUIZ_BANK[state.order[state.idx]];
+
+  document.getElementById('qCounter').textContent = 'คำถามที่ ' + (state.idx + 1) + ' / ' + total;
+  document.getElementById('qScore').textContent = state.score;
+  document.getElementById('qProgressBar').style.width = ((state.idx) / total * 100) + '%';
+  document.getElementById('qCatTag').textContent = q.icon + ' ' + q.cat;
+  document.getElementById('qText').textContent = q.q;
+
+  var optsWrap = document.getElementById('qOptions');
+  optsWrap.innerHTML = '';
+  var letters = ['ก', 'ข', 'ค', 'ง'];
+
+  q.options.forEach(function (opt, i) {
+    var btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.innerHTML = '<span class="letter">' + letters[i] + '</span><span>' + opt + '</span>';
+    btn.onclick = function () { selectAnswer(i); };
+    optsWrap.appendChild(btn);
+  });
+
+  document.getElementById('qExplain').classList.remove('show');
+  document.getElementById('qExplain').textContent = '';
+  document.getElementById('qNextBtn').style.display = 'none';
+}
+
+function selectAnswer(i) {
+  if (state.answered) return;
+  state.answered = true;
+
+  var q = QUIZ_BANK[state.order[state.idx]];
+  var opts = document.querySelectorAll('#qOptions .quiz-opt');
+
+  opts.forEach(function (btn, idx) {
+    btn.disabled = true;
+    if (idx === q.answer) btn.classList.add('correct');
+    else if (idx === i) btn.classList.add('wrong');
+  });
+
+  if (i === q.answer) {
+    state.score++;
+    showToast && showToast('ตอบถูกต้อง! +1 คะแนน', 'success');
+  } else {
+    showToast && showToast('ยังไม่ถูก ลองดูคำเฉลยด้านล่าง', 'error');
+  }
+
+  document.getElementById('qScore').textContent = state.score;
+  var explainEl = document.getElementById('qExplain');
+  explainEl.textContent = '💡 ' + q.explain;
+  explainEl.classList.add('show');
+
+  var isLast = state.idx === QUIZ_BANK.length - 1;
+  var nextBtn = document.getElementById('qNextBtn');
+  nextBtn.textContent = isLast ? 'ดูผลคะแนน →' : 'ข้อถัดไป →';
+  nextBtn.style.display = 'inline-flex';
+}
+
+function nextQuestion() {
+  var total = QUIZ_BANK.length;
+  if (state.idx < total - 1) {
+    state.idx++;
+    renderQuestion();
+  } else {
+    document.getElementById('qProgressBar').style.width = '100%';
+    showResult();
+  }
+}
+
+function showResult() {
+  document.getElementById('screenQuiz').style.display = 'none';
+  var resultEl = document.getElementById('screenResult');
+  resultEl.style.display = 'block';
+
+  var total = QUIZ_BANK.length;
+  var pct = Math.round(state.score / total * 100);
+
+  document.getElementById('resultScore').textContent = state.score;
+  setTimeout(function () {
+    document.getElementById('resultBar').style.width = pct + '%';
+  }, 150);
+
+  var icon, tag, desc;
+  if (pct >= 90) {
+    icon = '🏆'; tag = 'ปราชญ์ท้องถิ่น!';
+    desc = 'ยอดเยี่ยมมาก! คุณรู้จักภูมิปัญญาสมุทรสงครามเป็นอย่างดี เหมือนปราชญ์ชาวบ้านตัวจริง';
+  } else if (pct >= 70) {
+    icon = '🌟'; tag = 'รู้ลึกรู้จริง';
+    desc = 'เก่งมาก! คุณเข้าใจภูมิปัญญาท้องถิ่นเมืองสามน้ำเป็นอย่างดี';
+  } else if (pct >= 40) {
+    icon = '🌿'; tag = 'เริ่มรู้จักดี';
+    desc = 'ไม่เลว! ลองสำรวจคลังภูมิปัญญาเพิ่มเติม แล้วกลับมาทำคะแนนให้ดีขึ้น';
+  } else {
+    icon = '🌊'; tag = 'เริ่มต้นเรียนรู้';
+    desc = 'ยังมีเรื่องราวอีกมากให้ค้นพบ ลองอ่านคลังภูมิปัญญาแล้วมาลองใหม่อีกครั้ง!';
+  }
+
+  document.getElementById('resultIcon').textContent = icon;
+  document.getElementById('resultTag').textContent = tag;
+  document.getElementById('resultDesc').textContent = desc;
+
+  var badgesWrap = document.getElementById('resultBadges');
+  badgesWrap.innerHTML = '';
+  var cats = {};
+  state.order.forEach(function (qi) {
+    var q = QUIZ_BANK[qi];
+    cats[q.cat] = (cats[q.cat] || 0) + (q.icon ? 1 : 0);
+  });
+  Object.keys(cats).forEach(function (c) {
+    var span = document.createElement('span');
+    span.className = 'tag tag-earth';
+    span.textContent = c;
+    badgesWrap.appendChild(span);
+  });
+}
+</script>
+</body>
+</html>
