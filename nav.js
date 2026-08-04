@@ -269,6 +269,11 @@
   + '<span><span class="mm-panel-label">คลังภูมิปัญญาทั้งหมด</span>'
   + '<span class="mm-panel-desc">สำรวจทุกหมวดหมู่</span></span>'
   + '</a>'
+  + '<a href="wisdom-quiz.html" class="mm-panel-link mm-item-quiz">'
+  + '<span class="mm-panel-icon">🎮</span>'
+  + '<span><span class="mm-panel-label">เกมทายภูมิปัญญา</span>'
+  + '<span class="mm-panel-desc">ทดสอบความรู้แบบสนุกๆ</span></span>'
+  + '</a>'
   + '</div>'
 
   /* Column 3 — Feature */
@@ -349,6 +354,7 @@
   + '<li><a href="index.html" data-i18n="nav_home">หน้าแรก</a></li>'
   + '<li><a href="activities.html" data-i18n="nav_activities">ปฏิทินกิจกรรม</a></li>'
   + '<li><a href="shops.html" data-i18n="nav_shops">ร้านค้าชุมชน</a></li>'
+  + '<li><a href="wisdom-quiz.html">🎮 เกมทายภูมิปัญญา</a></li>'
   + '<li><a href="provinces.html" data-i18n="footer_map">เลือกจังหวัด</a></li>'
   + '</ul></div>'
   + '<div class="footer-col"><h5 data-i18n="footer_info">ข้อมูล</h5><ul>'
