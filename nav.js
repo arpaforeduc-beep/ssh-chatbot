@@ -269,7 +269,7 @@
   + '<span><span class="mm-panel-label">คลังภูมิปัญญาทั้งหมด</span>'
   + '<span class="mm-panel-desc">สำรวจทุกหมวดหมู่</span></span>'
   + '</a>'
-  + '<a href="wisdom-quiz.html" class="mm-panel-link mm-item-quiz">'
+  + '<a href="quiz.html" class="mm-panel-link mm-item-quiz">'
   + '<span class="mm-panel-icon">🎮</span>'
   + '<span><span class="mm-panel-label">เกมทายภูมิปัญญา</span>'
   + '<span class="mm-panel-desc">ทดสอบความรู้แบบสนุกๆ</span></span>'
