@@ -207,76 +207,13 @@
 
   <!-- กำหนดค่า Chatbot (ไม่ต้องระบุ locale ตายตัว ให้บอทจัดการเอง) -->
   <div class="bn-customerchat"
-        bot_id="68f8a69d47ecdfb86c7e3f67"
+        bot_id="6a83cfbe29051726819f4f24"
         bot_logo="img/Bot-logo.png"
         bot_name="Charm of Samutsongkhram"
         theme_color="#2563eb"
         logged_in_greeting="ยินดีให้บริการค่ะ 😄 | Welcome! 😄"
         greeting_message="สวัสดีค่ะ 😊 ยินดีต้อนรับสู่ระบบบริการของเรา ต้องการให้ช่วยเรื่องอะไรดีคะ? | Hello 😊 Welcome to our service! How can I help you?">
   </div>
-  
-  <script>
-        // ฟังก์ชัน Initialize Bot
-        function initializeBot() {
-            if (typeof BN !== 'undefined') {
-                try {
-                    BN.init({ version: '1.0' });
-                    console.log('Botnoi initialized successfully');
-                } catch (error) {
-                    console.error('Error initializing Botnoi:', error);
-                }
-            } else {
-                console.error('BN is not defined');
-            }
-        }
-
-        // สำรอง: ถ้าสคริปต์โหลดก่อน DOMContentLoaded
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', function () {
-                // รอให้ BN พร้อม
-                let attempts = 0;
-                const maxAttempts = 50; // 5 วินาที (50 x 100ms)
-
-                const checkBN = setInterval(function () {
-                    attempts++;
-
-                    if (typeof BN !== 'undefined') {
-                        initializeBot();
-                        clearInterval(checkBN);
-                    } else if (attempts >= maxAttempts) {
-                        console.error('Botnoi failed to load after 5 seconds');
-                        clearInterval(checkBN);
-                    }
-                }, 100);
-            });
-        }
-
-        // เชื่อมต่อปุ่ม Chat กับการเปิด Chatbot
-        document.addEventListener('DOMContentLoaded', function () {
-            const chatButton = document.querySelector('.chat-button');
-            if (chatButton) {
-                chatButton.addEventListener('click', function () {
-                    // พยายามเปิด chatbot
-                    const chatWidget = document.querySelector('.bn-customerchat');
-                    if (chatWidget) {
-                        // Trigger click event on the widget
-                        chatWidget.click();
-                    }
-                    console.log('Chat button clicked');
-                });
-            }
-        });
-    </script>
-    <script>
-        // Force reload chatbot when page fully loaded
-        window.addEventListener('load', function () {
-            setTimeout(function () {
-                if (typeof BN !== 'undefined' && typeof BN.reload === 'function') {
-                    BN.reload();
-                }
-            }, 1000);
-        });
-    </script>
     
 <script src="i18n.js"></script>
 <script src="search.js"></script>
