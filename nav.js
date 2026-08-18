@@ -273,7 +273,7 @@
   /* Column 3 — Feature */
   + '<div>'
   + '<div class="mm-feature">'
-  + '<img class="mm-feature-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Amphawa_Floating_Market.jpg/800px-Amphawa_Floating_Market.jpg" alt="ตลาดน้ำอัมพวา">'
+  + '<img class="mm-feature-img" src="https://cms.dmpcdn.com/travel/2020/06/17/9481e0a0-b085-11ea-8fac-236a281cd6c5_original.JPG" alt="ตลาดน้ำอัมพวา">'
   + '<div class="mm-feature-body">'
   + '<h4>ตลาดน้ำอัมพวา</h4>'
   + '<p>ศูนย์รวมวิถีชีวิตและภูมิปัญญาริมน้ำที่ยังมีชีวิตชีวา</p>'
